@@ -2,7 +2,7 @@
 <component name="tictactoe" extends="Scene">
   <script type="text/brightscript" uri="pkg:/components/tictactoe.brs"/>
   <children>
-
+<!-- shows where in the app something is -->
     <Label
     id="gamename"
     text="Tic Tac Toe"
@@ -11,15 +11,14 @@
     horizAlign = "center"
     vertAlign = "center"
     />
-
-    <Poster
+ <Poster
       id="tictactoe"
       uri="pkg:/images/board.png"
       translation="[560, 160]"
       width="800"
       height="800"
     />
-
+<!-- this is for every square grid. There are 9 grids, so essentially, 9 buttons. -->
     <Button id="r0c0" text=" "
     iconUri="pkg:/images/square.png"
     focusedIconUri="pkg:/images/whiteX.jpg"

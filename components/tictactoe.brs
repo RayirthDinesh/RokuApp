@@ -1,12 +1,12 @@
 sub init()
-  ? "[tictactoe] init"
+  ? "[tictactoe] init" ' essentially a print statment that is called only once
   m.top.backgroundURI = "pkg:/images/background.png"
 
   m.gamename = m.top.findNode("gamename")
   m.poster = m.top.findNode("tictactoe")
   m.playerNotify = m.top.findNode("playerNotify")
   m.global.addFields({playerNotify: m.playerNotify})
-
+'variables that we call from XML and we want to edit
   r0c0 = m.top.findNode("r0c0")
   r0c1 = m.top.findNode("r0c1")
   r0c2 = m.top.findNode("r0c2")
@@ -18,7 +18,7 @@ sub init()
   r2c0 = m.top.findNode("r2c0")
   r2c1 = m.top.findNode("r2c1")
   r2c2 = m.top.findNode("r2c2")
-
+'makes the functions global
   m.global.addFields({r0c0: r0c0})
   m.global.addFields({r0c1: r0c1})
   m.global.addFields({r0c2: r0c2})
@@ -31,6 +31,7 @@ sub init()
   m.global.addFields({r2c1: r2c1})
   m.global.addFields({r2c2: r2c2})
 
+'if player is true
   m.xPlayer = true
 
   m.global.addFields({xPlayer: m.xPlayer})
@@ -80,7 +81,7 @@ sub init()
 
 
   ' m.top.setFocus(true)
-  r1c1.setFocus(true)
+  r1c1.setFocus(true) 'setfocus starts at the middle grid
 
   ' For i = 1 to 9
 
@@ -95,7 +96,9 @@ sub onButtonSelected()
 
 end sub
 
+'deals with the different types of presses and when the user moves to different buttons and hover
 
+'followingconditionals will also deal with how a user will move to different grids, then what happens if they do
 function onKeyEvent(key, press) as Boolean
   ? "[tictactoe] onKeyEvent" key, press
   m.buttonClicked = false
@@ -120,7 +123,7 @@ function onKeyEvent(key, press) as Boolean
       end if
     else if m.global.r0c1.hasFocus() then
       if key = "down" and press then
-        m.global.r0c1.setFocus(false)
+        m.global.r0c1.setFocus(false) 'setfocus also hovers
         m.global.r1c1.setFocus(true)
       else if key = "left" and press then
         m.global.r0c1.setFocus(false)
@@ -282,11 +285,14 @@ function onKeyEvent(key, press) as Boolean
       end if
     end if
   ' end if
+
+'shows if the player is switching
   if(m.global.xPlayer) then
     m.global.playerNotify.text = "Player X's Turn"
   else
     m.global.playerNotify.text = "Player O's Turn"
   end if
+
   return false
 end function
 
