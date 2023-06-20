@@ -116,11 +116,11 @@ function onKeyEvent(key, press) as Boolean
           if(m.global.xPlayer) then
             m.global.r0c0.iconUri = "pkg:/images/X.jpg"
             m.global.xPlayer = false
-            m.global.r0c0.focusedIconUri = "pkg:/images/cursorX.jpg"
+            m.global.r0c0.focusedIconUri = "pkg:/images/cursorO.jpg"
           else
             m.global.r0c0.iconUri = "pkg:/images/O.jpg"
             m.global.xPlayer = true
-            m.global.r0c0.focusedIconUri = "pkg:/images/cursorO.jpg"
+            m.global.r0c0.focusedIconUri = "pkg:/images/cursorX.jpg"
           end if
       end if
     else if m.global.r0c1.hasFocus() then
@@ -139,11 +139,11 @@ function onKeyEvent(key, press) as Boolean
         if(m.global.xPlayer) then
           m.global.r0c1.iconUri = "pkg:/images/X.jpg"
           m.global.xPlayer = false
-          m.global.r0c1.focusedIconUri = "pkg:/images/cursorX.jpg"
+          m.global.r0c1.focusedIconUri = "pkg:/images/cursorO.jpg"
         else
           m.global.r0c1.iconUri = "pkg:/images/O.jpg"
           m.global.xPlayer = true
-          m.global.r0c1.focusedIconUri = "pkg:/images/cursorO.jpg"
+          m.global.r0c1.focusedIconUri = "pkg:/images/cursorX.jpg"
         end if
       end if
     else if m.global.r0c2.hasFocus() then
@@ -159,11 +159,11 @@ function onKeyEvent(key, press) as Boolean
         if(m.global.xPlayer) then
           m.global.r0c2.iconUri = "pkg:/images/X.jpg"
           m.global.xPlayer = false
-          m.global.r0c2.focusedIconUri = "pkg:/images/cursorX.jpg"
+          m.global.r0c2.focusedIconUri = "pkg:/images/cursorO.jpg"
         else
           m.global.r0c2.iconUri = "pkg:/images/O.jpg"
           m.global.xPlayer = true
-          m.global.r0c2.focusedIconUri = "pkg:/images/cursorO.jpg"
+          m.global.r0c2.focusedIconUri = "pkg:/images/cursorX.jpg"
         end if
       end if
     else if m.global.r1c0.hasFocus() then
@@ -182,7 +182,7 @@ function onKeyEvent(key, press) as Boolean
         if(m.global.xPlayer) then
           m.global.r1c0.iconUri = "pkg:/images/X.jpg"
           m.global.xPlayer = false
-          m.global.r1c0.focusedIconUri = "pkg:/images/cursorX.jpg"
+          m.global.r1c0.focusedIconUri = "pkg:/images/cursorO.jpg" 'switching cursor to O at grid r1c0
         else
           m.global.r1c0.iconUri = "pkg:/images/O.jpg"
           m.global.xPlayer = true
@@ -208,11 +208,11 @@ function onKeyEvent(key, press) as Boolean
         if(m.global.xPlayer) then
           m.global.r1c1.iconUri = "pkg:/images/X.jpg"
           m.global.xPlayer = false
-          m.global.r1c1.focusedIconUri = "pkg:/images/cursorX.jpg"
+          m.global.r1c1.focusedIconUri = "pkg:/images/cursorO.jpg"
         else
           m.global.r1c1.iconUri = "pkg:/images/O.jpg"
           m.global.xPlayer = true
-          m.global.r1c1.focusedIconUri = "pkg:/images/cursorO.jpg"
+          m.global.r1c1.focusedIconUri = "pkg:/images/cursorX.jpg"
         end if
       end if
     else if m.global.r1c2.hasFocus() then
@@ -231,11 +231,11 @@ function onKeyEvent(key, press) as Boolean
         if(m.global.xPlayer) then
           m.global.r1c2.iconUri = "pkg:/images/X.jpg"
           m.global.xPlayer = false
-          m.global.r1c2.focusedIconUri = "pkg:/images/cursorX.jpg"
+          m.global.r1c2.focusedIconUri = "pkg:/images/cursorO.jpg"
         else
           m.global.r1c2.iconUri = "pkg:/images/O.jpg"
-          m.global.xPlayer = true
-          m.global.r1c2.focusedIconUri = "pkg:/images/cursorO.jpg"
+          m.global.xPlayer = true 
+          m.global.r1c2.focusedIconUri = "pkg:/images/cursorX.jpg"
         end if
       end if
     else if m.global.r2c0.hasFocus() then
@@ -251,11 +251,11 @@ function onKeyEvent(key, press) as Boolean
         if(m.global.xPlayer) then
           m.global.r2c0.iconUri = "pkg:/images/X.jpg"
           m.global.xPlayer = false
-          m.global.r2c0.focusedIconUri = "pkg:/images/cursorX.jpg"
+          m.global.r2c0.focusedIconUri = "pkg:/images/cursorO.jpg"
         else
           m.global.r2c0.iconUri = "pkg:/images/O.jpg"
           m.global.xPlayer = true
-          m.global.r2c0.focusedIconUri = "pkg:/images/cursorO.jpg"
+          m.global.r2c0.focusedIconUri = "pkg:/images/cursorX.jpg"
         end if
       end if
     else if m.global.r2c1.hasFocus() then
@@ -274,11 +274,11 @@ function onKeyEvent(key, press) as Boolean
         if(m.global.xPlayer) then
           m.global.r2c1.iconUri = "pkg:/images/X.jpg"
           m.global.xPlayer = false
-          m.global.r2c1.focusedIconUri = "pkg:/images/cursorX.jpg"
+          m.global.r2c1.focusedIconUri = "pkg:/images/cursorO.jpg"
         else
           m.global.r2c1.iconUri = "pkg:/images/O.jpg"
           m.global.xPlayer = true
-          m.global.r2c1.focusedIconUri = "pkg:/images/cursorO.jpg"
+          m.global.r2c1.focusedIconUri = "pkg:/images/cursorX.jpg"
         end if
       end if
     else if m.global.r2c2.hasFocus() then
@@ -294,11 +294,11 @@ function onKeyEvent(key, press) as Boolean
         if(m.global.xPlayer) then
           m.global.r2c2.iconUri = "pkg:/images/X.jpg"
           m.global.xPlayer = false
-          m.global.r2c2.focusedIconUri = "pkg:/images/cursorX.jpg"
+          m.global.r2c2.focusedIconUri = "pkg:/images/cursorO.jpg"
         else
           m.global.r2c2.iconUri = "pkg:/images/O.jpg"
           m.global.xPlayer = true
-          m.global.r2c2.focusedIconUri = "pkg:/images/cursorO.jpg"
+          m.global.r2c2.focusedIconUri = "pkg:/images/cursorX.jpg"
         end if
       end if
     end if
