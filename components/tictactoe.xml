@@ -11,17 +11,22 @@
     horizAlign = "center"
     vertAlign = "center"
     />
- <Poster
+    <Poster
       id="tictactoe"
       uri="pkg:/images/board.png"
       translation="[560, 160]"
       width="800"
       height="800"
     />
-<!-- this is for every square grid. There are 9 grids, so essentially, 9 buttons. -->
+    <!--need to change the translation-->
+    <!--the diagonal for this is \-->
+  
+<!--need to change the translation-->
+<!--the diagonal for this is /\-->
+    <!-- this is for every square grid. There are 9 grids, so essentially, 9 buttons. -->
     <Button id="r0c0" text=" "
     iconUri="pkg:/images/square.png"
-    focusedIconUri="pkg:/images/whiteX.jpg"
+    focusedIconUri="pkg:/images/cursorX.jpg"
     minWidth="10" maxWidth="10"
     height="10"
     translation="[520, 300]"
@@ -29,51 +34,51 @@
 
     <Button id="r0c1" text=" "
     iconUri="pkg:/images/square.png"
-    focusedIconUri="pkg:/images/whiteX.jpg"
+    focusedIconUri="pkg:/images/cursorX.jpg"
     minWidth="10" maxWidth="10"
     height="10"
     translation="[772.67, 300]"/>
 
     <Button id="r0c2" text=" "
     iconUri="pkg:/images/square.png"
-    focusedIconUri="pkg:/images/whiteX.jpg"
+    focusedIconUri="pkg:/images/cursorX.jpg"
     minWidth="10" maxWidth="10"
     height="10"
     translation="[1013.34, 300]"/>
 
     <Button id="r1c0" text=" "
     iconUri="pkg:/images/square.png"
-    focusedIconUri="pkg:/images/whiteX.jpg"
+    focusedIconUri="pkg:/images/cursorX.jpg"
     minWidth="10" maxWidth="10"
     translation="[520, 515.67]"/>
 
     <Button id="r1c1" text=" "
     iconUri="pkg:/images/square.png"
-    focusedIconUri="pkg:/images/whiteX.jpg"
+    focusedIconUri="pkg:/images/cursorX.jpg"
     minWidth="10" maxWidth="10"
     translation="[772.67, 515.67]"/>
 
     <Button id="r1c2" text=""
     iconUri="pkg:/images/square.png"
-    focusedIconUri="pkg:/images/whiteX.jpg"
+    focusedIconUri="pkg:/images/cursorX.jpg"
     minWidth="10" maxWidth="10"
     translation="[1013.34, 515.67]"/>
 
     <Button id="r2c0" text=""
     iconUri="pkg:/images/square.png"
-    focusedIconUri="pkg:/images/whiteX.jpg"
+    focusedIconUri="pkg:/images/cursorX.jpg"
     minWidth="10" maxWidth="10"
     translation="[520, 765.34]"/>
 
     <Button id="r2c1" text=""
     iconUri="pkg:/images/square.png"
-    focusedIconUri="pkg:/images/whiteX.jpg"
+    focusedIconUri="pkg:/images/cursorX.jpg"
     minWidth="10" maxWidth="10"
     translation="[772.67, 765.34]"/>
 
     <Button id="r2c2" text=""
     iconUri="pkg:/images/square.png"
-    focusedIconUri="pkg:/images/whiteX.jpg"
+    focusedIconUri="pkg:/images/cursorX.jpg"
     minWidth="10" maxWidth="10"
     translation="[1013.34, 765.34]"/>
 
@@ -83,8 +88,7 @@
     visible="true"
     translation="[860,1000]"
     horizAlign = "center"
-    vertAlign = "center"
-    />
+    vertAlign = "center"/>
 
   </children>
 </component>
