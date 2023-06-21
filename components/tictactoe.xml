@@ -18,6 +18,78 @@
       width="800"
       height="800"
     />
+<!--need to change the translation-->
+    <!--the diagonal for this is \-->
+    <Poster     
+      id="diagonalWin1" 
+      uri="pkg:/images/Diagonal1.png"
+      visible="false"
+      translation="[810, 540]"
+      width="200"
+      height="200"
+    />
+<!--need to change the translation-->
+<!--the diagonal for this is /\-->
+    <Poster
+      id="diagonalWin2"
+      uri="pkg:/images/Diagonal2.png"
+      visible="false"
+      translation="[810, 540]"
+      width="200"
+      height="200"
+    />
+    <Poster
+      id="Horizontal_Line_Top"
+      uri="pkg:/images/Horizontal_Line.png"
+      visible="false"
+      translation="[810, 1000]"
+      width="200"
+      height="200"
+    />
+    <!--need to change the translation-->
+    <!-- need to decide how many horizontal lines for wins, and the logistics-->
+    <Poster
+      id="Horizontal_Line_Middle"
+      uri="pkg:/images/Horizontal_Line.png"
+      visible="false"
+      translation="[810, 580]"
+      width="200"
+      height="200"
+    />
+    <Poster
+      id="Horizontal_Line_Bottom"
+      uri="pkg:/images/Horizontal_Line.png"
+      visible="false"
+      translation="[810, 580]"
+      width="200"
+      height="200"
+    />
+    <Poster
+      id="Vertical_Line_Top"
+      uri="pkg:/images/Vertical_Line.png"
+      visible="false"
+      translation="[310, 580]"
+      width="200"
+      height="200"
+    />
+    <Poster
+      id="Vertical_Line_Middle"
+      uri="pkg:/images/Vertical_Line.png"
+      visible="false"
+      translation="[810, 580]"
+      width="200"
+      height="200"
+    />
+    <Poster
+      id="Vertical_Line_Bottom"
+      uri="pkg:/images/Vertical_Line.png"
+      visible="false"
+      translation="[1770, 580]"
+      width="200"
+      height="200"
+    />
+
+
 <!-- this is for every square grid. There are 9 grids, so essentially, 9 buttons. -->
     <Button id="r0c0" text=" "
     iconUri="pkg:/images/square.png"
