@@ -316,6 +316,8 @@ function onKeyEvent(key, press) as Boolean
 end function
 
 function Winning()
+'x player
+'for each if else if statment, add a reset function after the visible function
     if m.global.xPlayer and m.global.r0c0.iconUri = "pkg:/images/X.jpg" and m.global.r0c1.iconUri = "pkg:/images/X.jpg" and m.global.r0c2.iconUri = "pkg:/images/X.jpg" then
       m.global.Horizontal_Line_Top.visible = true
       m.global.playerWin.text = "Player X wins"   '-
