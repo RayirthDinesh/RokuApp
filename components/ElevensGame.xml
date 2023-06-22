@@ -1,0 +1,170 @@
+<component name="ElevensGame" extends="Group" initialFocus="grid">
+
+    <!-- Background -->
+    <children>
+        <Poster
+            id="background"
+            width="1280"
+            height="720"
+            uri="[pkg:/images/7elevenslogo.png]"
+        />
+    </children>
+
+    <!-- 3x3 Grid Board -->
+    <children>
+        <GridLayout
+            id="grid"
+            translation="[128, 128]"
+            rowCount="3"
+            columnCount="3"
+            rowSpacing="16"
+            columnSpacing="16"
+            focusable="true"
+        >
+            <!-- Card 1 -->
+            <Group id="card1Group" visible="false" focusable="true">
+                <Rectangle
+                    id="card1Highlight"
+                    width="200"
+                    height="300"
+                    visible="false"
+                    fillColor="0xFFFFFF00"
+                />
+                <Poster
+                    id="card1Poster"
+                    width="200"
+                    height="300"
+                />
+            </Group>
+
+            <!-- Card 2 -->
+            <Group id="card2Group" visible="false" focusable="true">
+                <Rectangle
+                    id="card2Highlight"
+                    width="200"
+                    height="300"
+                    visible="false"
+                    fillColor="0xFFFFFF00"
+                />
+                <Poster
+                    id="card2Poster"
+                    width="200"
+                    height="300"
+                />
+            </Group>
+
+            <!-- Card 3 -->
+            <Group id="card3Group" visible="false" focusable="true">
+                <Rectangle
+                    id="card3Highlight"
+                    width="200"
+                    height="300"
+                    visible="false"
+                    fillColor="0xFFFFFF00"
+                />
+                <Poster
+                    id="card3Poster"
+                    width="200"
+                    height="300"
+                />
+            </Group>
+
+            <!-- Card 4 -->
+            <Group id="card4Group" visible="false" focusable="true">
+                <Rectangle
+                    id="card4Highlight"
+                    width="200"
+                    height="300"
+                    visible="false"
+                    fillColor="0xFFFFFF00"
+                />
+                <Poster
+                    id="card4Poster"
+                    width="200"
+                    height="300"
+                />
+            </Group>
+
+            <!-- Card 5 -->
+            <Group id="card5Group" visible="false" focusable="true">
+                <Rectangle
+                    id="card5Highlight"
+                    width="200"
+                    height="300"
+                    visible="false"
+                    fillColor="0xFFFFFF00"
+                />
+                <Poster
+                    id="card5Poster"
+                    width="200"
+                    height="300"
+                />
+            </Group>
+
+            <!-- Card 6 -->
+            <Group id="card6Group" visible="false" focusable="true">
+                <Rectangle
+                    id="card6Highlight"
+                    width="200"
+                    height="300"
+                    visible="false"
+                    fillColor="0xFFFFFF00"
+                />
+                <Poster
+                    id="card6Poster"
+                    width="200"
+                    height="300"
+                />
+            </Group>
+
+            <!-- Card 7 -->
+            <Group id="card7Group" visible="false" focusable="true">
+                <Rectangle
+                    id="card7Highlight"
+                    width="200"
+                    height="300"
+                    visible="false"
+                    fillColor="0xFFFFFF00"
+                />
+                <Poster
+                    id="card7Poster"
+                    width="200"
+                    height="300"
+                />
+            </Group>
+
+            <!-- Card 8 -->
+            <Group id="card8Group" visible="false" focusable="true">
+                <Rectangle
+                    id="card8Highlight"
+                    width="200"
+                    height="300"
+                    visible="false"
+                    fillColor="0xFFFFFF00"
+                />
+                <Poster
+                    id="card8Poster"
+                    width="200"
+                    height="300"
+                />
+            </Group>
+
+            <!-- Card 9 -->
+            <Group id="card9Group" visible="false" focusable="true">
+                <Rectangle
+                    id="card9Highlight"
+                    width="200"
+                    height="300"
+                    visible="false"
+                    fillColor="0xFFFFFF00"
+                />
+                <Poster
+                    id="card9Poster"
+                    width="200"
+                    height="300"
+                />
+            </Group>
+        </GridLayout>
+    </children>
+
+</component>
