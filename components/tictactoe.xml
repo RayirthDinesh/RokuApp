@@ -20,7 +20,7 @@
     />
     <!--need to change the translation-->
     <!--the diagonal for this is \-->
-  
+
 <!--need to change the translation-->
 <!--the diagonal for this is /\-->
     <!-- this is for every square grid. There are 9 grids, so essentially, 9 buttons. -->
@@ -54,7 +54,7 @@
 
     <Button id="r1c1" text=" "
     iconUri="pkg:/images/square.png"
-    focusedIconUri="pkg:/images/cursorX.jpg"
+    focusedIconUri="pkg:/images/X.jpg"
     minWidth="10" maxWidth="10"
     translation="[772.67, 515.67]"/>
 
