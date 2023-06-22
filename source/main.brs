@@ -2,6 +2,7 @@ sub main()
 	'create a screen when an app is starting up
 
 	screen = createObject("roSGScreen")
+	' scene = screen.createScene("home")
 	scene = screen.createScene("tictactoe")
 	screen.Show()
 	port = createObject("roMessagePort")
