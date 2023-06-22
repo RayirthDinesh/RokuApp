@@ -1,21 +1,17 @@
 sub init()
   ? "[tictactoe] init" ' essentially a print statment that is called only once
   m.top.backgroundURI = "pkg:/images/background.png"
-
   m.gamename = m.top.findNode("gamename")
   m.poster = m.top.findNode("tictactoe")
-
   m.playerNotify = m.top.findNode("playerNotify")
   m.global.addFields({playerNotify: m.playerNotify})
 'variables that we call from XML and we want to edit
   r0c0 = m.top.findNode("r0c0")
   r0c1 = m.top.findNode("r0c1")
   r0c2 = m.top.findNode("r0c2")
-
   r1c0 = m.top.findNode("r1c0")
   r1c1 = m.top.findNode("r1c1")
   r1c2 = m.top.findNode("r1c2")
-
   r2c0 = m.top.findNode("r2c0")
   r2c1 = m.top.findNode("r2c1")
   r2c2 = m.top.findNode("r2c2")
@@ -23,55 +19,34 @@ sub init()
   m.global.addFields({r0c0: r0c0})
   m.global.addFields({r0c1: r0c1})
   m.global.addFields({r0c2: r0c2})
-
   m.global.addFields({r1c0: r1c0})
   m.global.addFields({r1c1: r1c1})
   m.global.addFields({r1c2: r1c2})
-
   m.global.addFields({r2c0: r2c0})
   m.global.addFields({r2c1: r2c1})
   m.global.addFields({r2c2: r2c2})
 
-'if player is true
   m.xPlayer = true
-
   m.global.addFields({xPlayer: m.xPlayer})
-
-  arrayButtonsCalled = [
-    [false,false,false],
-    [false,false,false],
-    [false,false,false]
-  ]
 
   rowIndex = 1
   colIndex = 1
+  m.global.addFields({rowIndex : rowIndex})
+  m.global.addFields({colIndex : colIndex})
 
-  arrayButtons = [
-    [r0c0,r0c1,r0c2],
-    [r1c0,r1c1,r1c2],
-    [r2c0,r2c1,r2c2]
-  ]
+  arrayButtons = [[r0c0,r0c1,r0c2], [r1c0,r1c1,r1c2], [r2c0,r2c1,r2c2]]
+  m.global.addFields({arrayButtons : arrayButtons})
 
   rightButtons = [r0c0,r1c0,r2c0,r0c1,r1c1,r2c1]
   leftButtons = [r0c2,r1c2,r2c2,r0c1,r1c1,r2c1]
   upButtons = [r2c0,r2c1,r2c2,r1c0,r1c1,r1c2]
   downButtons = [r0c0,r0c1,r0c2,r1c0,r1c1,r1c2]
-
-  m.global.addFields({arrayButtonsCalled : arrayButtonsCalled})
-  m.global.addFields({arrayButtons : arrayButtons})
-  m.global.addFields({rowIndex : rowIndex})
-  m.global.addFields({colIndex : colIndex})
   m.global.addFields({rightButtons : rightButtons})
   m.global.addFields({leftButtons : leftButtons})
   m.global.addfields({upButtons : upButtons})
   m.global.addFields({downButtons : downButtons})
 
-  r1c1.setFocus(true) 'setfocus starts at the middle grid
-end sub
-
-sub onButtonSelected()
-  ? "[tictactoe] onButtonSelected"
-
+  r1c1.setFocus(true) 'set focus starts at the middle grid
 end sub
 
 function checkinList(list, button) as Boolean
@@ -83,16 +58,7 @@ function checkinList(list, button) as Boolean
   return false
 end function
 
-function test() as Boolean
-  ? "[tictactoe] test"
-  return false
-end function
-
-
-'function
-'deals with the different types of presses and when the user moves to different buttons and hover
-
-'followingconditionals will also deal with how a user will move to different grids, then what happens if they do
+'function deals with the different types of presses and when the user moves to different buttons and hover following conditionals will also deal with how a user will move to different grids, then what happens if they do
 function onKeyEvent(key, press) as Boolean
   ? "[tictactoe] onKeyEvent" key, press
   if press then
