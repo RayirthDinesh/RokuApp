@@ -25,7 +25,8 @@
       uri="pkg:/images/Diagonal1.png"
       visible="false"
       translation="[600, 200]"
-      width="500"
+      width="700"
+      height="700"
     />
 <!--need to change the translation-->
 <!--the diagonal for this is /-->
@@ -34,14 +35,16 @@
       uri="pkg:/images/Diagonal2.png"
       visible="false"
       translation="[600, 200]"
-      width="500"
+      width="700"
+      height="700"
     />
     <Poster
       id="Horizontal_Line_Top"
       uri="pkg:/images/Horizontal_Line.png"
       visible="false"
-      translation="[700, 80]"
-      width="500"
+      translation="[540, -100]"
+      width="800"
+      height="800"
     />
     <!--need to change the translation-->
     <!-- need to decide how many horizontal lines for wins, and the logistics-->
@@ -49,36 +52,41 @@
       id="Horizontal_Line_Middle"
       uri="pkg:/images/Horizontal_Line.png"
       visible="false"
-      translation="[700, 300]"
-      width="500"
+      translation="[540, 175]"
+      width="800"
+      height="800"
     />
     <Poster
       id="Horizontal_Line_Bottom"
       uri="pkg:/images/Horizontal_Line.png"
       visible="false"
-      translation="[700, 780]"
-      width="500"
+      translation="[540, 400]"
+      width="800"
+      height="800"
     />
     <Poster
       id="Vertical_Line_Top"
       uri="pkg:/images/Vertical_Line.png"
       visible="false"
-      translation="[300, 100]"
-      width="500"
+      translation="[310, 150]"
+      width="800"
+      height="800"
     />
     <Poster
       id="Vertical_Line_Middle"
       uri="pkg:/images/Vertical_Line.png"
       visible="false"
-      translation="[500, 100]"
-      width="500"
+      translation="[550, 150]"
+      width="800"
+      height="800"
     />
     <Poster
       id="Vertical_Line_Bottom"
       uri="pkg:/images/Vertical_Line.png"
       visible="false"
-      translation="[700, 100]"
-      width="500"
+      translation="[800, 150]"
+      width="800"
+      height="800"
     />
 
 

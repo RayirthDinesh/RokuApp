@@ -426,7 +426,7 @@ function Winning()
 
     else if m.global.r0c0.iconUri = "pkg:/images/X.jpg" and m.global.r1c1.iconUri = "pkg:/images/X.jpg" and m.global.r2c2.iconUri = "pkg:/images/X.jpg" then
       m.global.diagonalWin1.visible = true
-      m.global.playerNotify.text = "Player X wins" '\
+      m.global.playerNotify.text = "Player X wins" '\ 
 
     else if m.global.r0c2.iconUri = "pkg:/images/X.jpg" and m.global.r1c1.iconUri = "pkg:/images/X.jpg" and m.global.r2c0.iconUri = "pkg:/images/X.jpg" then
       m.global.diagonalWin2.visible = true      
