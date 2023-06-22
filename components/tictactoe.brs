@@ -305,96 +305,23 @@ function onKeyEvent(key, press) as Boolean
         if(m.global.xPlayer) then
           m.global.r2c2.iconUri = "pkg:/images/X.jpg"
           m.global.xPlayer = false
+          m.global.playerNotify.text = "Player O's Turn"
         else
           m.global.r2c2.iconUri = "pkg:/images/O.jpg"
           m.global.xPlayer = true
+          m.global.playerNotify.text = "Player X's Turn"
         end if
         Winning()
       end if
     end if
-  ' end if
-
-'shows if the player is switching
-  if(m.global.xPlayer) then
-    m.global.playerNotify.text = "Player X's Turn"
-  else
-    m.global.playerNotify.text = "Player O's Turn"
-  end if
-  ' Winning()
-
-'   if m.global.r0c0.iconUri = "pkg:/images/X.jpg" and m.global.r0c1.iconUri = "pkg:/images/X.jpg" and m.global.r0c2.iconUri = "pkg:/images/X.jpg" then
-'       m.global.Horizontal_Line_Top.visible = "true"
-'       m.global.playerNotify.text = "Player X wins"   '-
-
-'     else if m.global.xPlayer and m.global.r1c0.iconUri = "pkg:/images/X.jpg" and m.global.r1c1.iconUri = "pkg:/images/X.jpg" and m.global.r1c2.iconUri = "pkg:/images/X.jpg" then
-'       m.global.Horizontal_Line_Middle.visible = "true"
-'       m.global.playerNotify.text = "Player X wins" '-
-
-'     else if m.global.xPlayer and m.global.r2c0.iconUri = "pkg:/images/X.jpg" and m.global.r2c1.iconUri = "pkg:/images/X.jpg" and m.global.r2c2.iconUri = "pkg:/images/X.jpg" then
-'       m.global.Horizontal_Line_Bottom.visible = "true"
-'       m.global.playerNotify.text = "Player X wins" '-
-
-'     else if m.global.xPlayer and m.global.r0c0.iconUri = "pkg:/images/X.jpg" and m.global.r1c0.iconUri = "pkg:/images/X.jpg" and m.global.r2c0.iconUri = "pkg:/images/X.jpg" then
-'       m.global.Vertical_Line_Top.visible = "true"
-'       m.global.playerNotify.text = "Player X wins" '|
-
-'     else if m.global.xPlayer and m.global.r0c1.iconUri = "pkg:/images/X.jpg" and m.global.r1c1.iconUri = "pkg:/images/X.jpg" and m.global.r2c1.iconUri = "pkg:/images/X.jpg" then
-'       m.global.Vertical_Line_Middle.visible = "true"
-'       m.global.playerNotify.text = "Player X wins" '|
-
-'     else if m.global.xPlayer and m.global.r0c2.iconUri = "pkg:/images/X.jpg" and m.global.r1c2.iconUri = "pkg:/images/X.jpg" and m.global.r2c2.iconUri = "pkg:/images/X.jpg" then
-'       m.global.Vertical_Line_Bottom.visible = "true"
-'       m.global.playerNotify.text = "Player X wins" '|
-
-'     else if m.global.xPlayer and m.global.r0c0.iconUri = "pkg:/images/X.jpg" and m.global.r1c1.iconUri = "pkg:/images/X.jpg" and m.global.r2c2.iconUri = "pkg:/images/X.jpg" then
-'       m.global.diagonalWin1.visible = "true"
-'       m.global.playerNotify.text = "Player X wins" '\
-
-'     else if m.global.xPlayer and m.global.r0c2.iconUri = "pkg:/images/X.jpg" and m.global.r1c1.iconUri = "pkg:/images/X.jpg" and m.global.r2c0.iconUri = "pkg:/images/X.jpg" then
-'       m.global.diagonalWin2.visible = "true"      
-'       m.global.playerNotify.text = "Player X wins" '/
-
-'     end if 
-
-' 'for O player
-' 'for each if else if statment, add a reset function after the visible function
-'     if not m.global.xPlayer and m.global.r0c0.iconUri = "pkg:/images/O.jpg" and m.global.r0c1.iconUri = "pkg:/images/O.jpg" and m.global.r0c2.iconUri = "pkg:/images/O.jpg" then
-'       m.global.Horizontal_Line_Top.visible = "true"
-'       m.global.playerNotify.text = "Player O wins"   '-
-
-'     else if not m.global.xPlayer and m.global.r1c0.iconUri = "pkg:/images/O.jpg" and m.global.r1c1.iconUri = "pkg:/images/O.jpg" and m.global.r1c2.iconUri = "pkg:/images/O.jpg" then
-'       m.global.Horizontal_Line_Middle.visible = "true"
-'       m.global.playerNotify.text = "Player O wins" '-
-
-'     else if not m.global.xPlayer and m.global.r2c0.iconUri = "pkg:/images/O.jpg" and m.global.r2c1.iconUri = "pkg:/images/O.jpg" and m.global.r2c2.iconUri = "pkg:/images/O.jpg" then
-'       m.global.Horizontal_Line_Bottom.visible = "true"
-'       m.global.playerNotify.text = "Player O wins" '-
-
-'     else if not m.global.xPlayer and m.global.r0c0.iconUri = "pkg:/images/O.jpg" and m.global.r1c0.iconUri = "pkg:/images/O.jpg" and m.global.r2c0.iconUri = "pkg:/images/O.jpg" then
-'       m.global.Vertical_Line_Top.visible = "true"  
-'       m.global.playerNotify.text = "Player O wins" '|
-
-'     else if not m.global.xPlayer and m.global.r0c1.iconUri = "pkg:/images/O.jpg" and m.global.r1c1.iconUri = "pkg:/images/O.jpg" and m.global.r2c1.iconUri = "pkg:/images/O.jpg" then
-'       m.global.Vertical_Line_Middle.visible = "true"
-'       m.global.playerNotify.text = "Player O wins" '|
-
-'     else if not m.global.xPlayer and m.global.r0c2.iconUri = "pkg:/images/O.jpg" and m.global.r1c2.iconUri = "pkg:/images/O.jpg" and m.global.r2c2.iconUri = "pkg:/images/O.jpg" then
-'       m.global.Vertical_Line_Bottom.visible = "true"
-'       m.global.playerNotify.text = "Player O wins" '|
-
-'     else if not m.global.xPlayer and m.global.r0c0.iconUri = "pkg:/images/O.jpg" and m.global.r1c1.iconUri = "pkg:/images/O.jpg" and m.global.r2c2.iconUri = "pkg:/images/O.jpg" then
-'       m.global.diagonalWin1.visible = "true"
-'       m.global.playerNotify.text = "Player O wins" '\
-
-'     else if not m.global.xPlayer and m.global.r0c2.iconUri = "pkg:/images/O.jpg" and m.global.r1c1.iconUri = "pkg:/images/O.jpg" and m.global.r2c0.iconUri = "pkg:/images/O.jpg" then
-'       m.global.diagonalWin2.visible = "true"
-'       m.global.playerNotify.text = "Player O wins" '/
-
-'     end if 
-
-  
   return false
 end function
+
+'function winTest()
+ ' win = false
+
+
+'end function 
 
 function Winning()
 'x player
@@ -402,7 +329,7 @@ function Winning()
   if not m.global.xPlayer then
     if m.global.r0c0.iconUri = "pkg:/images/X.jpg" and m.global.r0c1.iconUri = "pkg:/images/X.jpg" and m.global.r0c2.iconUri = "pkg:/images/X.jpg" then
       m.global.Horizontal_Line_Top.visible = true
-      m.global.playerNotifytext = "Player X wins"   '-
+      m.global.playerNotify.text = "Player X wins"   '-
 
     else if m.global.r1c0.iconUri = "pkg:/images/X.jpg" and m.global.r1c1.iconUri = "pkg:/images/X.jpg" and m.global.r1c2.iconUri = "pkg:/images/X.jpg" then
       m.global.Horizontal_Line_Middle.visible = true
