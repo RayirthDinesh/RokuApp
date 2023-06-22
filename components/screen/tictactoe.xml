@@ -71,7 +71,7 @@
     textColor="0xff0000ff"
     iconUri="pkg:/images/blank.png"
     focusedTextColor="0xff0000ff"
-    focusedIconUri="pkg:/images/square.png"
+    focusedIconUri="pkg:/images/redX.jpg"
     minWidth="1"
     maxWidth="1"
     height="1"

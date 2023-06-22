@@ -100,27 +100,29 @@ function onKeyEvent(key, press) as Boolean
       if checkinList(m.global.rightButtons, m.global.arrayButtons[m.global.rowIndex][m.global.colIndex])
         m.global.arrayButtons[m.global.rowIndex][m.global.colIndex].setFocus(false)
         m.global.colIndex = m.global.colIndex + 1
-        m.global.arrayButtons[m.global.rowIndex][m.global.colIndex].setFocus(true)
       end if
     else if key = "up" then
       if checkinList(m.global.upButtons, m.global.arrayButtons[m.global.rowIndex][m.global.colIndex])
         m.global.arrayButtons[m.global.rowIndex][m.global.colIndex].setFocus(false)
         m.global.rowIndex = m.global.rowIndex - 1
-        m.global.arrayButtons[m.global.rowIndex][m.global.colIndex].setFocus(true)
       end if
     else if key = "down" then
       if checkinList(m.global.downButtons, m.global.arrayButtons[m.global.rowIndex][m.global.colIndex])
         m.global.arrayButtons[m.global.rowIndex][m.global.colIndex].setFocus(false)
         m.global.rowIndex = m.global.rowIndex + 1
-        m.global.arrayButtons[m.global.rowIndex][m.global.colIndex].setFocus(true)
       end if
     else if key = "left" then
       if checkinList(m.global.leftButtons, m.global.arrayButtons[m.global.rowIndex][m.global.colIndex])
         m.global.arrayButtons[m.global.rowIndex][m.global.colIndex].setFocus(false)
         m.global.colIndex = m.global.colIndex - 1
-        m.global.arrayButtons[m.global.rowIndex][m.global.colIndex].setFocus(true)
       end if
     end if
+    if m.global.xPlayer and m.global.arrayButtons[m.global.rowIndex][m.global.colIndex].iconUri = "pkg:/images/blank.png" then
+      m.global.arrayButtons[m.global.rowIndex][m.global.colIndex].focusedIconUri = "pkg:/images/redX.jpg"
+    else if not m.global.xPlayer and m.global.arrayButtons[m.global.rowIndex][m.global.colIndex].iconUri = "pkg:/images/blank.png"
+      m.global.arrayButtons[m.global.rowIndex][m.global.colIndex].focusedIconUri = "pkg:/images/redO.jpg"
+    end if
+    m.global.arrayButtons[m.global.rowIndex][m.global.colIndex].setFocus(true)
   else
     if key = "OK" then
       if m.global.arrayButtons[m.global.rowIndex][m.global.colIndex].iconUri = "pkg:/images/blank.png" then
