@@ -3,9 +3,7 @@
     <script type="text/brightscript" uri="pkg:/components/ElevensGame.brs" />
   
     <children>
-        <!-- Game board grid -->
         <grid id="gameGrid" numRows="3" numColumns="3">
-            <!-- Card components -->
             <group id="cardGroup" layoutDirection="horizontal" translation="[100, 100]">
                 <children>
                     <image id="card0" width="100" height="150" visible="false" />
