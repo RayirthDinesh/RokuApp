@@ -1,170 +1,70 @@
-<component name="ElevensGame" extends="Group" initialFocus="grid">
-
-    <!-- Background -->
+<?xml version="1.0" encoding="utf-8" ?>
+<component name="ElevensGame" extends="Scene">
+    <script type="text/brightscript" uri="pkg:/components/ElevensGame.brs" />
+  
     <children>
-        <Poster
-            id="background"
-            width="1280"
-            height="720"
-            uri="[pkg:/images/7elevenslogo.png]"
-        />
+        <!-- Game board grid -->
+        <grid id="gameGrid" numRows="3" numColumns="3">
+            <!-- Card components -->
+            <group id="cardGroup" layoutDirection="horizontal" translation="[100, 100]">
+                <children>
+                    <image id="card0" width="100" height="150" visible="false" />
+                    <image id="card1" width="100" height="150" visible="false" />
+                    <image id="card2" width="100" height="150" visible="false" />
+                    <image id="card3" width="100" height="150" visible="false" />
+                    <image id="card4" width="100" height="150" visible="false" />
+                    <image id="card5" width="100" height="150" visible="false" />
+                    <image id="card6" width="100" height="150" visible="false" />
+                    <image id="card7" width="100" height="150" visible="false" />
+                    <image id="card8" width="100" height="150" visible="false" />
+                </children>
+            </group>
+        </grid>
     </children>
-
-    <!-- 3x3 Grid Board -->
-    <children>
-        <GridLayout
-            id="grid"
-            translation="[128, 128]"
-            rowCount="3"
-            columnCount="3"
-            rowSpacing="16"
-            columnSpacing="16"
-            focusable="true"
-        >
-            <!-- Card 1 -->
-            <Group id="card1Group" visible="false" focusable="true">
-                <Rectangle
-                    id="card1Highlight"
-                    width="200"
-                    height="300"
-                    visible="false"
-                    fillColor="0xFFFFFF00"
-                />
-                <Poster
-                    id="card1Poster"
-                    width="200"
-                    height="300"
-                />
-            </Group>
-
-            <!-- Card 2 -->
-            <Group id="card2Group" visible="false" focusable="true">
-                <Rectangle
-                    id="card2Highlight"
-                    width="200"
-                    height="300"
-                    visible="false"
-                    fillColor="0xFFFFFF00"
-                />
-                <Poster
-                    id="card2Poster"
-                    width="200"
-                    height="300"
-                />
-            </Group>
-
-            <!-- Card 3 -->
-            <Group id="card3Group" visible="false" focusable="true">
-                <Rectangle
-                    id="card3Highlight"
-                    width="200"
-                    height="300"
-                    visible="false"
-                    fillColor="0xFFFFFF00"
-                />
-                <Poster
-                    id="card3Poster"
-                    width="200"
-                    height="300"
-                />
-            </Group>
-
-            <!-- Card 4 -->
-            <Group id="card4Group" visible="false" focusable="true">
-                <Rectangle
-                    id="card4Highlight"
-                    width="200"
-                    height="300"
-                    visible="false"
-                    fillColor="0xFFFFFF00"
-                />
-                <Poster
-                    id="card4Poster"
-                    width="200"
-                    height="300"
-                />
-            </Group>
-
-            <!-- Card 5 -->
-            <Group id="card5Group" visible="false" focusable="true">
-                <Rectangle
-                    id="card5Highlight"
-                    width="200"
-                    height="300"
-                    visible="false"
-                    fillColor="0xFFFFFF00"
-                />
-                <Poster
-                    id="card5Poster"
-                    width="200"
-                    height="300"
-                />
-            </Group>
-
-            <!-- Card 6 -->
-            <Group id="card6Group" visible="false" focusable="true">
-                <Rectangle
-                    id="card6Highlight"
-                    width="200"
-                    height="300"
-                    visible="false"
-                    fillColor="0xFFFFFF00"
-                />
-                <Poster
-                    id="card6Poster"
-                    width="200"
-                    height="300"
-                />
-            </Group>
-
-            <!-- Card 7 -->
-            <Group id="card7Group" visible="false" focusable="true">
-                <Rectangle
-                    id="card7Highlight"
-                    width="200"
-                    height="300"
-                    visible="false"
-                    fillColor="0xFFFFFF00"
-                />
-                <Poster
-                    id="card7Poster"
-                    width="200"
-                    height="300"
-                />
-            </Group>
-
-            <!-- Card 8 -->
-            <Group id="card8Group" visible="false" focusable="true">
-                <Rectangle
-                    id="card8Highlight"
-                    width="200"
-                    height="300"
-                    visible="false"
-                    fillColor="0xFFFFFF00"
-                />
-                <Poster
-                    id="card8Poster"
-                    width="200"
-                    height="300"
-                />
-            </Group>
-
-            <!-- Card 9 -->
-            <Group id="card9Group" visible="false" focusable="true">
-                <Rectangle
-                    id="card9Highlight"
-                    width="200"
-                    height="300"
-                    visible="false"
-                    fillColor="0xFFFFFF00"
-                />
-                <Poster
-                    id="card9Poster"
-                    width="200"
-                    height="300"
-                />
-            </Group>
-        </GridLayout>
-    </children>
-
+  
+    <script type="text/brightscript">
+        <![CDATA[
+        sub init()
+            m.game = createObject("roSGNode", "ElevensGame")
+            m.game.observeField("cards", "onCardsChanged")
+            m.cards = invalid
+        end sub
+      
+        sub onCardsChanged()
+            if m.cards <> invalid
+                m.gameGrid = m.top.findNode("gameGrid")
+                m.cardGroup = m.top.findNode("cardGroup")
+          
+                ' Update the card images on the game board
+                for each card in m.cards
+                    index = m.cards.indexOf(card)
+                    image = m.cardGroup.getChild(index)
+                    image.uri = "pkg:/images/" + card.value + ".png"
+                    image.visible = true
+                end for
+            end if
+        end sub
+      
+        sub updateGrid()
+            ' Get the current state of the game board
+            cards = m.game.displayBoard()
+          
+            ' Update the cards array
+            m.cards = cards
+        end sub
+      
+        sub render()
+            m.top.updateGrid()
+        end sub
+      
+        function create()
+            m.top.updateGrid()
+        end function
+      
+        function initGame()
+            m.game.initializeGame()
+            m.top.updateGrid()
+        end function
+        ]]>
+    </script>
 </component>

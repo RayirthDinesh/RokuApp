@@ -1,16 +1,9 @@
 # manifest
+
 title=My Elevens Game
-sub-title=An awesome Elevens game
+subtitle=Elevens Game
 major_version=1
 minor_version=0
-build_version=1
-sdk_version=1
-enabled_features=RuntimeSceneGraph
-
-
-mm_icon_focus_hd=pkg:/images/7elevenlogo.png
-
-splash_screen_hd=pkg:/images/Cards/2_of_clubs.png
-splash_screen_fhd=pkg:/images/Cards/2_of_clubs.png
-
-ui_resolutions=fhd -->
+build_version=00001
+sdk_version=10
+scenegraph_support_level=required
