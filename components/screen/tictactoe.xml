@@ -27,13 +27,10 @@
       iconUri="pkg:/images/blank.png"
       focusedTextColor="0xff0000ff"
       focusedIconUri="pkg:/images/square.png"
-      focusBitmapUri="pkg:/images/whiteO.png"
-      focusFootprintBitmapUri="whiteO.png"
       minWidth="1"
       maxWidth="1"
       height="1"
       translation="[520, 300]"
-      showFocusedFootprint = "true"
     />
 
     <Button id="r0c1"
@@ -204,16 +201,33 @@
     />
 
     <Label
-    id="playerNotify"
-    text="Player X's Turn"
-    visible="true"
-    color="0x000000ff"
-    font="font:MediumBoldSystemFont"
-    translation="[860, 1000]"
-    height="50"
-    horizAlign = "center"
-    vertAlign = "center"
+      id="playerNotify"
+      text="Player X's Turn"
+      visible="true"
+      color="0x000000ff"
+      font="font:MediumBoldSystemFont"
+      translation="[840, 1000]"
+      height="50"
+      horizAlign = "center"
+      vertAlign = "center"
     />
 
+    <Button
+      id = "playAgain"
+      text = "Play Again? Press OK"
+      focusedIconUri = "pkg:/images/blank.png"
+      visible = "false"
+      minWidth = "1" maxWidth="1"
+      translation = "[1920, 1080]"
+    />
+
+  <Poster
+    id = "playAgainPoster"
+    uri = "pkg:/images/playAgain.png"
+    visible = "false"
+    width = "400"
+    height = "200"
+    translation = "[760, 460]"
+  />
   </children>
 </component>
