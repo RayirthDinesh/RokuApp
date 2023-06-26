@@ -1,18 +1,15 @@
-
-
-
 ' Initializes the game board and variables
-sub initializeGame()
+sub init()
     ' Global variables
-    m.global.cards = []
-    m.global.selectedCards = []
-    m.global.board = []
-    m.global.deck = []
+    m.global.addField({cards: cards})
+    m.global.addFields({selectedCards: selectedCards})
+    m.global.addFields({board: board})
+    m.global.addFields({deck: deck})
 
     ' Constants
-    m.global.MAX_CARDS = 9
-    m.global.CARD_WIDTH = 200
-    m.global.CARD_HEIGHT = 300
+    MAX_CARDS = 9
+    CARD_WIDTH = 200
+    CARD_HEIGHT = 300
     ' Create the deck of cards
     createDeck()
     
@@ -171,17 +168,21 @@ end sub
 ' Creates the deck of cards with their respective images
 sub createDeck()
     suits = ["hearts", "diamonds", "clubs", "spades"]
-    ranks = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"]
+    ranks = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"]
     
     ' Create cards for each suit and rank
     for each suit in suits
         for each rank in ranks
-            card = {
-                "suit": suit,
-                "rank": if rank = "A" then 1 else if rank = "J" or rank = "Q" or rank = "K" then 10 else Int(rank),
-                "image": ("pkg:/images/" + suit + "_of_"+ rank + ".png")
+            card = "suit": suit,
+                "rank": 
+                    if rank = "J" or rank = "Q" or rank = "K" then 10 else Int(rank),
+                        "image": ("pkg:/images/" + suit + "_of_"+ rank + ".png")
+                    end if
             }
             cards.push(card)
         end for
     end for
+
+    for 
 end sub
+
