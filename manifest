@@ -1,9 +1,7 @@
-# manifest
-
 title=My Elevens Game
-subtitle=Elevens Game
-major_version=1
-minor_version=0
-build_version=00001
-sdk_version=10
-scenegraph_support_level=required
+subtitle=A visually-appealing Elevens game for Roku
+mm_icon_focus_hd=splash.png
+mm_icon_side_hd=splash.png
+mm_icon_focus_sd=splash.png
+mm_icon_side_sd=splash.png
+main=source/main.brs

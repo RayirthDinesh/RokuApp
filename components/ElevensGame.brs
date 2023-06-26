@@ -1,144 +1,187 @@
-' ElevensGame.brs
-
-' Declare global variables
 
 
-' Function to initialize the game
-sub init()
 
-    cards = []
-    selectedCards = []
-    deckIndex = 0
+' Initializes the game board and variables
+sub initializeGame()
+    ' Global variables
+    m.global.cards = []
+    m.global.selectedCards = []
+    m.global.board = []
+    m.global.deck = []
+
+    ' Constants
+    m.global.MAX_CARDS = 9
+    m.global.CARD_WIDTH = 200
+    m.global.CARD_HEIGHT = 300
+    ' Create the deck of cards
+    createDeck()
     
-    m.global.addfields({cards:cards})
-    m.global.addfields({selectedCards:selectedCards})
-    m.global.addfields({deckIndex:deckIndex})
-    ' Load the deck of cards
-    loadDeck()
-
-    ' Shuffle the cards
+    ' Shuffle the cards and initialize the board
     shuffleCards()
-
-    ' Set up the initial game board
-    setupGameBoard()
+    
+    ' Display the initial game board
+    displayBoard()
 end sub
 
-' Function to load the deck of cards
-function loadDeck()
-    ' Clear the cards array
-    cards = []
-
-    ' Loop through each card image
-    for i = 1 to 52
-        ' Create a new card object and add it to the deck
-        card = {
-            "value": i
-        }
-        cards.push(card)
+' Displays the current state of the game board
+sub displayBoard()
+    screen = CreateObject("roSGScreen")
+    scene = screen.CreateScene("ElevensGame")
+    
+    ' Set the board grid
+    for i = 0 to 2
+        for j = 0 to 2
+            card = board[(i * 3) + j]
+            cardNode = scene.GetNode("card" + Str(i) + Str(j))
+            
+            ' Set the card image and position
+            cardNode.SetContent(card.image)
+            cardNode.translation = [j * CARD_WIDTH, i * CARD_HEIGHT]
+            
+            ' Add hover and selection events
+            cardNode.observeField("focused", "onCardFocused")
+            cardNode.observeField("selected", "onCardSelected")
+        end for
     end for
-end function
+    
+    ' Update the scene on the screen
+    screen.show()
+end sub
 
-' Function to shuffle the deck of cards
-function shuffleCards()
-    ' Loop through the cards array and swap each card with a random card
-    for i = 0 to m.global.cards.length() - 1
-        randomIndex = Rnd(m.global.cards.length()-1) 
-        temp = m.global.cards[i]
-        cards[i] = m.global.cards[randomIndex]
-        cards[randomIndex] = temp
+' Shuffles the deck of cards and initializes the board
+sub shuffleCards()
+    deck = cards
+    board = []
+    
+    ' Shuffle the deck
+    for i = deck.count() - 1 to 1 step -1
+        j = Int(Rnd() * (i + 1))
+        temp = deck[i]
+        deck[i] = deck[j]
+        deck[j] = temp
     end for
-end function
-
-' Function to set up the initial game board
-function setupGameBoard()
-    ' Clear the selected cards array
-    selectedCards = []
-
-    ' Loop through each card on the game board
-    for i = 0 to 8
-        ' Set the card image based on the deck index
-        card = m.global.cards[deckIndex]
-        deckIndex = deckIndex + 1
-
-        ' Add the card to the selected cards array
-        selectedCards.push(card)
+    
+    ' Initialize the board with cards from the deck
+    for i = 0 to MAX_CARDS - 1
+        board.push(deck.pop())
     end for
-end function
+end sub
 
-' Function to check if the game is over
+' Checks if the game is over by evaluating the board for possible moves
 function isGameOver() as Boolean
-    ' Check if there are any possible moves left
+    ' Check if there are any valid moves left
     return checkForNoMoves()
 end function
 
-' Function to check if a move made by the player is valid
+' Checks if a move made by the player is valid
 function isMoveValid() as Boolean
     ' Check if the selected cards form a valid combination
     return checkForEleven()
 end function
 
-' Function to execute a move made by the player
-function makeMove()
+' Executes a move made by the player
+sub makeMove()
     ' Replace the selected cards with new cards from the deck
     replaceCards()
-
-    ' Clear the selected cards array
+    
+    ' Clear the selected cards
     selectedCards = []
-
+    
     ' Check if the game is over
     if isGameOver() then
-        ' Game over logic here
+        ' Game over logic
+    else
+        ' Display the updated game board
+        displayBoard()
     end if
-end function
+end sub
 
-' Function to check if a combination of selected cards adds up to eleven
+' Checks if a combination of selected cards adds up to eleven
 function checkForEleven() as Boolean
-    ' Calculate the sum of the selected card values
+    ' Calculate the sum of the selected cards' ranks
     sum = 0
-    for each card in m.global.selectedCards
-        sum = sum + card.value
+    for each card in selectedCards
+        sum += card.rank
     end for
-
-    ' Check if the sum is eleven
+    
+    ' Return true if the sum is eleven
     return sum = 11
 end function
 
-' Function to replace the selected cards with new cards from the deck
-function replaceCards()
-    ' Loop through each selected card
-    for i = 0 to m.global.selectedCards.length() - 1
-        ' Replace the card with a new card from the deck
-        selectedCards[i] = m.global.cards[deckIndex]
-        deckIndex = deckIndex + 1
+' Replaces the selected cards with new cards from the deck
+sub replaceCards()
+    ' Remove the selected cards from the board
+    for each card in selectedCards
+        index = board.find(card)
+        if index >= 0 then
+            board.splice(index, 1)
+        end if
     end for
-end function
+    
+    ' Fill the empty spaces with new cards from the deck
+    for i = 0 to selectedCards.count() - 1
+        if deck.count() > 0 then
+            board.push(deck.pop())
+        end if
+    end for
+end sub
 
-' Function to check if there are any possible moves left on the board
+' Checks if there are any possible moves left on the board
 function checkForNoMoves() as Boolean
-    ' Loop through each card on the game board
-    for i = 0 to m.global.selectedCards.length() - 1
-        ' Check if there is a valid combination with the current card
-        for j = 0 to m.global.selectedCards.length() - 1
-            if i <> j then
-                ' Calculate the sum of the current card and another card
-                sum = m.global.selectedCards[i].value + m.global.selectedCards[j].value
-
-                ' Check if the sum is eleven
-                if sum = 11 then
-                    ' Valid move found
-                    return false
-                end if
+    ' Check if there are any pairs of cards that add up to eleven
+    for i = 0 to board.count() - 2
+        for j = i + 1 to board.count() - 1
+            sum = board[i].rank + board[j].rank
+            if sum = 11 then
+                return false
             end if
         end for
     end for
-
-    ' No valid moves found
+    
+    ' No valid moves left
     return true
 end function
 
-' Function to handle user input
-function handleUserInput(key as String)
-    if key = "SELECT" then
-        ' Perform move logic here
+' Handles user input and triggers appropriate actions
+sub handleUserInput(event as Object)
+    if event.GetRoSGNode().id = "ok" then
+        ' Check if the move is valid
+        if isMoveValid() then
+            ' Execute the move
+            makeMove()
+        else
+            ' Display an error message or handle invalid move
+        end if
+    else if event.GetRoSGNode().id.startsWith("card") then
+        ' Handle card selection logic
+        cardNode = event.GetRoSGNode()
+        
+        if cardNode.selected then
+            ' Deselect the card
+            cardNode.selected = false
+            selectedCards.remove(cardNode.card)
+        else
+            ' Select the card
+            cardNode.selected = true
+            selectedCards.push(cardNode.card)
+        end if
     end if
-end function
+end sub
+
+' Creates the deck of cards with their respective images
+sub createDeck()
+    suits = ["hearts", "diamonds", "clubs", "spades"]
+    ranks = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"]
+    
+    ' Create cards for each suit and rank
+    for each suit in suits
+        for each rank in ranks
+            card = {
+                "suit": suit,
+                "rank": if rank = "A" then 1 else if rank = "J" or rank = "Q" or rank = "K" then 10 else Int(rank),
+                "image": ("pkg:/images/" + suit + "_of_"+ rank + ".png")
+            }
+            cards.push(card)
+        end for
+    end for
+end sub

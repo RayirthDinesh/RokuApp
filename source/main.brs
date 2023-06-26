@@ -1,27 +1,19 @@
 ' main.brs
-sub main()
-    ' Create a main scene
-    scene = createObject("roSGNode", "Scene")
-    scene.setFocus(true)
+' Main entry point for the Elevens game app
 
-    ' Load the ElevensGame component
-    game = scene.createChild("ElevensGame")
+' Create the Elevens game object
+sub main()
+    game = ElevensGame()
 
     ' Initialize the game
-    game.initGame()
+    game.initializeGame()
 
-    ' Run the channel
+    ' Event loop
     while true
         ' Handle user input
-        while true
-            msg = wait(0, game.timer)
-            if type(msg) = "roSGScreenEvent" then
-                if msg.isScreenClosed() then exit while
-            else if type(msg) = "roSGKeyEvent" then
-                if msg.isButtonPressed("select") then
-                    game.handleUserInput("SELECT")
-                end if
-            end if
-        end while
+        event = Wait(0)
+        if event <> invalid then
+            game.handleUserInput(event)
+        end if
     end while
 end sub

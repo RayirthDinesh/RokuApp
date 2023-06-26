@@ -1,68 +1,21 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<!-- ElevensGame.xml -->
 <component name="ElevensGame" extends="Scene">
-    <script type="text/brightscript" uri="pkg:/components/ElevensGame.brs" />
-  
     <children>
-        <grid id="gameGrid" numRows="3" numColumns="3">
-            <group id="cardGroup" layoutDirection="horizontal" translation="[100, 100]">
+        <Group id="board">
+            <GridLayout rows="3" columns="3">
                 <children>
-                    <image id="card0" width="100" height="150" visible="false" />
-                    <image id="card1" width="100" height="150" visible="false" />
-                    <image id="card2" width="100" height="150" visible="false" />
-                    <image id="card3" width="100" height="150" visible="false" />
-                    <image id="card4" width="100" height="150" visible="false" />
-                    <image id="card5" width="100" height="150" visible="false" />
-                    <image id="card6" width="100" height="150" visible="false" />
-                    <image id="card7" width="100" height="150" visible="false" />
-                    <image id="card8" width="100" height="150" visible="false" />
+                    <Poster id="card00" focusBitmapUri="pkg:/images/focus.png" selectedBitmapUri="pkg:/images/selected.png"/>
+                    <Poster id="card01" focusBitmapUri="pkg:/images/focus.png" selectedBitmapUri="pkg:/images/selected.png"/>
+                    <Poster id="card02" focusBitmapUri="pkg:/images/focus.png" selectedBitmapUri="pkg:/images/selected.png"/>
+                    <Poster id="card10" focusBitmapUri="pkg:/images/focus.png" selectedBitmapUri="pkg:/images/selected.png"/>
+                    <Poster id="card11" focusBitmapUri="pkg:/images/focus.png" selectedBitmapUri="pkg:/images/selected.png"/>
+                    <Poster id="card12" focusBitmapUri="pkg:/images/focus.png" selectedBitmapUri="pkg:/images/selected.png"/>
+                    <Poster id="card20" focusBitmapUri="pkg:/images/focus.png" selectedBitmapUri="pkg:/images/selected.png"/>
+                    <Poster id="card21" focusBitmapUri="pkg:/images/focus.png" selectedBitmapUri="pkg:/images/selected.png"/>
+                    <Poster id="card22" focusBitmapUri="pkg:/images/focus.png" selectedBitmapUri="pkg:/images/selected.png"/>
                 </children>
-            </group>
-        </grid>
+            </GridLayout>
+        </Group>
+        <Button id="ok" text="OK" translation="[900, 600]" width="100" height="50"/>
     </children>
-  
-    <script type="text/brightscript">
-        <![CDATA[
-        sub init()
-            m.game = createObject("roSGNode", "ElevensGame")
-            m.game.observeField("cards", "onCardsChanged")
-            m.cards = invalid
-        end sub
-      
-        sub onCardsChanged()
-            if m.cards <> invalid
-                m.gameGrid = m.top.findNode("gameGrid")
-                m.cardGroup = m.top.findNode("cardGroup")
-          
-                ' Update the card images on the game board
-                for each card in m.cards
-                    index = m.cards.indexOf(card)
-                    image = m.cardGroup.getChild(index)
-                    image.uri = "pkg:/images/" + card.value + ".png"
-                    image.visible = true
-                end for
-            end if
-        end sub
-      
-        sub updateGrid()
-            ' Get the current state of the game board
-            cards = m.game.displayBoard()
-          
-            ' Update the cards array
-            m.cards = cards
-        end sub
-      
-        sub render()
-            m.top.updateGrid()
-        end sub
-      
-        function create()
-            m.top.updateGrid()
-        end function
-      
-        function initGame()
-            m.game.initializeGame()
-            m.top.updateGrid()
-        end function
-        ]]>
-    </script>
 </component>
