@@ -2,18 +2,38 @@
 ' Main entry point for the Elevens game app
 
 ' Create the Elevens game object
-sub main()
-    game = ElevensGame()
+'sub main()
+'    game = ElevensGame()
 
     ' Initialize the game
-    game.initializeGame()
+ '   game.initializeGame()
 
     ' Event loop
-    while true
+  '  while true
         ' Handle user input
-        event = Wait(0)
-        if event <> invalid then
-            game.handleUserInput(event)
-        end if
-    end while
+   '     event = Wait(0)
+   '     if event <> invalid then
+   '         game.handleUserInput(event)
+   '     end if
+  '  end while
+'end sub
+
+sub main()
+	'create a screen when an app is starting up
+
+	screen = createObject("roSGScreen")
+	' scene = screen.createScene("home")
+	scene = screen.createScene("ElevensGame")
+	screen.Show()
+	port = createObject("roMessagePort")
+	screen.setMessagePort(m.port)
+
+'needs this so the screen doesn't close. Every app needs this in order to close immediately
+	while(true)
+		msg = wait(0, m.port)
+		msgType = type(msg)
+		if msgType = "roSGScreenEvent"
+			if msg.isScreenClosed() then return
+		end if
+	end while
 end sub
