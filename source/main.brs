@@ -1,34 +1,31 @@
-' main.brs
-' Main entry point for the Elevens game app
-
-' Create the Elevens game object
-'sub main()
-'    game = ElevensGame()
-
-    ' Initialize the game
- '   game.initializeGame()
-
-    ' Event loop
-  '  while true
-        ' Handle user input
-   '     event = Wait(0)
-   '     if event <> invalid then
-   '         game.handleUserInput(event)
-   '     end if
-  '  end while
-'end sub
-
 sub main()
-	'create a screen when an app is starting up
+	' Print information from Roku manifest
+	app_info = createObject("roAppInfo")
+	? "App Title: ", app_info.getTitle()
+	? "App Version: ", app_info.getVersion()
+	? "Channel ID: ", app_info.getID()
+	? "isDev: ", app_info.isDev()
+	' Print information from device
+	? "- - - - - - - - - - - - - - - - "
+	device_info = createObject("roDeviceInfo")
+	? "Model: ", device_info.getModel()
+	? "Display Name: ", device_info.getModelDisplayName()
+	? "Firmware: ", device_info.getVersion()
+	? "Device ID: ", device_info.getDeviceUniqueId()
+	? "Friendly Name: ", device_info.getFriendlyName()
+	display_size = device_info.getDisplaySize()
+	? "Display Size: ", display_size.w;"x";display_size.h
+	? "UI Resolution: ", device_info.getUIResolution()
+	? "Video Mode: ", device_info.getVideoMode()
+	? "IP Address: ",device_info.getExternalIp()
 
+	m.port = createObject("roMessagePort")
 	screen = createObject("roSGScreen")
-	' scene = screen.createScene("home")
-	scene = screen.createScene("ElevensGame")
-	screen.Show()
-	port = createObject("roMessagePort")
 	screen.setMessagePort(m.port)
-
-'needs this so the screen doesn't close. Every app needs this in order to close immediately
+	scene = screen.createScene("home_scene")
+	screen.Show()
+	' this loop is necessary to keep the application open
+	' otherwise the channel will exit when it reaches the end of main()
 	while(true)
 		msg = wait(0, m.port)
 		msgType = type(msg)

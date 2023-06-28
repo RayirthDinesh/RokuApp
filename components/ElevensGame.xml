@@ -1,11 +1,11 @@
-<!-- ElevensGame.xml -->
+<?xml version="1.0" encoding="utf-8" ?>
 <component name="ElevensGame" extends="Scene">
     <script type="text/brightscript" uri="pkg:/components/ElevensGame.brs"/>
     <children>
         <Button 
             id="card0" text=" "
             iconUri="pkg:/images/square.png"
-            focusedIconUri="pkg:/images/blank.jpg"
+            focusedIconUri="pkg:/images/blank.png"
             minWidth="10" maxWidth="10"
             height="10"
             translation="[520, 300]"
@@ -14,7 +14,7 @@
         <Button 
             id="card01" text=" "
             iconUri="pkg:/images/square.png"
-            focusedIconUri="pkg:/images/blank.jpg"
+            focusedIconUri="pkg:/images/blank.png"
             minWidth="10" maxWidth="10"
             height="10"
             translation="[772.67, 300]"
@@ -23,7 +23,7 @@
         <Button 
             id="card02" text=" "
             iconUri="pkg:/images/square.png"
-            focusedIconUri="pkg:/images/blank.jpg"
+            focusedIconUri="pkg:/images/blank.png"
             minWidth="10" maxWidth="10"
             height="10"
             translation="[1013.34, 300]"
@@ -32,7 +32,7 @@
         <Button 
             id="card10" text=" "
             iconUri="pkg:/images/square.png"
-            focusedIconUri="pkg:/images/blank.jpg"
+            focusedIconUri="pkg:/images/blank.png"
             minWidth="10" maxWidth="10"
             translation="[520, 515.67]"
         />
@@ -40,7 +40,7 @@
         <Button 
             id="card11" text=" "
             iconUri="pkg:/images/square.png"
-            focusedIconUri="pkg:/images/blank.jpg"
+            focusedIconUri="pkg:/images/blank.png"
             minWidth="10" maxWidth="10"
             translation="[772.67, 515.67]"
         />
@@ -48,14 +48,14 @@
         <Button 
             id="card12" text=""
             iconUri="pkg:/images/square.png"
-            focusedIconUri="pkg:/images/blank.jpg"
+            focusedIconUri="pkg:/images/blank.png"
             minWidth="10" maxWidth="10"
             translation="[1013.34, 515.67]"
         />
         <Button   
             id="card20" text=""
             iconUri="pkg:/images/square.png"
-            focusedIconUri="pkg:/images/blank.jpg"
+            focusedIconUri="pkg:/images/blank.png"
             minWidth="10" maxWidth="10"
             translation="[520, 765.34]"
         />
@@ -63,7 +63,7 @@
         <Button 
             id="card21" text=""
             iconUri="pkg:/images/square.png"
-            focusedIconUri="pkg:/images/blank.jpg"
+            focusedIconUri="pkg:/images/blank.png"
             minWidth="10" maxWidth="10"
             translation="[772.67, 765.34]"
         />
@@ -71,9 +71,9 @@
         <Button 
             id="card22" text=""
             iconUri="pkg:/images/square.png"
-            focusedIconUri="pkg:/images/blank.jpg"
+            focusedIconUri="pkg:/images/blank.png"
             minWidth="10" maxWidth="10"
             translation="[1013.34, 765.34]"
-        />    
+        />
     </children>
 </component>
