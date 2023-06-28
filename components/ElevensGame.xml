@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<!-- <?xml version="1.0" encoding="utf-8" ?>
 <component name="ElevensGame" extends="Scene">
     <script type="text/brightscript" uri="pkg:/components/ElevensGame.brs"/>
     <children>
@@ -76,4 +76,108 @@
             translation="[1013.34, 765.34]"
         />
     </children>
+</component> -->
+
+
+
+
+<!-- ELEVENS GAME XML -->
+
+<!-- Import necessary components -->
+<component name="ElevensGame" extends="Scene">
+  <script type="text/brightscript" uri="pkg:/components/ElevensGame.brs" />
+
+  <!-- Define the initial scene -->
+  <children>
+    <!-- Add buttons for each card -->
+    <button 
+      id="card00" 
+      translation="[0, 0]" 
+      width="200" 
+      height="300" 
+      focusable="true" 
+      text="Card 00" 
+      onKeyEvent="handleUserInput" />
+      
+    <button 
+      id="card01" 
+      translation="[200, 0]" 
+      width="200" 
+      height="300" 
+      focusable="true" 
+      text="Card 01" 
+      onKeyEvent="handleUserInput" />
+      
+    <button 
+      id="card02" 
+      translation="[400, 0]" 
+      width="200" 
+      height="300" 
+      focusable="true" 
+      text="Card 02" 
+      onKeyEvent="handleUserInput" />
+      
+    <button 
+      id="card10" 
+      translation="[0, 300]" 
+      width="200" 
+      height="300" 
+      focusable="true" 
+      text="Card 10" 
+      onKeyEvent="handleUserInput" />
+      
+    <button 
+      id="card11" 
+      translation="[200, 300]" 
+      width="200" 
+      height="300" 
+      focusable="true" 
+      text="Card 11" 
+      onKeyEvent="handleUserInput" />
+      
+    <button 
+      id="card12" 
+      translation="[400, 300]" 
+      width="200" 
+      height="300" 
+      focusable="true" 
+      text="Card 12" 
+      onKeyEvent="handleUserInput" />
+      
+    <button 
+      id="card20" 
+      translation="[0, 600]" 
+      width="200" 
+      height="300" 
+      focusable="true" 
+      text="Card 20" 
+      onKeyEvent="handleUserInput" />
+      
+    <button 
+      id="card21" 
+      translation="[200, 600]" 
+      width="200" 
+      height="300" 
+      focusable="true" 
+      text="Card 21" 
+      onKeyEvent="handleUserInput" />
+      
+    <button 
+      id="card22" 
+      translation="[400, 600]" 
+      width="200" 
+      height="300" 
+      focusable="true" 
+      text="Card 22" 
+      onKeyEvent="handleUserInput" />
+      
+    <!-- Add an OK button for making moves -->
+    <button 
+      id="ok" 
+      translation="[600, 900]" 
+      width="200" 
+      height="50" 
+      text="OK" 
+      onKeyEvent="handleUserInput" />
+  </children>
 </component>

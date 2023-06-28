@@ -86,12 +86,12 @@ sub init()
     m.CARD_HEIGHT = 300
     
     ' Shuffle the cards and initialize the board
-   'shuffleCards()
+    shuffleCards()
     
     ' Display the initial game board
- '  displayBoard()
+    displayBoard()
 end sub
-    
+
 'Displays the current state of the game board
 sub displayBoard()
    screen = CreateObject("roSGScreen")
@@ -104,7 +104,7 @@ sub displayBoard()
            cardNode = scene.GetNode("card" + Str(i) + Str(j))
             
            ' Set the card image and position
-            cardNode.SetContent(card.image)
+            cardNode.SetContent(assignImages()) 'card.image
             cardNode.translation = [j * m.CARD_WIDTH, i * m.CARD_HEIGHT]
             
             ' Add hover and selection events
@@ -139,22 +139,48 @@ function onKeyEvent(key, press) as Boolean
     ' if press
     if m.global.card00.hasFocus() then
         if key = "down" and press then
-            m.global.card00.setFocus(false)
             m.global.card10.setFocus(true)
         else if key = "right" and press then
-            m.global.card00.setFocus(false)
             m.global.card01.setFocus(true)
         else if key = "OK" and not m.global.card00called then
             m.buttonClicked = true
             m.global.card00called = true
+            'if m.global.card00called = true then
+              '  assignImages()
+                'm.global.xPlayer = false
+              '  checkforEleven()
+            'else
+                'm.global.r0c0.iconUri = "pkg:/images/O.jpg"
+                ' m.global.xPlayer = true
+                'end if
+
         end if
-    
-        if m.global.card00called = true then
-            assignImages()
-        end if
-        
     end if
-    
+    '     if m.global.card00called = true then
+    '         assignImages()
+    '     end if  
+    ' end if
+    ' function onKeyEvent(key, press) as Boolean
+    '     ? "[tictactoe] onKeyEvent" key, press
+    '     m.buttonClicked = false
+    '     ' if press
+    '       if m.global.r0c0.hasFocus() then
+    '         if key = "down" and press then
+    '           m.global.r0c0.setFocus(false)
+    '           m.global.r1c0.setFocus(true)
+    '         else if key = "right" and press then
+    '           m.global.r0c0.setFocus(false)
+    '           m.global.r0c1.setFocus(true)
+    '         else if key = "OK" and not m.global.r0c0Called then
+    '             m.buttonClicked = true
+    '             m.global.r0c0Called = true
+    '             if(m.global.xPlayer) then
+    '               m.global.r0c0.iconUri = "pkg:/images/X.jpg"
+    '               m.global.xPlayer = false
+    '             else
+    '               m.global.r0c0.iconUri = "pkg:/images/O.jpg"
+    '               m.global.xPlayer = true
+    '             end if
 end function        
 
 ' Shuffles the deck of cards and initializes the board
@@ -289,4 +315,3 @@ end sub
 '    end for
 '   end for
 ' end sub
-
