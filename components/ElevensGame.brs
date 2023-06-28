@@ -63,39 +63,38 @@ sub init()
     CARD_WIDTH = 200
     CARD_HEIGHT = 300
     ' Create the deck of cards
-    createDeck()
+    'createDeck()
     
     ' Shuffle the cards and initialize the board
-    shuffleCards()
+'    shuffleCards()
     
     ' Display the initial game board
-    displayBoard()
+'    displayBoard()
 end sub
-
-' Displays the current state of the game board
-sub displayBoard()
-    screen = CreateObject("roSGScreen")
-    scene = screen.CreateScene("ElevensGame")
+'Displays the current state of the game board
+'sub displayBoard()
+'    screen = CreateObject("roSGScreen")
+'    scene = screen.CreateScene("ElevensGame")
     
     ' Set the board grid
-    for i = 0 to 2
-        for j = 0 to 2
-            card = board[(i * 3) + j]
-            cardNode = scene.GetNode("card" + Str(i) + Str(j))
+'    for i = 0 to 2
+'        for j = 0 to 2
+'            card = board[(i * 3) + j]
+'            cardNode = scene.GetNode("card" + Str(i) + Str(j))
             
             ' Set the card image and position
-            cardNode.SetContent(card.image)
-            cardNode.translation = [j * CARD_WIDTH, i * CARD_HEIGHT]
+    '         cardNode.SetContent(card.image)
+    '         cardNode.translation = [j * CARD_WIDTH, i * CARD_HEIGHT]
             
-            ' Add hover and selection events
-            cardNode.observeField("focused", "onCardFocused")
-            cardNode.observeField("selected", "onCardSelected")
-        end for
-    end for
+    '         ' Add hover and selection events
+    '         cardNode.observeField("focused", "onCardFocused")
+    '         cardNode.observeField("selected", "onCardSelected")
+    '     end for
+    ' end for
     
     ' Update the scene on the screen
-    screen.show()
-end sub
+ '   screen.show()
+'end sub
 
 deck = [ace_of_clubs, ace_of_diamonds, ace_of_hearts, ace_of_spades, 
         2_of_clubs, 2_of_diamonds, 2_of_hearts, 2_of_spades,
@@ -138,105 +137,101 @@ function onKeyEvent(key, press) as Boolean
             m.buttonClicked = true
             m.global.card00called = true
         if m.global.card00called = true then
-
             assignImages()
         end if
 end function        
 
 ' Shuffles the deck of cards and initializes the board
-sub shuffleCards()
-    deck = cards
-    board = []
-   
-
-    function shuffleDeck()
-        for i = deck.count() - 1 to 1 step -1
-            j = Int(Rnd() * (i + 1))
-            temp = deck[i]
-            deck[i] = deck[j]
-            deck[j] = temp
-        end for
-    end function
-    ' Initialize the board with cards from the deck
-    for i = 0 to MAX_CARDS - 1
-        board.push(deck.pop())
-    end for
-end sub
+' sub shuffleCards()
+'     deck = cards
+'     board = []
+    
+'     for i = deck.count() - 1 to 1 step -1
+'         j = Int(Rnd() * (i + 1))
+'         temp = deck[i]
+'         deck[i] = deck[j]
+'         deck[j] = temp
+'     end for
+'     ' Initialize the board with cards from the deck
+'     for i = 0 to MAX_CARDS - 1
+'         board.push(deck.pop())
+'     end for
+' end sub
 
 ' Checks if the game is over by evaluating the board for possible moves
-function isGameOver() as Boolean
-    ' Check if there are any valid moves left
-    return checkForNoMoves()
-end function
+' function isGameOver() as Boolean
+'     ' Check if there are any valid moves left
+'     return checkForNoMoves()
+' end function
 
-' Checks if a move made by the player is valid
-function isMoveValid() as Boolean
-    ' Check if the selected cards form a valid combination
-    return checkForEleven()
-end function
+' ' Checks if a move made by the player is valid
+' function isMoveValid() as Boolean
+'     ' Check if the selected cards form a valid combination
+'     return checkForEleven()
+' end function
 
 ' Executes a move made by the player
-sub makeMove()
+'sub makeMove()
     ' Replace the selected cards with new cards from the deck
-    replaceCards()
+'   replaceCards()
     
     ' Clear the selected cards
-    selectedCards = []
+'    selectedCards = []
     
     ' Check if the game is over
-    if isGameOver() then
+'    if isGameOver() then
         ' Game over logic
-    else
+'    else
         ' Display the updated game board
-        displayBoard()
-    end if
-end sub
+'       displayBoard()
+'    end if
+'end sub
 
 ' Checks if a combination of selected cards adds up to eleven
-function checkForEleven() as Boolean
-    ' Calculate the sum of the selected cards' ranks
-    sum = 0
-    for each card in selectedCards
-        sum += card.rank
-    end for
+' function checkForEleven() as Boolean
+'     ' Calculate the sum of the selected cards' ranks
+'     sum = 0
+'     for each card in selectedCards
+'         sum += card.rank
+'     end for
     
-    ' Return true if the sum is eleven
-    return sum = 11
-end function
+'     ' Return true if the sum is eleven
+'     return sum = 11
+' end function
 
-' Replaces the selected cards with new cards from the deck
-sub replaceCards()
-    ' Remove the selected cards from the board
-    for each card in selectedCards
-        index = board.find(card)
-        if index >= 0 then
-            board.splice(index, 1)
-        end if
-    end for
+' ' Replaces the selected cards with new cards from the deck
+' sub replaceCards()
+'     ' Remove the selected cards from the board
+'     for each card in selectedCards
+'         index = board.find(card)
+'         if index >= 0 then
+'             board.splice(index, 1)
+'         end if
+'     end for
     
-    ' Fill the empty spaces with new cards from the deck
-    for i = 0 to selectedCards.count() - 1
-        if deck.count() > 0 then
-            board.push(deck.pop())
-        end if
-    end for
-end sub
+'     ' Fill the empty spaces with new cards from the deck
+'     for i = 0 to selectedCards.count() - 1
+'         if deck.count() > 0 then
+'             board.push(deck.pop())
+'         end if
+'     end for
+' end sub
 
-' Checks if there are any possible moves left on the board
-function checkForNoMoves() as Boolean
-    ' Check if there are any pairs of cards that add up to eleven
-    for i = 0 to board.count() - 2
-        for j = i + 1 to board.count() - 1
-            sum = board[i].rank + board[j].rank
-            if sum = 11 then
-                return false
-            end if
-        end for
-    end for
+' ' Checks if there are any possible moves left on the board
+' function checkForNoMoves() as Boolean
+'     ' Check if there are any pairs of cards that add up to eleven
+'     for i = 0 to board.count() - 2
+'         for j = i + 1 to board.count() - 1
+'             sum = board[i].rank + board[j].rank
+'             if sum = 11 then
+'                 return false
+'             end if
+'         end for
+'     end for
     
-    ' No valid moves left
-    return true
-end function
+'     ' No valid moves left
+'     return true
+' end function
 
 ' Handles user input and triggers appropriate actions
 'sub handleUserInput(event as Object)
