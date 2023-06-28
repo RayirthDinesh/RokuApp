@@ -45,6 +45,7 @@ sub init()
     card21Called = false
     card22Called = false
 
+
     m.global.addFields({card00Called: card00Called})
     m.global.addFields({card01Called: card01Called})
     m.global.addFields({card02Called: card02Called})
@@ -117,7 +118,6 @@ function assignImages()
         for each gridCard in gridCards[]
             if gridCard = cardIndex then
                 m.global.gridCard.iconUri = "pkg:/images/" + card + ".png"
-            
             end if
         end for
     end for
