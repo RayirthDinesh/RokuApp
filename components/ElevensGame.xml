@@ -5,68 +5,70 @@
 
     <Poster
       id="ElevensGame"
-      uri="pkg:/images/background.png"
-      translation="[560, 160]"
+      uri="https://sthsroku.net/team666/elevens/background.png"
+      width="1920"
+      height="1080"
+      translation="[0, 0]"
     />
 
     <Poster id="card00"
-      uri="pkg:/images/square.png"
+      uri="https://sthsroku.net/team666/elevens/square.png"
       width="200"
       height="200"
       translation="[520, 300]"
     />
 
     <Poster id="card01"
-      uri="pkg:/images/square.png"
+      uri="https://sthsroku.net/team666/elevens/square.png"
       width="200"
       height="200"
       translation="[772.67, 300]"
     />
 
     <Poster id="card02"
-      uri="pkg:/images/square.png"
+      uri="https://sthsroku.net/team666/elevens/square.png"
       width="200"
       height="200"
       translation="[1013.34, 300]"
     />
 
     <Poster id="card10"
-      uri="pkg:/images/square.png"
+      uri="https://sthsroku.net/team666/elevens/square.png"
       width="200"
       height="200"
       translation="[520, 555.67]"
     />
 
     <Poster id="card11"
-      uri="pkg:/images/square.png"
+      uri="https://sthsroku.net/team666/elevens/square.png"
       width="200"
       height="200"
       translation="[772.67, 555.67]"
     />
 
     <Poster id="card12"
-      uri="pkg:/images/square.png"
+      uri="https://sthsroku.net/team666/elevens/square.png"
       width="200"
       height="200"
       translation="[1013.34, 555.67]"
     />
 
     <Poster id="card20"
-      uri="pkg:/images/square.png"
+      uri="https://sthsroku.net/team666/elevens/square.png"
       width="200"
       height="200"
       translation="[520, 820.34]"
     />
 
     <Poster id="card21"
-      uri="pkg:/images/square.png"
+      uri="https://sthsroku.net/team666/elevens/square.png"
       width="200"
       height="200"
       translation="[772.67, 820.34]"
     />
 
     <Poster id="card22"
-      uri="pkg:/images/square.png"
+      uri="https://sthsroku.net/team666/elevens/square.png"
       width="200"
       height="200"
       translation="[1013.34, 820.34]"

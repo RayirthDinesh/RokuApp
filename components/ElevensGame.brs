@@ -1,11 +1,10 @@
 ' Initializes the game board and variables
-sub init()
+function init()
     ' Glabol Constant values
     m.cardValueStart = 3
     m.cardValueLen = 2
     m.cardImgStart = 6
 
-    'making nodes
     card00 = m.top.findNode("card00")
     card01 = m.top.findNode("card01")
     card02 = m.top.findNode("card02")
@@ -15,42 +14,35 @@ sub init()
     card20 = m.top.findNode("card20")
     card21 = m.top.findNode("card21")
     card22 = m.top.findNode("card22")
-    m.global.addFields({card00: card00})
-    m.global.addFields({card01: card01})
-    m.global.addFields({card02: card02})
-    m.global.addFields({card10: card10})
-    m.global.addFields({card11: card11})
-    m.global.addFields({card12: card12})
-    m.global.addFields({card20: card20})
-    m.global.addFields({card21: card21})
-    m.global.addFields({card22: card22})
+    m.global.addFields({card00 : card00})
+    m.global.addFields({card01 : card01})
+    m.global.addFields({card02 : card02})
+    m.global.addFields({card10 : card10})
+    m.global.addFields({card11 : card11})
+    m.global.addFields({card12 : card12})
+    m.global.addFields({card20 : card20})
+    m.global.addFields({card21 : card21})
+    m.global.addFields({card22 : card22})
 
     gridCards = [m.global.card00, m.global.card01, m.global.card02, m.global.card10, m.global.card11, m.global.card12, m.global.card20, m.global.card21, m.global.card22]
     m.global.addFields({gridCards: gridCards})
 
     deckCards = [
-        "f_01_pkg:/images/Cards/ace_of_clubs.png", "f_01_pkg:/images/Cards/ace_of_diamonds.png", "f_01_pkg:/images/Cards/ace_of_hearts.png", "f_01_pkg:/images/Cards/ace_of_spades.png",
-        "f_02_pkg:/images/Cards/2_of_clubs.png", "f_02_pkg:/images/Cards/2_of_diamonds.png", "f_02_pkg:/images/Cards/2_of_hearts.png", "f_02_pkg:/images/Cards/2_of_spades.png",
-        "f_03_pkg:/images/Cards/3_of_clubs.png", "f_03_pkg:/images/Cards/3_of_diamonds.png", "f_03_pkg:/images/Cards/3_of_hearts.png", "f_03_pkg:/images/Cards/3_of_spades.png",
-        "f_04_pkg:/images/Cards/4_of_clubs.png", "f_04_pkg:/images/Cards/4_of_diamonds.png", "f_04_pkg:/images/Cards/4_of_hearts.png", "f_04_pkg:/images/Cards/4_of_spades.png",
-        "f_05_pkg:/images/Cards/5_of_clubs.png", "f_05_pkg:/images/Cards/5_of_diamonds.png", "f_05_pkg:/images/Cards/5_of_hearts.png", "f_05_pkg:/images/Cards/5_of_spades.png",
-        "f_06_pkg:/images/Cards/6_of_clubs.png", "f_06_pkg:/images/Cards/6_of_diamonds.png", "f_06_pkg:/images/Cards/6_of_hearts.png", "f_06_pkg:/images/Cards/6_of_spades.png",
-        "f_07_pkg:/images/Cards/7_of_clubs.png", "f_07_pkg:/images/Cards/7_of_diamonds.png", "f_07_pkg:/images/Cards/7_of_hearts.png", "f_07_pkg:/images/Cards/7_of_spades.png",
-        "f_08_pkg:/images/Cards/8_of_clubs.png", "f_08_pkg:/images/Cards/8_of_diamonds.png", "f_08_pkg:/images/Cards/8_of_hearts.png", "f_08_pkg:/images/Cards/8_of_spades.png",
-        "f_09_pkg:/images/Cards/9_of_clubs.png", "f_09_pkg:/images/Cards/9_of_diamonds.png", "f_09_pkg:/images/Cards/9_of_hearts.png", "f_09_pkg:/images/Cards/9_of_spades.png",
-        "f_10_pkg:/images/Cards/10_of_clubs.png", "f_10_pkg:/images/Cards/10_of_diamonds.png", "f_10_pkg:/images/Cards/10_of_hearts.png", "f_10_pkg:/images/Cards/10_of_spades.png",
-        "k_00_pkg:/images/Cards/king_of_clubs.png", "k_00_pkg:/images/Cards/king_of_diamonds.png", "k_10_pkg:/images/king_of_hearts.png", "k_00_pkg:/images/Cards/king_of_spades.png",
-        "q_00_pkg:/images/Cards/queen_of_clubs.png", "q_00_pkg:/images/Cards/queen_of_diamonds.png", "q_00_pkg:/images/Cards/queen_of_hearts.png", "q_00_pkg:/images/Cards/queen_of_spades.png",
-        "j_10_pkg:/images/Cards/jack_of_clubs.png", "j_10_pkg:/images/Cards/jack_of_diamonds.png", "j_10_pkg:/images/Cards/jack_of_hearts.png", "j_10_pkg:/images/Cards/jack_of_spades.png"
+        "f_01_pkg:https://sthsroku.net/team666/elevens/Cards//ace_of_clubs.png", "f_01_pkg:https://sthsroku.net/team666/elevens/Cards//ace_of_diamonds.png", "f_01_pkg:https://sthsroku.net/team666/elevens/Cards//ace_of_hearts.png", "f_01_pkg:https://sthsroku.net/team666/elevens/Cards//ace_of_spades.png",
+        "f_02_pkg:https://sthsroku.net/team666/elevens/Cards//2_of_clubs.png", "f_02_pkg:https://sthsroku.net/team666/elevens/Cards//2_of_diamonds.png", "f_02_pkg:https://sthsroku.net/team666/elevens/Cards//2_of_hearts.png", "f_02_pkg:https://sthsroku.net/team666/elevens/Cards//2_of_spades.png",
+        "f_03_pkg:https://sthsroku.net/team666/elevens/Cards//3_of_clubs.png", "f_03_pkg:https://sthsroku.net/team666/elevens/Cards//3_of_diamonds.png", "f_03_pkg:https://sthsroku.net/team666/elevens/Cards//3_of_hearts.png", "f_03_pkg:https://sthsroku.net/team666/elevens/Cards//3_of_spades.png",
+        "f_04_pkg:https://sthsroku.net/team666/elevens/Cards//4_of_clubs.png", "f_04_pkg:https://sthsroku.net/team666/elevens/Cards//4_of_diamonds.png", "f_04_pkg:https://sthsroku.net/team666/elevens/Cards//4_of_hearts.png", "f_04_pkg:https://sthsroku.net/team666/elevens/Cards//4_of_spades.png",
+        "f_05_pkg:https://sthsroku.net/team666/elevens/Cards//5_of_clubs.png", "f_05_pkg:https://sthsroku.net/team666/elevens/Cards//5_of_diamonds.png", "f_05_pkg:https://sthsroku.net/team666/elevens/Cards//5_of_hearts.png", "f_05_pkg:https://sthsroku.net/team666/elevens/Cards//5_of_spades.png",
+        "f_06_pkg:https://sthsroku.net/team666/elevens/Cards//6_of_clubs.png", "f_06_pkg:https://sthsroku.net/team666/elevens/Cards//6_of_diamonds.png", "f_06_pkg:https://sthsroku.net/team666/elevens/Cards//6_of_hearts.png", "f_06_pkg:https://sthsroku.net/team666/elevens/Cards//6_of_spades.png",
+        "f_07_pkg:https://sthsroku.net/team666/elevens/Cards//7_of_clubs.png", "f_07_pkg:https://sthsroku.net/team666/elevens/Cards//7_of_diamonds.png", "f_07_pkg:https://sthsroku.net/team666/elevens/Cards//7_of_hearts.png", "f_07_pkg:https://sthsroku.net/team666/elevens/Cards//7_of_spades.png",
+        "f_08_pkg:https://sthsroku.net/team666/elevens/Cards//8_of_clubs.png", "f_08_pkg:https://sthsroku.net/team666/elevens/Cards//8_of_diamonds.png", "f_08_pkg:https://sthsroku.net/team666/elevens/Cards//8_of_hearts.png", "f_08_pkg:https://sthsroku.net/team666/elevens/Cards//8_of_spades.png",
+        "f_09_pkg:https://sthsroku.net/team666/elevens/Cards//9_of_clubs.png", "f_09_pkg:https://sthsroku.net/team666/elevens/Cards//9_of_diamonds.png", "f_09_pkg:https://sthsroku.net/team666/elevens/Cards//9_of_hearts.png", "f_09_pkg:https://sthsroku.net/team666/elevens/Cards//9_of_spades.png",
+        "f_10_pkg:https://sthsroku.net/team666/elevens/Cards//10_of_clubs.png", "f_10_pkg:https://sthsroku.net/team666/elevens/Cards//10_of_diamonds.png", "f_10_pkg:https://sthsroku.net/team666/elevens/Cards//10_of_hearts.png", "f_10_pkg:https://sthsroku.net/team666/elevens/Cards//10_of_spades.png",
+        "k_00_pkg:https://sthsroku.net/team666/elevens/Cards//king_of_clubs.png", "k_00_pkg:https://sthsroku.net/team666/elevens/Cards//king_of_diamonds.png", "k_10_pkg:/images/king_of_hearts.png", "k_00_pkg:https://sthsroku.net/team666/elevens/Cards//king_of_spades.png",
+        "q_00_pkg:https://sthsroku.net/team666/elevens/Cards//queen_of_clubs.png", "q_00_pkg:https://sthsroku.net/team666/elevens/Cards//queen_of_diamonds.png", "q_00_pkg:https://sthsroku.net/team666/elevens/Cards//queen_of_hearts.png", "q_00_pkg:https://sthsroku.net/team666/elevens/Cards//queen_of_spades.png",
+        "j_10_pkg:https://sthsroku.net/team666/elevens/Cards//jack_of_clubs.png", "j_10_pkg:https://sthsroku.net/team666/elevens/Cards//jack_of_diamonds.png", "j_10_pkg:https://sthsroku.net/team666/elevens/Cards//jack_of_hearts.png", "j_10_pkg:https://sthsroku.net/team666/elevens/Cards//jack_of_spades.png"
     ]
     m.global.addFields({deckCards: deckCards})
-
-    for i = deckCards.Count() - 1 to 1 step -1
-        j = Fix(Rnd(0) * (i + 1))
-        temp = deckCards[i]
-        deckCards.setEntry(i, deckCards[j])
-        deckCards.setEntry(j, temp)
-    end for
 
     deckCards = shuffleCards()
     print deckCards
@@ -59,18 +51,44 @@ sub init()
     ' m.global.addFields({currentBoard: currentBoard})
     ' dealCards()
     ' displayCards()
+end function
+
+sub shuffleCards()
+    temp = m.global.deckCards
+    for i = m.global.deckCards.Count() - 1 to 1 step -1
+        j = Fix(Rnd(0) * (i + 1))
+        temp = m.global.deckCards[i]
+        m.global.deckCards.setEntry(i, m.global.deckCards[j])
+        m.global.deckCards.setEntry(j, temp)
+    end for
 end sub
 
-sub shuffleCards() as Object
-    temp = m.global.deckCards
-    for i = temp.Count() - 1 to 1 step -1
-        j = Fix(Rnd(0) * (i + 1))
-        tempo = temp[i]
-        temp.setEntry(i, temp[j])
-        temp.setEntry(j, tempo)
-    end for
-    return temp
-end sub
+' function checkForEleven() as boolean
+'     for i = 0 to m.global.currentBoard.Count() - 1
+'         'need to add a on key event or something so program handles two button clicks
+'         for each grid1 in m.global.gridCards
+'             for each grid2 in m.global.gridCards
+'                 if  then
+'                     convertInt = Mid(m.global.deckCards.focusedIconUri.substring, 3, 2)
+'       ''rid1 = ToInteger(convertInt)
+'                 end if
+'             end for
+'             dealCards()
+'         end for
+'     end for
+' end function
+
+
+' sub shuffleCards() as Object
+'     temp = m.global.deckCards
+'     for i = temp.Count() - 1 to 1 step -1
+'         j = Fix(Rnd(0) * (i + 1))
+'         tempo = temp[i]
+'         temp.setEntry(i, temp[j])
+'         temp.setEntry(j, tempo)
+'     end for
+'     return temp
+' end sub
 
 ' function isEmpty() as Boolean
 '     if m.global.deckCards.Count() = 0 then
