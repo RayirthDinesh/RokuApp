@@ -24,6 +24,7 @@ function init()
     m.global.addFields({card21 : card21})
     m.global.addFields({card22 : card22})
 
+    'Create array gridCards
     gridCards = [m.global.card00, m.global.card01, m.global.card02, m.global.card10, m.global.card11, m.global.card12, m.global.card20, m.global.card21, m.global.card22]
     m.global.addFields({gridCards: gridCards})
 
