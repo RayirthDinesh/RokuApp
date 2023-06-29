@@ -2,186 +2,75 @@
 <component name="ElevensGame" extends="Scene">
   <script type="text/brightscript" uri="pkg:/components/ElevensGame.brs"/>
     <children>
-        <!-- <Button 
-            id="card0" text=" "
-            iconUri="pkg:/images/square.png"
-            focusedIconUri="pkg:/images/blank.png"
-            minWidth="10" maxWidth="10"
-            height="10"
-            translation="[520, 300]"
-        />
 
-        <Button 
-            id="card01" text=" "
-            iconUri="pkg:/images/square.png"
-            focusedIconUri="pkg:/images/blank.png"
-            minWidth="10" maxWidth="10"
-            height="10"
-            translation="[772.67, 300]"
-        />
-
-        <Button 
-            id="card02" text=" "
-            iconUri="pkg:/images/square.png"
-            focusedIconUri="pkg:/images/blank.png"
-            minWidth="10" maxWidth="10"
-            height="10"
-            translation="[1013.34, 300]"
-        />
-
-        <Button 
-            id="card10" text=" "
-            iconUri="pkg:/images/square.png"
-            focusedIconUri="pkg:/images/blank.png"
-            minWidth="10" maxWidth="10"
-            translation="[520, 515.67]"
-        />
-
-        <Button 
-            id="card11" text=" "
-            iconUri="pkg:/images/square.png"
-            focusedIconUri="pkg:/images/blank.png"
-            minWidth="10" maxWidth="10"
-            translation="[772.67, 515.67]"
-        />
-
-        <Button 
-            id="card12" text=""
-            iconUri="pkg:/images/square.png"
-            focusedIconUri="pkg:/images/blank.png"
-            minWidth="10" maxWidth="10"
-            translation="[1013.34, 515.67]"
-        />
-        <Button   
-            id="card20" text=""
-            iconUri="pkg:/images/square.png"
-            focusedIconUri="pkg:/images/blank.png"
-            minWidth="10" maxWidth="10"
-            translation="[520, 765.34]"
-        />
-
-        <Button 
-            id="card21" text=""
-            iconUri="pkg:/images/square.png"
-            focusedIconUri="pkg:/images/blank.png"
-            minWidth="10" maxWidth="10"
-            translation="[772.67, 765.34]"
-        />
-
-        <Button 
-            id="card22" text=""
-            iconUri="pkg:/images/square.png"
-            focusedIconUri="pkg:/images/blank.png"
-            minWidth="10" maxWidth="10"
-            translation="[1013.34, 765.34]" 
-        /> -->
     <Poster
-    id="ElevensGame"
-    uri="pkg:/images/background.png"
-    translation="[560, 160]"
-    width="800"
-    height="800"
-    />
-<!-- this is for every square grid. There are 9 grids, so essentially, 9 buttons. -->
-    <Button id="card00"
-    text=""
-    textColor="0xff0000ff"
-    iconUri="pkg:/images/blank.png"
-    focusedTextColor="0xff0000ff"
-    focusedIconUri="pkg:/images/square.png"
-    minWidth="1"
-    maxWidth="1"
-    height="1"
-    translation="[520, 300]"
+      id="ElevensGame"
+      uri="pkg:/images/background.png"
+      translation="[560, 160]"
     />
 
-    <Button id="card01"
-    text=""
-    textColor="0xff0000ff"
-    iconUri="pkg:/images/blank.png"
-    focusedTextColor="0xff0000ff"
-    focusedIconUri="pkg:/images/square.png"
-    minWidth="1" maxWidth="1"
-    height="1"
-    translation="[772.67, 300]"/>
+    <Poster id="card00"
+      uri="pkg:/images/square.png"
+      width="200"
+      height="200"
+      translation="[520, 300]"
+    />
 
-    <Button id="card02"
-    text=""
-    textColor="0xff0000ff"
-    iconUri="pkg:/images/blank.png"
-    focusedTextColor="0xff0000ff"
-    focusedIconUri="pkg:/images/square.png"
-    minWidth="1"
-    maxWidth="1"
-    height="1"
-    translation="[1013.34, 300]"/>
+    <Poster id="card01"
+      uri="pkg:/images/square.png"
+      width="200"
+      height="200"
+      translation="[772.67, 300]"
+    />
 
-    <Button id="card10"
-    text=""
-    textColor="0xff0000ff"
-    iconUri="pkg:/images/blank.png"
-    focusedTextColor="0xff0000ff"
-    focusedIconUri="pkg:/images/square.png"
-    minWidth="1"
-    maxWidth="1"
-    height="1"
-    translation="[520, 555.67]"/>
+    <Poster id="card02"
+      uri="pkg:/images/square.png"
+      width="200"
+      height="200"
+      translation="[1013.34, 300]"
+    />
 
-    <Button id="card11"
-    text=""
-    textColor="0xff0000ff"
-    iconUri="pkg:/images/blank.png"
-    focusedTextColor="0xff0000ff"
-    focusedIconUri="pkg:/images/square.jpg"
-    minWidth="1"
-    maxWidth="1"
-    height="1"
-    translation="[772.67, 555.67]"/>
+    <Poster id="card10"
+      uri="pkg:/images/square.png"
+      width="200"
+      height="200"
+      translation="[520, 555.67]"
+    />
 
-    <Button id="card12"
-    text=""
-    textColor="0xff0000ff"
-    iconUri="pkg:/images/blank.png"
-    focusedTextColor="0xff0000ff"
-    focusedIconUri="pkg:/images/square.png"
-    minWidth="1"
-    maxWidth="1"
-    height="1"
-    translation="[1013.34, 555.67]"/>
+    <Poster id="card11"
+      uri="pkg:/images/square.png"
+      width="200"
+      height="200"
+      translation="[772.67, 555.67]"
+    />
 
-    <Button id="card20"
-    text=""
-    textColor="0xff0000ff"
-    iconUri="pkg:/images/blank.png"
-    focusedTextColor="0xff0000ff"
-    focusedIconUri="pkg:/images/square.png"
-    minWidth="1"
-    maxWidth="1"
-    height="1"
-    translation="[520, 820.34]"/>
+    <Poster id="card12"
+      uri="pkg:/images/square.png"
+      width="200"
+      height="200"
+      translation="[1013.34, 555.67]"
+    />
 
-    <Button id="card21"
-    text=""
-    textColor="0xff0000ff"
-    iconUri="pkg:/images/blank.png"
-    focusedTextColor="0xff0000ff"
-    focusedIconUri="pkg:/images/square.png"
-    minWidth="1"
-    maxWidth="1"
-    height="1"
-    translation="[772.67, 820.34]"/>
+    <Poster id="card20"
+      uri="pkg:/images/square.png"
+      width="200"
+      height="200"
+      translation="[520, 820.34]"
+    />
 
-    <Button id="card22"
-    text=""
-    textColor="0xff0000ff"
-    iconUri="pkg:/images/blank.png"
-    focusedTextColor="0xff0000ff"
-    focusedIconUri="pkg:/images/square.png"
-    minWidth="1"
-    maxWidth="1"
-    height="1"
-    translation="[1013.34, 820.34]"/>
+    <Poster id="card21"
+      uri="pkg:/images/square.png"
+      width="200"
+      height="200"
+      translation="[772.67, 820.34]"
+    />
 
+    <Poster id="card22"
+      uri="pkg:/images/square.png"
+      width="200"
+      height="200"
+      translation="[1013.34, 820.34]"
+    />
   </children>
 </component>
 
@@ -192,95 +81,95 @@
 <component name="ElevensGame" extends="Scene">
   <script type="text/brightscript" uri="pkg:/components/ElevensGame.brs" />
 
- Define the initial scene 
+ Define the initial scene
   <children>
-  Add buttons for each card 
-    <button 
-      id="card00" 
-      translation="[0, 0]" 
-      width="200" 
-      height="300" 
-      focusable="true" 
-      text="Card 00" 
+  Add buttons for each card
+    <button
+      id="card00"
+      translation="[0, 0]"
+      width="200"
+      height="300"
+      focusable="true"
+      text="Card 00"
       onKeyEvent="handleUserInput" />
-      
-    <button 
-      id="card01" 
-      translation="[200, 0]" 
-      width="200" 
-      height="300" 
-      focusable="true" 
-      text="Card 01" 
+
+    <button
+      id="card01"
+      translation="[200, 0]"
+      width="200"
+      height="300"
+      focusable="true"
+      text="Card 01"
       onKeyEvent="handleUserInput" />
-      
-    <button 
-      id="card02" 
-      translation="[400, 0]" 
-      width="200" 
-      height="300" 
-      focusable="true" 
-      text="Card 02" 
+
+    <button
+      id="card02"
+      translation="[400, 0]"
+      width="200"
+      height="300"
+      focusable="true"
+      text="Card 02"
       onKeyEvent="handleUserInput" />
-      
-    <button 
-      id="card10" 
-      translation="[0, 300]" 
-      width="200" 
-      height="300" 
-      focusable="true" 
-      text="Card 10" 
+
+    <button
+      id="card10"
+      translation="[0, 300]"
+      width="200"
+      height="300"
+      focusable="true"
+      text="Card 10"
       onKeyEvent="handleUserInput" />
-      
-    <button 
-      id="card11" 
-      translation="[200, 300]" 
-      width="200" 
-      height="300" 
-      focusable="true" 
-      text="Card 11" 
+
+    <button
+      id="card11"
+      translation="[200, 300]"
+      width="200"
+      height="300"
+      focusable="true"
+      text="Card 11"
       onKeyEvent="handleUserInput" />
-      
-    <button 
-      id="card12" 
-      translation="[400, 300]" 
-      width="200" 
-      height="300" 
-      focusable="true" 
-      text="Card 12" 
+
+    <button
+      id="card12"
+      translation="[400, 300]"
+      width="200"
+      height="300"
+      focusable="true"
+      text="Card 12"
       onKeyEvent="handleUserInput" />
-      
-    <button 
-      id="card20" 
-      translation="[0, 600]" 
-      width="200" 
-      height="300" 
-      focusable="true" 
-      text="Card 20" 
+
+    <button
+      id="card20"
+      translation="[0, 600]"
+      width="200"
+      height="300"
+      focusable="true"
+      text="Card 20"
       onKeyEvent="handleUserInput" />
-      
-    <button 
-      id="card21" 
-      translation="[200, 600]" 
-      width="200" 
-      height="300" 
-      focusable="true" 
-      text="Card 21" 
+
+    <button
+      id="card21"
+      translation="[200, 600]"
+      width="200"
+      height="300"
+      focusable="true"
+      text="Card 21"
       onKeyEvent="handleUserInput" />
-      
-    <button 
-      id="card22" 
-      translation="[400, 600]" 
-      width="200" 
-      height="300" 
-      focusable="true" 
-      text="Card 22" 
+
+    <button
+      id="card22"
+      translation="[400, 600]"
+      width="200"
+      height="300"
+      focusable="true"
+      text="Card 22"
       onKeyEvent="handleUserInput" />
-      
-Add an OK button for making moves 
-    <button 
-      id="ok" 
-      translation="[600, 900]" 
-      width="200" 
-      height="50" 
-      text="OK" 
+
+Add an OK button for making moves
+    <button
+      id="ok"
+      translation="[600, 900]"
+      width="200"
+      height="50"
+      text="OK"
       onKeyEvent="handleUserInput" /> -->
