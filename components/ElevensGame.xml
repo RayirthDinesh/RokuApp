@@ -5,14 +5,14 @@
 
     <Poster
       id="ElevensGame"
-      uri="https://sthsroku.net/team666/elevens/Cards//ace_of_clubs.png"
+      uri="https://sthsroku.net/team666/elevens/background.png"
       width="1920"
       height="1080"
       translation="[0, 0]"
     />
 
     <Poster id="card00"
-      uri="https://sthsroku.net/team666/elevens/square.png"
+      uri="https://sthsroku.net/team666/elevens/Cards/ace_of_clubs.png"
       width="200"
       height="200"
       translation="[520, 300]"
