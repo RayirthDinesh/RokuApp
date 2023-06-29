@@ -61,7 +61,7 @@ sub init()
   Vertical_Line_Middle = m.top.findNode("Vertical_Line_Middle")
   Vertical_Line_Bottom = m.top.findNode("Vertical_Line_Bottom")
 
-  lineArray = [diagonalWin1, diagonalWin2, Horizontal_Line_Bottom, Horizontal_Line_Top, Horizontal_Line_Middle, Vertical_Line_Top, Vertical_Line_Middle, Vertical_Line_Bottom]
+  lineArray = [Horizontal_Line_Top, Horizontal_Line_Middle, Horizontal_Line_Bottom, Vertical_Line_Top, Vertical_Line_Middle, Vertical_Line_Bottom, diagonalWin1, diagonalWin2]
   m.global.addFields({lineArray : lineArray})
 
   playAgain = m.top.findNode("playAgain")
@@ -80,6 +80,8 @@ sub init()
   m.global.addFields({Vertical_Line_Middle : Vertical_Line_Middle})
   m.global.addFields({Vertical_Line_Bottom : Vertical_Line_Bottom})
 
+  victoryOptions = [[r0c0, r0c1, r0c2], [r1c0, r1c1, r1c2], [r2c0, r2c1, r2c2], [r0c0, r1c0, r2c0], [r0c1, r1c1, r2c1], [r2c0, r2c1, r2c2], [r0c0, r1c1, r2c2], [r0c2, r1c1, r2c0]]
+  m.global.addFields({victoryOptions : victoryOptions})
 
   r1c1.setFocus(true) 'set focus starts at the middle grid
 end sub
@@ -140,7 +142,7 @@ function onKeyEvent(key, press) as Boolean
             m.global.arrayButtons[m.global.rowIndex][m.global.colIndex].focusedIconUri = "pkg:/images/redO.jpg"
           end if
         end if
-        Winning()
+        winGame()
       else
         m.global.skipFirst = false
       end if
@@ -148,94 +150,53 @@ function onKeyEvent(key, press) as Boolean
   end if
 end function
 
-function Winning()
-'x player
-'for each if else if statment, add a reset function after the visible function
-  if not m.global.xPlayer then
-    if m.global.r0c0.iconUri = "pkg:/images/whiteX.jpg" and m.global.r0c1.iconUri = "pkg:/images/whiteX.jpg" and m.global.r0c2.iconUri = "pkg:/images/whiteX.jpg" then
-      m.global.Horizontal_Line_Top.visible = true
-      m.global.playerNotify.text = "Player X wins"
-      m.global.playerWin = true '-
-    else if m.global.r1c0.iconUri = "pkg:/images/whiteX.jpg" and m.global.r1c1.iconUri = "pkg:/images/whiteX.jpg" and m.global.r1c2.iconUri = "pkg:/images/whiteX.jpg" then
-      m.global.Horizontal_Line_Middle.visible = true
-      m.global.playerNotify.text = "Player X wins"
-      m.global.playerWin = true '-
-    else if m.global.r2c0.iconUri = "pkg:/images/whiteX.jpg" and m.global.r2c1.iconUri = "pkg:/images/whiteX.jpg" and m.global.r2c2.iconUri = "pkg:/images/whiteX.jpg" then
-      m.global.Horizontal_Line_Bottom.visible = true
-      m.global.playerNotify.text = "Player X wins"
-      m.global.playerWin = true '-
-    else if m.global.r0c0.iconUri = "pkg:/images/whiteX.jpg" and m.global.r1c0.iconUri = "pkg:/images/whiteX.jpg" and m.global.r2c0.iconUri = "pkg:/images/whiteX.jpg" then
-      m.global.Vertical_Line_Top.visible = true
-      m.global.playerNotify.text = "Player X wins"
-      m.global.playerWin = true '|
-    else if m.global.r0c1.iconUri = "pkg:/images/whiteX.jpg" and m.global.r1c1.iconUri = "pkg:/images/whiteX.jpg" and m.global.r2c1.iconUri = "pkg:/images/whiteX.jpg" then
-      m.global.Vertical_Line_Middle.visible = true
-      m.global.playerNotify.text = "Player X wins"
-      m.global.playerWin = true '|
-    else if m.global.r0c2.iconUri = "pkg:/images/whiteX.jpg" and m.global.r1c2.iconUri = "pkg:/images/whiteX.jpg" and m.global.r2c2.iconUri = "pkg:/images/whiteX.jpg" then
-      m.global.Vertical_Line_Bottom.visible = true
-      m.global.playerNotify.text = "Player X wins"
-      m.global.playerWin = true '|
-    else if m.global.r0c0.iconUri = "pkg:/images/whiteX.jpg" and m.global.r1c1.iconUri = "pkg:/images/whiteX.jpg" and m.global.r2c2.iconUri = "pkg:/images/whiteX.jpg" then
-      m.global.diagonalWin1.visible = true
-      m.global.playerNotify.text = "Player X wins"
-      m.global.playerWin = true '\
-    else if m.global.r0c2.iconUri = "pkg:/images/whiteX.jpg" and m.global.r1c1.iconUri = "pkg:/images/whiteX.jpg" and m.global.r2c0.iconUri = "pkg:/images/whiteX.jpg" then
-      m.global.diagonalWin2.visible = true
-      m.global.playerNotify.text = "Player X wins"
-      m.global.playerWin = true '/
+function winGame()
+  tempCounter = 0
+  for each row in m.global.victoryOptions
+    tempXCount = 0
+    tempOCount = 0
+    for each col in row
+      if col.iconUri = "pkg:/images/whiteX.jpg" then
+        tempXCount = tempXCount + 1
+      else if col.iconUri = "pkg:/images/whiteO.jpg" then
+        tempOCount = tempOCount + 1
+      end if
+    end for
+    if tempXCount = 3 or tempOCount = 3 then
+      m.global.playerWin = true
+      m.global.lineArray[tempCounter].visible = true
     end if
-  end if
-
-'for O player
-'for each if else if statment, add a reset function after the visible function
-  if m.global.xPlayer then
-    if m.global.r0c0.iconUri = "pkg:/images/whiteO.jpg" and m.global.r0c1.iconUri = "pkg:/images/whiteO.jpg" and m.global.r0c2.iconUri = "pkg:/images/whiteO.jpg" then
-      m.global.Horizontal_Line_Top.visible = true
+    if tempXCount = 3 then
+      m.global.playerNotify.text = "Player X wins"
+      exit for
+    else if tempOCount = 3 then
       m.global.playerNotify.text = "Player O wins"
-      m.global.playerWin = true   '-
-    else if m.global.r1c0.iconUri = "pkg:/images/whiteO.jpg" and m.global.r1c1.iconUri = "pkg:/images/whiteO.jpg" and m.global.r1c2.iconUri = "pkg:/images/whiteO.jpg" then
-      m.global.Horizontal_Line_Middle.visible = true
-      m.global.playerNotify.text = "Player O wins"
-      m.global.playerWin = true '-
-    else if m.global.r2c0.iconUri = "pkg:/images/whiteO.jpg" and m.global.r2c1.iconUri = "pkg:/images/whiteO.jpg" and m.global.r2c2.iconUri = "pkg:/images/whiteO.jpg" then
-      m.global.Horizontal_Line_Bottom.visible = true
-      m.global.playerNotify.text = "Player O wins"
-      m.global.playerWin = true '-
-    else if m.global.r0c0.iconUri = "pkg:/images/whiteO.jpg" and m.global.r1c0.iconUri = "pkg:/images/whiteO.jpg" and m.global.r2c0.iconUri = "pkg:/images/whiteO.jpg" then
-      m.global.Vertical_Line_Top.visible = true
-      m.global.playerNotify.text = "Player O wins" '|
-      m.global.playerWin = true
-    else if m.global.r0c1.iconUri = "pkg:/images/whiteO.jpg" and m.global.r1c1.iconUri = "pkg:/images/whiteO.jpg" and m.global.r2c1.iconUri = "pkg:/images/whiteO.jpg" then
-      m.global.Vertical_Line_Middle.visible = true
-      m.global.playerNotify.text = "Player O wins" '|
-      m.global.playerWin = true
-    else if m.global.r0c2.iconUri = "pkg:/images/whiteO.jpg" and m.global.r1c2.iconUri = "pkg:/images/whiteO.jpg" and m.global.r2c2.iconUri = "pkg:/images/whiteO.jpg" then
-      m.global.Vertical_Line_Bottom.visible = true
-      m.global.playerNotify.text = "Player O wins" '|
-      m.global.playerWin = true
-    else if m.global.r0c0.iconUri = "pkg:/images/whiteO.jpg" and m.global.r1c1.iconUri = "pkg:/images/whiteO.jpg" and m.global.r2c2.iconUri = "pkg:/images/whiteO.jpg" then
-      m.global.diagonalWin1.visible = true
-      m.global.playerNotify.text = "Player O wins"
-      m.global.playerWin = true'\
-    else if m.global.r0c2.iconUri = "pkg:/images/whiteO.jpg" and m.global.r1c1.iconUri = "pkg:/images/whiteO.jpg" and m.global.r2c0.iconUri = "pkg:/images/whiteO.jpg" then
-      m.global.diagonalWin2.visible = true
-      m.global.playerNotify.text = "Player O wins"
-      m.global.playerWin = true '/
+      exit for
     end if
-  end if
-
-  if m.global.r0c0.iconUri <> "pkg:/images/blank.png" and m.global.r0c1.iconUri <> "pkg:/images/blank.png" and m.global.r0c2.iconUri <> "pkg:/images/blank.png" and m.global.r1c0.iconUri <> "pkg:/images/blank.png" and m.global.r1c1.iconUri <> "pkg:/images/blank.png" and m.global.r1c2.iconUri <> "pkg:/images/blank.png" and m.global.r2c0.iconUri <> "pkg:/images/blank.png" and m.global.r2c1.iconUri <> "pkg:/images/blank.png" and m.global.r2c2.iconUri <> "pkg:/images/blank.png" then
-    m.global.playerNotify.text = "It's a tie!"
-    m.global.playerWin = true
-  end if
-
+    if m.global.playerWin then
+      exit for
+    end if
+    tempCounter = tempCounter + 1
+  end for
+  checkTie()
   if m.global.playerWin then
     m.global.playAgain.visible = true
     m.global.playAgainPoster.visible = true
     m.global.playAgain.setFocus(true)
   end if
 end function
+
+sub checkTie()
+  for each row in m.global.arrayButtons
+    for each col in row
+      if col.iconUri = "pkg:/images/blank.png" then
+        return
+      end if
+    end for
+  end for
+  m.global.playerNotify.text = "It's a tie!"
+  m.global.playerWin = true
+end sub
 
 sub onResetButtonSelected(obj)
   resetGame()
