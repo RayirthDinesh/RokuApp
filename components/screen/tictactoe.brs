@@ -1,9 +1,11 @@
 sub init()
-  ? "[tictactoe] init" ' essentially a print statement that is called only once
+  ? "[tictactoe] init" ' essentially a print statement that is called when funciton is called
   m.top.backgroundURI = "pkg:/images/background.png"
   m.gamename = m.top.findNode("gamename")
   m.poster = m.top.findNode("tictactoe")
+
   m.playerNotify = m.top.findNode("playerNotify")
+  m.global.addFields({playerNotify : m.playerNotify})
 
   ' variables that we call from XML and we want to edit
   r0c0 = m.top.findNode("r0c0")
@@ -27,9 +29,8 @@ sub init()
 
   Player = m.top.findNode("Player")
   Computer = m.top.findNode("Computer")
-  easy = m.top.findNode("easy")
-  medium = m.top.findNode("medium")
-  hard = m.top.findNode("hard")
+  state = 1
+  option = Computer
   m.global.addFields({state : state})
   m.global.addFields({option : option})
   m.global.addFields({Player : Player})
@@ -60,7 +61,6 @@ sub init()
   m.global.addFields({upButtons : upButtons})
   m.global.addFields({downButtons : downButtons})
   m.global.addFields({leftButtons : leftButtons})
-  m.global.addFields({level : level})
 
   easyOptionRandomCol = 0
   easyOptionRandomRow = 0
@@ -68,23 +68,25 @@ sub init()
   m.global.addFields({easyOptionRandomRow : easyOptionRandomRow})
   m.global.addFields({easyOptionRandomCol : easyOptionRandomCol})
 
+  easy = m.top.findNode("easy")
+  medium = m.top.findNode("medium")
+  hard = m.top.findNode("hard")
+
+  level = easy
+
+  m.global.addFields({easy : easy})
+  m.global.addFields({medium : medium})
+  m.global.addFields({hard : hard})
+  m.global.addFields({level : level})
+
   rowIndex = 1
   colIndex = 1
   m.global.addFields({rowIndex : rowIndex})
   m.global.addFields({colIndex : colIndex})
 
-  state = 1
-  option = Computer
-  level = easy
-  xPlayer = true
-  optionfocus = easy
-  m.global.addFields({easy : easy})
-  m.global.addFields({medium : medium})
-  m.global.addFields({hard : hard})
 
-  m.global.addFields({playerNotify : m.playerNotify})
+  xPlayer = true
   m.global.addFields({xPlayer : xPlayer})
-  m.global.addFields({optionfocus : optionfocus})
 
   Player.observeField("buttonSelected", "playerOptionButton")
   Computer.observeField("buttonSelected", "computerOptionButton")
@@ -142,26 +144,29 @@ function easyModeComputer()
 end function
 
 function mediumModeComputer()
-  indexRemove = 0
-  indexRemove = indexRemove + 1
-  computerPairFinder()
-  if searchForWin("X") then
+  searchForWin()
+  if m.global.computerWinListX.Count() <> 0 then
     m.global.computerWinListX[0].iconUri = "pkg:/images/whiteX.jpg"
-  else if searchForWin("O") then
+  else if m.global.computerWinListO.Count() <> 0 then
     m.global.computerWinListO[0].iconUri = "pkg:/images/whiteX.jpg"
   else
-    m.global.computerPairFinderList[0].iconUri = "pkg:/images/whiteX.jpg"
-    m.global.computerPairFinderList.removeIndex(indexRemove)
+    m.global.easyOptionRandomRow = Fix(rnd(0) * 3)
+    m.global.easyOptionRandomCol = Fix(rnd(0) * 3)
+    while m.global.arrayButtons[m.global.easyOptionRandomRow][m.global.easyOptionRandomCol].iconUri <> "pkg:/images/blank.png"
+      m.global.easyOptionRandomRow = Fix(rnd(0) * 3)
+      m.global.easyOptionRandomCol = Fix(rnd(0) * 3)
+    end while
+    m.global.arrayButtons[m.global.easyOptionRandomRow][m.global.easyOptionRandomCol].iconUri = "pkg:/images/whiteX.jpg"
   end if
+  m.global.xPlayer = false
   m.global.state = 4
 end function
 
-' 'Computer Win Functions
-function searchForWin(player) as Boolean
-  m.global.computerWinList =  []
+'Computer Win Functions
+function searchForWin()
+  m.global.computerWinListX.clear()
+  m.global.computerWinListO.clear()
   for each combo in m.global.victorycombos
-    countX = 0
-    countO = 0
     for each item in combo
       if item.iconUri = "pkg:/images/whiteX.jpg" then
         countX = countX + 1
@@ -170,43 +175,43 @@ function searchForWin(player) as Boolean
         countO = countO + 1
       end if
     end for
-    if countX = 2 then
       for each item in combo
-        if not item.iconUri = "pkg:/images/whiteX.jpg" then
-          m.global.computerWinList.append(item)
-          return true
-        else if not item.iconUri = "pkg:/images/whiteO.jpg" then
-          m.global.computerWinList.append(item)
-          return true
-        end if
-      end for
-    end if
-  end for
-  return false
-end function
+        if countX = 2 then
+          if item.iconUri = "pkg:/images/blank.png" then
+            m.global.computerWinListX.push(item)
+          end if
+          else if countO = 2
+            if item.iconUri = "pkg:/images/blank.png" then
+              m.global.computerWinListO.push(item)
 
-function computerPairFinder()
-  m.global.computerPairFinder = []
-  for each combo in m.global.victorycombos
-    countX = 0
-    for each item in combo
-      if item.iconUri = "pkg:/images/whiteX.jpg" then
-        countX = countX + 1
-        exit for
-      end if
-    end for
-    if countX = 1 then
-      for each item in combo
-        if item.iconUri = "pkg:/images/blank.jpg" or item.iconUri = "pkg:/images/whiteO.jpg"then
-          m.global.computerPairFinder.append(item)
-          return m.global.computerPairFinder
-        end if
+            end if
+          end if
       end for
-    end if
   end for
 end function
 
-'Check if argument is in list
+' function computerPairFinder()
+'   m.global.computerPairFinder = []
+'   for each combo in m.global.victorycombos
+'     countX = 0
+'     for each item in combo
+'       if item.iconUri = "pkg:/images/whiteX.jpg" then
+'         countX = countX + 1
+'         exit for
+'       end if
+'     end for
+'     if countX = 1 then
+'       for each item in combo
+'         if item.iconUri = "pkg:/images/blank.jpg" and (m.global.[combo][combo.getIndex(item)+1] =  )then
+'           m.global.computerPairFinder.append(item)
+'           return m.global.computerPairFinder
+'         end if
+'       end for
+'     end if
+'   end for
+' end function
+
+' 'Check if argument is in list
 function checkInList(list, button) as boolean
   for each item in list
     if item.isSameNode(button) then
