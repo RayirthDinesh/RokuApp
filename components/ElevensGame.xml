@@ -1,8 +1,8 @@
-<!-- <?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <component name="ElevensGame" extends="Scene">
-    <script type="text/brightscript" uri="pkg:/components/ElevensGame.brs"/>
+  <script type="text/brightscript" uri="pkg:/components/ElevensGame.brs"/>
     <children>
-        <Button 
+        <!-- <Button 
             id="card0" text=" "
             iconUri="pkg:/images/square.png"
             focusedIconUri="pkg:/images/blank.png"
@@ -73,23 +73,128 @@
             iconUri="pkg:/images/square.png"
             focusedIconUri="pkg:/images/blank.png"
             minWidth="10" maxWidth="10"
-            translation="[1013.34, 765.34]"
-        />
-    </children>
-</component> -->
+            translation="[1013.34, 765.34]" 
+        /> -->
+    <Poster
+    id="ElevensGame"
+    uri="pkg:/images/background.png"
+    translation="[560, 160]"
+    width="800"
+    height="800"
+    />
+<!-- this is for every square grid. There are 9 grids, so essentially, 9 buttons. -->
+    <Button id="card00"
+    text=""
+    textColor="0xff0000ff"
+    iconUri="pkg:/images/blank.png"
+    focusedTextColor="0xff0000ff"
+    focusedIconUri="pkg:/images/square.png"
+    minWidth="1"
+    maxWidth="1"
+    height="1"
+    translation="[520, 300]"
+    />
+
+    <Button id="card01"
+    text=""
+    textColor="0xff0000ff"
+    iconUri="pkg:/images/blank.png"
+    focusedTextColor="0xff0000ff"
+    focusedIconUri="pkg:/images/square.png"
+    minWidth="1" maxWidth="1"
+    height="1"
+    translation="[772.67, 300]"/>
+
+    <Button id="card02"
+    text=""
+    textColor="0xff0000ff"
+    iconUri="pkg:/images/blank.png"
+    focusedTextColor="0xff0000ff"
+    focusedIconUri="pkg:/images/square.png"
+    minWidth="1"
+    maxWidth="1"
+    height="1"
+    translation="[1013.34, 300]"/>
+
+    <Button id="card10"
+    text=""
+    textColor="0xff0000ff"
+    iconUri="pkg:/images/blank.png"
+    focusedTextColor="0xff0000ff"
+    focusedIconUri="pkg:/images/square.png"
+    minWidth="1"
+    maxWidth="1"
+    height="1"
+    translation="[520, 555.67]"/>
+
+    <Button id="card11"
+    text=""
+    textColor="0xff0000ff"
+    iconUri="pkg:/images/blank.png"
+    focusedTextColor="0xff0000ff"
+    focusedIconUri="pkg:/images/square.jpg"
+    minWidth="1"
+    maxWidth="1"
+    height="1"
+    translation="[772.67, 555.67]"/>
+
+    <Button id="card12"
+    text=""
+    textColor="0xff0000ff"
+    iconUri="pkg:/images/blank.png"
+    focusedTextColor="0xff0000ff"
+    focusedIconUri="pkg:/images/square.png"
+    minWidth="1"
+    maxWidth="1"
+    height="1"
+    translation="[1013.34, 555.67]"/>
+
+    <Button id="card20"
+    text=""
+    textColor="0xff0000ff"
+    iconUri="pkg:/images/blank.png"
+    focusedTextColor="0xff0000ff"
+    focusedIconUri="pkg:/images/square.png"
+    minWidth="1"
+    maxWidth="1"
+    height="1"
+    translation="[520, 820.34]"/>
+
+    <Button id="card21"
+    text=""
+    textColor="0xff0000ff"
+    iconUri="pkg:/images/blank.png"
+    focusedTextColor="0xff0000ff"
+    focusedIconUri="pkg:/images/square.png"
+    minWidth="1"
+    maxWidth="1"
+    height="1"
+    translation="[772.67, 820.34]"/>
+
+    <Button id="card22"
+    text=""
+    textColor="0xff0000ff"
+    iconUri="pkg:/images/blank.png"
+    focusedTextColor="0xff0000ff"
+    focusedIconUri="pkg:/images/square.png"
+    minWidth="1"
+    maxWidth="1"
+    height="1"
+    translation="[1013.34, 820.34]"/>
+
+  </children>
+</component>
 
 
 
 
-<!-- ELEVENS GAME XML -->
-
-<!-- Import necessary components -->
+<!-- Import necessary components
 <component name="ElevensGame" extends="Scene">
   <script type="text/brightscript" uri="pkg:/components/ElevensGame.brs" />
 
-  <!-- Define the initial scene -->
+ Define the initial scene 
   <children>
-    <!-- Add buttons for each card -->
+  Add buttons for each card 
     <button 
       id="card00" 
       translation="[0, 0]" 
@@ -171,13 +276,11 @@
       text="Card 22" 
       onKeyEvent="handleUserInput" />
       
-    <!-- Add an OK button for making moves -->
+Add an OK button for making moves 
     <button 
       id="ok" 
       translation="[600, 900]" 
       width="200" 
       height="50" 
       text="OK" 
-      onKeyEvent="handleUserInput" />
-  </children>
-</component>
+      onKeyEvent="handleUserInput" /> -->
