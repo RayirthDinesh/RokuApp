@@ -15,32 +15,36 @@ sub init()
   r2c0 = m.top.findNode("r2c0")
   r2c1 = m.top.findNode("r2c1")
   r2c2 = m.top.findNode("r2c2")
+  m.global.addFields({r0c0 : r0c0})
+  m.global.addFields({r0c1 : r0c1})
+  m.global.addFields({r0c2 : r0c2})
+  m.global.addFields({r1c0 : r1c0})
+  m.global.addFields({r1c1 : r1c1})
+  m.global.addFields({r1c2 : r1c2})
+  m.global.addFields({r2c0 : r2c0})
+  m.global.addFields({r2c1 : r2c1})
+  m.global.addFields({r2c2 : r2c2})
+
   Player = m.top.findNode("Player")
   Computer = m.top.findNode("Computer")
   easy = m.top.findNode("easy")
   medium = m.top.findNode("medium")
   hard = m.top.findNode("hard")
+  m.global.addFields({state : state})
+  m.global.addFields({option : option})
+  m.global.addFields({Player : Player})
+  m.global.addFields({Computer : Computer})
+  m.global.addFields({indexRemove : indexRemove})
 
-  'default variables
+  ' Computer Win Lists
+  computerWinListX = []
+  computerWinListO = []
+  computerPairFinderList = []
+  m.global.addFields({computerWinListX : computerWinListX})
+  m.global.addFields({computerWinListO : computerWinListO})
+  m.global.addFields({computerPairFinderList : computerPairFinderList})
 
-  state = 1
-  option = Computer
-  level = easy
-  xPlayer = true
-  optionfocus = easy
-
-
-  easyOptionRandomCol = 0
-  easyOptionRandomRow = 0
-  indexRemove = 0
-
-  'index variables
-
-  rowIndex = 1
-  colIndex = 1
-
-  'button lists
-
+  ' makes the functions global
   arrayButtons = [[r0c0, r0c1, r0c2], [r1c0, r1c1, r1c2], [r2c0, r2c1, r2c2]]
   listButtons = [r0c0, r0c1, r0c2, r1c0, r1c1, r1c2, r2c0, r2c1, r2c2]
   victorycombos = [[r0c0, r0c1, r0c2], [r1c0, r1c1, r1c2], [r2c0, r2c1, r2c2], [r0c0, r1c0, r2c0], [r0c1, r1c1, r2c1], [r2c0, r2c1, r2c2], [r0c0, r1c1, r2c2], [r0c2, r1c1, r2c0]]
@@ -48,59 +52,38 @@ sub init()
   leftButtons = [r0c2, r1c2, r2c2, r0c1, r1c1, r2c1]
   upButtons = [r2c0, r2c1, r2c2, r1c0, r1c1, r1c2]
   downButtons = [r0c0, r0c1, r0c2, r1c0, r1c1, r1c2]
-
-  ' Computer Win Lists
-  computerWinListX = []
-  computerWinListO = []
-  computerPairFinderList = []
-
-  ' makes the functions global
-
+  m.global.addFields({arrayButtons : arrayButtons})
+  m.global.addFields({victorycombos : victorycombos})
   m.global.addFields({listButtons : listButtons})
   m.global.addFields({rightButtons : rightButtons})
   m.global.addFields({leftButtons : leftButtons})
   m.global.addFields({upButtons : upButtons})
   m.global.addFields({downButtons : downButtons})
   m.global.addFields({leftButtons : leftButtons})
-  m.global.addFields({level : level })
+  m.global.addFields({level : level})
+
+  easyOptionRandomCol = 0
+  easyOptionRandomRow = 0
+  indexRemove = 0
   m.global.addFields({easyOptionRandomRow : easyOptionRandomRow})
   m.global.addFields({easyOptionRandomCol : easyOptionRandomCol})
-  m.global.addFields({arrayButtons : arrayButtons})
-  m.global.addFields({victorycombos : victorycombos})
 
-  m.global.addFields({rowIndex : rowIndex })
-  m.global.addFields({colIndex : colIndex })
+  rowIndex = 1
+  colIndex = 1
+  m.global.addFields({rowIndex : rowIndex})
+  m.global.addFields({colIndex : colIndex})
 
-  m.global.addFields({r0c0 : r0c0 })
-  m.global.addFields({r0c1 : r0c1 })
-  m.global.addFields({r0c2 : r0c2 })
-  m.global.addFields({r1c0 : r1c0 })
-  m.global.addFields({r1c1 : r1c1 })
-  m.global.addFields({r1c2 : r1c2 })
-  m.global.addFields({r2c0 : r2c0 })
-  m.global.addFields({r2c1 : r2c1 })
-  m.global.addFields({r2c2 : r2c2 })
-
-  m.global.addFields({state : state})
-  m.global.addFields({option : option})
-
-  m.global.addFields({Player : Player})
-  m.global.addFields({Computer : Computer})
-
+  state = 1
+  option = Computer
+  level = easy
+  xPlayer = true
+  optionfocus = easy
   m.global.addFields({easy : easy})
   m.global.addFields({medium : medium})
   m.global.addFields({hard : hard})
 
   m.global.addFields({playerNotify : m.playerNotify})
-
   m.global.addFields({xPlayer : xPlayer})
-
-  m.global.addFields({computerWinListX : computerWinListX})
-  m.global.addFields({computerWinListO : computerWinListO})
-  m.global.addFields({computerPairFinderList : computerPairFinderList})
-
-  m.global.addFields({indexRemove : indexRemove})
-
   m.global.addFields({optionfocus : optionfocus})
 
   Player.observeField("buttonSelected", "playerOptionButton")
@@ -147,77 +130,81 @@ end function
 
 'Computer Movement Functions
 function easyModeComputer()
-  m.global.easyOptionRandomRow = Fix(rnd(3))
-  m.global.easyOptionRandomCol = Fix(rnd(3))
+  m.global.easyOptionRandomRow = Fix(rnd(0) * 3)
+  m.global.easyOptionRandomCol = Fix(rnd(0) * 3)
   while m.global.arrayButtons[m.global.easyOptionRandomRow][m.global.easyOptionRandomCol].iconUri <> "pkg:/images/blank.png"
-    m.global.easyOptionRandomRow = Fix(rnd(3))
-    m.global.easyOptionRandomCol = Fix(rnd(3))
+    m.global.easyOptionRandomRow = Fix(rnd(0) * 3)
+    m.global.easyOptionRandomCol = Fix(rnd(0) * 3)
   end while
   m.global.xPlayer = false
   m.global.arrayButtons[m.global.easyOptionRandomRow][m.global.easyOptionRandomCol].iconUri = "pkg:/images/whiteX.jpg"
   m.global.state = 4
 end function
 
-' function mediumModeComputer()
-'   indexRemove = indexRemove + 1
-'   m.global.playerNotify.text = "Test 123"
-'   computerPairFinder()
-'   if searchForWin("X") then
-'     m.global.computerWinListX[0].iconUri = "pkg:/images/whiteX.jpg"
-'   else if searchForWin("O") then
-'     m.global.computerWinListO[0].iconUri = "pkg:/images/whiteX.jpg"
-'   else
-'     m.global.computerPairFinderList[0].iconUri = "pkg:/images/whiteX.jpg"
-'     m.global.computerPairFinderList.removeIndex(indexRemove)
-'   end if
-'   m.global.state = 4
-' end function
+function mediumModeComputer()
+  indexRemove = 0
+  indexRemove = indexRemove + 1
+  computerPairFinder()
+  if searchForWin("X") then
+    m.global.computerWinListX[0].iconUri = "pkg:/images/whiteX.jpg"
+  else if searchForWin("O") then
+    m.global.computerWinListO[0].iconUri = "pkg:/images/whiteX.jpg"
+  else
+    m.global.computerPairFinderList[0].iconUri = "pkg:/images/whiteX.jpg"
+    m.global.computerPairFinderList.removeIndex(indexRemove)
+  end if
+  m.global.state = 4
+end function
+
 ' 'Computer Win Functions
+function searchForWin(player) as Boolean
+  m.global.computerWinList =  []
+  for each combo in m.global.victorycombos
+    countX = 0
+    countO = 0
+    for each item in combo
+      if item.iconUri = "pkg:/images/whiteX.jpg" then
+        countX = countX + 1
+      end if
+      if item.iconUri = "pkg:/images/whiteO.jpg" then
+        countO = countO + 1
+      end if
+    end for
+    if countX = 2 then
+      for each item in combo
+        if not item.iconUri = "pkg:/images/whiteX.jpg" then
+          m.global.computerWinList.append(item)
+          return true
+        else if not item.iconUri = "pkg:/images/whiteO.jpg" then
+          m.global.computerWinList.append(item)
+          return true
+        end if
+      end for
+    end if
+  end for
+  return false
+end function
 
-' function searchForWin(player)
-'   for each combo in m.global.victorycombos
-'     countX = 0
-'     countO = 0
-'     for each item in combo
-'       if item.iconUri = "pkg:/images/whiteX.jpg" then
-'         countX = countX + 1
-'       end if
-'       if item.iconUri = "pkg:/images/whiteO.jpg" then
-'         countO = countO + 1
-'       end if
-'     end for
-'     if countX = 2 then
-'       for each item in combo
-'         if not item.iconUri = "pkg:/images/whiteX.jpg" then
-'           m.global.computerWinList.append(item)
-'           return true
-'         else if not item.iconUri = "pkg:/images/whiteO.jpg" then
-'           m.global.computerWinList.append(item)
-'           return true
-'         end if
-'       end for
-'     end if
-'   end for
-' end function
-
-' function computerPairFinder()
-'   for each combo in m.global.victorycombos
-'     countX = 0
-'     for each item in combo
-'       if item.iconUri = "pkg:/images/whiteX.jpg" then
-'         countX = countX + 1
-'       end if
-'     end for
-'     if countX = 1 then
-'       for each item in combo
-'         if not item.iconUri = "pkg:/images/whiteX.jpg" then
-'           m.global.computerPairFinder.append(item)
-'           return m.global.computerPairFinder
-'         end if
-'       end for
-'     end if
-'   end for
-' end function
+function computerPairFinder()
+  m.global.computerPairFinder = []
+  for each combo in m.global.victorycombos
+    countX = 0
+    for each item in combo
+      if item.iconUri = "pkg:/images/whiteX.jpg" then
+        countX = countX + 1
+        exit for
+      end if
+    end for
+    if countX = 1 then
+      for each item in combo
+        if item.iconUri = "pkg:/images/blank.jpg" or item.iconUri = "pkg:/images/whiteO.jpg"then
+          m.global.computerPairFinder.append(item)
+          return m.global.computerPairFinder
+        end if
+      end for
+    end if
+  end for
+end function
 
 'Check if argument is in list
 function checkInList(list, button) as boolean
@@ -260,12 +247,14 @@ function onKeyEvent(key as string, press as boolean)
     if m.global.xPlayer then
       if m.global.level.isSameNode(m.global.easy) then
         easyModeComputer()
-        m.global.playerNotify.text = "Computer Made Move"
+      else if m.global.level.isSameNode(m.global.medium) then
+        mediumModeComputer()
+        ' m.global.playerNotify.text = "Computer Made Move"
       end if
     end if
   else if m.global.state = 4 then
     if press then
-      m.global.playerNotify.text = "Player hasn't made move"
+      ' m.global.playerNotify.text = "Player hasn't made move"
       if key = "right" then
         if checkInList(m.global.rightButtons, m.global.arrayButtons[m.global.rowIndex][m.global.colIndex]) then
           m.global.colIndex = m.global.colIndex + 1
@@ -295,13 +284,13 @@ function onKeyEvent(key as string, press as boolean)
           if m.global.xPlayer and m.global.option.isSameNode(m.global.Player) then
             m.global.arrayButtons[m.global.rowIndex][m.global.colIndex].iconUri = "pkg:/images/whiteX.jpg"
             m.global.xPlayer = false
-            m.global.playerNotify.text = "Player X's Turn"
+            ' m.global.playerNotify.text = "Player X's Turn"
             m.global.arrayButtons[m.global.rowIndex][m.global.colIndex].focusedIconUri = "pkg:/images/redX.jpg"
           else
             m.global.arrayButtons[m.global.rowIndex][m.global.colIndex].iconUri = "pkg:/images/whiteO.jpg"
             m.global.xPlayer = true
-            m.global.playerNotify.text = "Player O's Turn"
-            m.global.arrayButtons[m.global.rowIndex][m.global.colIndex].focusedIconUri = "pkg:/images/redO.jpg"  
+            ' m.global.playerNotify.text = "Player O's Turn"
+            m.global.arrayButtons[m.global.rowIndex][m.global.colIndex].focusedIconUri = "pkg:/images/redO.jpg"
             if m.global.option.isSameNode(m.global.Computer) then
               m.global.state = 3
             end if
@@ -310,4 +299,5 @@ function onKeyEvent(key as string, press as boolean)
       end if
     end if
   end if
+  return false
 end function
