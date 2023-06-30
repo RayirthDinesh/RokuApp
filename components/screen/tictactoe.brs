@@ -134,30 +134,30 @@ end function
 function easyModeComputer()
   m.global.easyOptionRandomRow = Fix(rnd(0) * 3)
   m.global.easyOptionRandomCol = Fix(rnd(0) * 3)
-  while m.global.arrayButtons[m.global.easyOptionRandomRow][m.global.easyOptionRandomCol].iconUri <> "pkg:/images/blank.png"
+  while m.global.arrayButtons[m.global.easyOptionRandomRow][m.global.easyOptionRandomCol].iconUri <> "https://sthsroku.net/team666/tictactoe/blank.png"
     m.global.easyOptionRandomRow = Fix(rnd(0) * 3)
     m.global.easyOptionRandomCol = Fix(rnd(0) * 3)
   end while
   m.global.xPlayer = false
-  m.global.arrayButtons[m.global.easyOptionRandomRow][m.global.easyOptionRandomCol].iconUri = "pkg:/images/whiteX.jpg"
+  m.global.arrayButtons[m.global.easyOptionRandomRow][m.global.easyOptionRandomCol].iconUri = "https://sthsroku.net/team666/tictactoe/blank.png"
   m.global.state = 4
 end function
 
 function mediumModeComputer()
   searchForWin()
   if m.global.computerWinListX.Count() <> 0 then
-    m.global.computerWinListX[0].iconUri = "pkg:/images/whiteX.jpg"
+    m.global.computerWinListX[0].iconUri = "https://sthsroku.net/team666/tictactoe/whiteX.jpg"
   else if m.global.computerWinListO.Count() <> 0 then
-    m.global.computerWinListO[0].iconUri = "pkg:/images/whiteX.jpg"
+    m.global.computerWinListO[0].iconUri = "https://sthsroku.net/team666/tictactoe/whiteX.jpg"
   else
     m.global.easyOptionRandomRow = Fix(rnd(0) * 3)
     m.global.easyOptionRandomCol = Fix(rnd(0) * 3)
-    while m.global.arrayButtons[m.global.easyOptionRandomRow][m.global.easyOptionRandomCol].iconUri <> "pkg:/images/blank.png"
+    while m.global.arrayButtons[m.global.easyOptionRandomRow][m.global.easyOptionRandomCol].iconUri <> "https://sthsroku.net/team666/tictactoe/blank.png"
       m.global.easyOptionRandomRow = Fix(rnd(0) * 3)
       m.global.easyOptionRandomCol = Fix(rnd(0) * 3)
     end while
-    m.global.arrayButtons[m.global.easyOptionRandomRow][m.global.easyOptionRandomCol].iconUri = "pkg:/images/whiteX.jpg"
   end if
+    m.global.arrayButtons[m.global.easyOptionRandomRow][m.global.easyOptionRandomCol].iconUri = "https://sthsroku.net/team666/tictactoe/whiteX.jpg"
   m.global.xPlayer = false
   m.global.state = 4
 end function
@@ -168,20 +168,20 @@ function searchForWin()
   m.global.computerWinListO.clear()
   for each combo in m.global.victorycombos
     for each item in combo
-      if item.iconUri = "pkg:/images/whiteX.jpg" then
+      if item.iconUri = "https://sthsroku.net/team666/tictactoe/whiteX.jpg" then
         countX = countX + 1
       end if
-      if item.iconUri = "pkg:/images/whiteO.jpg" then
+      if item.iconUri = "https://sthsroku.net/team666/tictactoe/whiteO.jpg" then
         countO = countO + 1
       end if
     end for
       for each item in combo
         if countX = 2 then
-          if item.iconUri = "pkg:/images/blank.png" then
+          if item.iconUri = "https://sthsroku.net/team666/tictactoe/blank.png" then
             m.global.computerWinListX.push(item)
           end if
           else if countO = 2
-            if item.iconUri = "pkg:/images/blank.png" then
+            if item.iconUri = "https://sthsroku.net/team666/tictactoe/blank.png" then
               m.global.computerWinListO.push(item)
 
             end if
@@ -254,9 +254,9 @@ function onKeyEvent(key as string, press as boolean)
         easyModeComputer()
       else if m.global.level.isSameNode(m.global.medium) then
         mediumModeComputer()
-        ' m.global.playerNotify.text = "Computer Made Move"
+        ' m.global.play erNotify.text = "Computer Made Move"
       end if
-    end if
+    end if         
   else if m.global.state = 4 then
     if press then
       ' m.global.playerNotify.text = "Player hasn't made move"
@@ -277,25 +277,25 @@ function onKeyEvent(key as string, press as boolean)
           m.global.colIndex = m.global.colIndex - 1
         end if
       end if
-      if m.global.xPlayer and m.global.arrayButtons[m.global.rowIndex][m.global.colIndex].iconUri = "pkg:/images/blank.png" then
-        m.global.arrayButtons[m.global.rowIndex][m.global.colIndex].focusedIconUri = "pkg:/images/redX.jpg"
-      else if not m.global.xPlayer and m.global.arrayButtons[m.global.rowIndex][m.global.colIndex].iconUri = "pkg:/images/blank.png" then
-        m.global.arrayButtons[m.global.rowIndex][m.global.colIndex].focusedIconUri = "pkg:/images/redO.jpg"
+      if m.global.xPlayer and m.global.arrayButtons[m.global.rowIndex][m.global.colIndex].iconUri = "https://sthsroku.net/team666/tictactoe/blank.png" then
+        m.global.arrayButtons[m.global.rowIndex][m.global.colIndex].focusedIconUri = "https://sthsroku.net/team666/tictactoe/redX.jpg"
+      else if not m.global.xPlayer and m.global.arrayButtons[m.global.rowIndex][m.global.colIndex].iconUri = "https://sthsroku.net/team666/tictactoe/blank.png" then
+        m.global.arrayButtons[m.global.rowIndex][m.global.colIndex].focusedIconUri = "https://sthsroku.net/team666/tictactoe/redO.jpg"
       end if
       m.global.arrayButtons[m.global.rowIndex][m.global.colIndex].setFocus(true)
     else
       if key = "OK" then
-        if m.global.arrayButtons[m.global.rowIndex][m.global.colIndex].iconUri = "pkg:/images/blank.png" then
+        if m.global.arrayButtons[m.global.rowIndex][m.global.colIndex].iconUri = "https://sthsroku.net/team666/tictactoe/blank.png" then
           if m.global.xPlayer and m.global.option.isSameNode(m.global.Player) then
-            m.global.arrayButtons[m.global.rowIndex][m.global.colIndex].iconUri = "pkg:/images/whiteX.jpg"
+            m.global.arrayButtons[m.global.rowIndex][m.global.colIndex].iconUri ="https://sthsroku.net/team666/tictactoe/whiteX.jpg"
             m.global.xPlayer = false
             ' m.global.playerNotify.text = "Player X's Turn"
-            m.global.arrayButtons[m.global.rowIndex][m.global.colIndex].focusedIconUri = "pkg:/images/redX.jpg"
+            m.global.arrayButtons[m.global.rowIndex][m.global.colIndex].focusedIconUri = "https://sthsroku.net/team666/tictactoe/redX.jpg"
           else
-            m.global.arrayButtons[m.global.rowIndex][m.global.colIndex].iconUri = "pkg:/images/whiteO.jpg"
+            m.global.arrayButtons[m.global.rowIndex][m.global.colIndex].iconUri = "https://sthsroku.net/team666/tictactoe/whiteO.jpg"
             m.global.xPlayer = true
             ' m.global.playerNotify.text = "Player O's Turn"
-            m.global.arrayButtons[m.global.rowIndex][m.global.colIndex].focusedIconUri = "pkg:/images/redO.jpg"
+            m.global.arrayButtons[m.global.rowIndex][m.global.colIndex].focusedIconUri = "https://sthsroku.net/team666/tictactoe/redO.jpg"
             if m.global.option.isSameNode(m.global.Computer) then
               m.global.state = 3
             end if
