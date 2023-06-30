@@ -1,6 +1,6 @@
 sub init()
   ? "[tictactoe] init" ' essentially a print statment that is called only once
-  m.top.backgroundURI = "pkg:/images/background.png"
+  m.top.backgroundURI = "https://sthsroku.net/team666/tictactoe/background.png"
   m.gamename = m.top.findNode("gamename")
   m.poster = m.top.findNode("tictactoe")
   m.playerNotify = m.top.findNode("playerNotify")
@@ -80,10 +80,74 @@ sub init()
   m.global.addFields({Vertical_Line_Middle : Vertical_Line_Middle})
   m.global.addFields({Vertical_Line_Bottom : Vertical_Line_Bottom})
 
-  victoryOptions = [[r0c0, r0c1, r0c2], [r1c0, r1c1, r1c2], [r2c0, r2c1, r2c2], [r0c0, r1c0, r2c0], [r0c1, r1c1, r2c1], [r2c0, r2c1, r2c2], [r0c0, r1c1, r2c2], [r0c2, r1c1, r2c0]]
-  m.global.addFields({victoryOptions : victoryOptions})
+  arrayButtons = [[r0c0, r0c1, r0c2], [r1c0, r1c1, r1c2], [r2c0, r2c1, r2c2]]
+  listButtons = [r0c0, r0c1, r0c2, r1c0, r1c1, r1c2, r2c0, r2c1, r2c2]
+  victoryCombos = [[r0c0, r0c1, r0c2], [r1c0, r1c1, r1c2], [r2c0, r2c1, r2c2], [r0c0, r1c0, r2c0], [r0c1, r1c1, r2c1], [r2c0, r2c1, r2c2], [r0c0, r1c1, r2c2], [r0c2, r1c1, r2c0]]
+  rightButtons = [r0c0, r1c0, r2c0, r0c1, r1c1, r2c1]
+  leftButtons = [r0c2, r1c2, r2c2, r0c1, r1c1, r2c1]
+  upButtons = [r2c0, r2c1, r2c2, r1c0, r1c1, r1c2]
+  downButtons = [r0c0, r0c1, r0c2, r1c0, r1c1, r1c2]
 
-  r1c1.setFocus(true) 'set focus starts at the middle grid
+  m.global.addFields({arrayButtons : arrayButtons})
+  m.global.addFields({victorycombos : victorycombos})
+  m.global.addFields({listButtons : listButtons})
+  m.global.addFields({rightButtons : rightButtons})
+  m.global.addFields({leftButtons : leftButtons})
+  m.global.addFields({upButtons : upButtons})
+  m.global.addFields({downButtons : downButtons})
+  m.global.addFields({leftButtons : leftButtons})
+
+  easyOptionRandomCol = 0
+  easyOptionRandomRow = 0
+
+  m.global.addFields({easyOptionRandomRow : easyOptionRandomRow})
+  m.global.addFields({easyOptionRandomCol : easyOptionRandomCol})
+
+  easy = m.top.findNode("easy")
+  medium = m.top.findNode("medium")
+  hard = m.top.findNode("hard")
+
+  level = easy
+
+  m.global.addFields({easy : easy})
+  m.global.addFields({medium : medium})
+  m.global.addFields({hard : hard})
+  m.global.addFields({level : level})
+
+  rowIndex = 1
+  colIndex = 1
+  m.global.addFields({rowIndex : rowIndex})
+  m.global.addFields({colIndex : colIndex})
+
+
+  xPlayer = true
+  m.global.addFields({xPlayer : xPlayer})
+   'set focus starts at the middle grid
+
+  Player = m.top.findNode("Player")
+  Computer = m.top.findNode("Computer")
+  state = 1
+  option = Computer
+  m.global.addFields({state : state})
+  m.global.addFields({option : option})
+  m.global.addFields({Player : Player})
+  m.global.addFields({Computer : Computer})
+
+  Player.observeField("buttonSelected", "playerOptionButton")
+  Computer.observeField("buttonSelected", "computerOptionButton")
+  easy.observeField("buttonSelected", "easyOptionButton")
+  medium.observeField("buttonSelected", "mediumOptionButton")
+  hard.observeField("buttonSelected", "hardOptionButton")
+
+  computerWinListX = []
+  computerWinListO = []
+  computerPairFinderList = []
+  m.global.addFields({computerWinListX : computerWinListX})
+  m.global.addFields({computerWinListO : computerWinListO})
+  m.global.addFields({computerPairFinderList : computerPairFinderList})
+
+  Computer.setFocus(true)
+  ' r1c1.setFocus(true)
 end sub
 
 function checkinList(list, button) as Boolean
@@ -95,56 +159,184 @@ function checkinList(list, button) as Boolean
   return false
 end function
 
+function playerOptionButton(obj)
+  m.global.option = m.global.Player
+  m.global.r1c1.setFocus(true)
+end function
+
+function computerOptionButton(obj)
+  m.global.Player.visible = false
+  m.global.option = m.global.Computer
+  m.global.easy.visible = true
+  m.global.medium.visible = true
+  m.global.hard.visible = true
+  m.global.easy.setFocus(true)
+end function
+
+function easyOptionButton(obj)
+  m.global.level = m.global.easy
+  m.global.state = 3
+  m.global.r1c1.setFocus(true)
+end function
+
+function mediumOptionButton(obj)
+  m.global.level = m.global.medium
+  m.global.state = 3
+  m.global.r1c1.setFocus(true)
+end function
+
+function hardOptionButton(obj)
+  m.global.level = m.global.hard
+  m.global.state = 3
+  m.global.r1c1.setFocus(true)
+end function
+
+'Computer Movement Functions
+function easyModeComputer()
+  m.global.easyOptionRandomRow = Fix(rnd(0) * 3)
+  m.global.easyOptionRandomCol = Fix(rnd(0) * 3)
+  while m.global.arrayButtons[m.global.easyOptionRandomRow][m.global.easyOptionRandomCol].iconUri <> "https://sthsroku.net/team666/tictactoe/blank.png"
+    m.global.easyOptionRandomRow = Fix(rnd(0) * 3)
+    m.global.easyOptionRandomCol = Fix(rnd(0) * 3)
+  end while
+  m.global.xPlayer = false
+  m.global.arrayButtons[m.global.easyOptionRandomRow][m.global.easyOptionRandomCol].iconUri = "https://sthsroku.net/team666/tictactoe/whiteX.jpg"
+  m.global.state = 4
+end function
+
+function mediumModeComputer()
+  searchForWin()
+  if m.global.computerWinListX.Count() <> 0 then
+    m.global.computerWinListX[0].iconUri = "https://sthsroku.net/team666/tictactoe/whiteX.jpg"
+  else if m.global.computerWinListO.Count() <> 0 then
+    m.global.computerWinListO[0].iconUri = "https://sthsroku.net/team666/tictactoe/whiteX.jpg"
+  else
+    m.global.easyOptionRandomRow = Fix(rnd(0) * 3)
+    m.global.easyOptionRandomCol = Fix(rnd(0) * 3)
+    while m.global.arrayButtons[m.global.easyOptionRandomRow][m.global.easyOptionRandomCol].iconUri <> "https://sthsroku.net/team666/tictactoe/blank.png"
+      m.global.easyOptionRandomRow = Fix(rnd(0) * 3)
+      m.global.easyOptionRandomCol = Fix(rnd(0) * 3)
+    end while
+  end if
+    m.global.arrayButtons[m.global.easyOptionRandomRow][m.global.easyOptionRandomCol].iconUri = "https://sthsroku.net/team666/tictactoe/whiteX.jpg"
+  m.global.xPlayer = false
+  m.global.state = 4
+end function
+
+'Computer Win Functions
+function searchForWin()
+  m.global.computerWinListX.clear()
+  m.global.computerWinListO.clear()
+  tempComputerWinListX = []
+  tempComputerWinListO = []
+  countX = 0
+  countO = 0
+  for each combo in m.global.victorycombos
+    for each item in combo
+      if item.iconUri = "https://sthsroku.net/team666/tictactoe/whiteX.jpg" then
+        countX = countX + 1
+      end if
+      if item.iconUri = "https://sthsroku.net/team666/tictactoe/whiteO.jpg" then
+        countO = countO + 1
+      end if
+    end for
+      for each item in combo
+        if countX = 2 then
+          if item.iconUri = "https://sthsroku.net/team666/tictactoe/blank.png" then
+            tempComputerWinListX.push(item)
+
+          end if
+          else if countO = 2
+            if item.iconUri = "https://sthsroku.net/team666/tictactoe/blank.png" then
+              tempComputerWinListO.push(item)
+            end if
+          end if
+      end for
+  end for
+  m.global.setFields({computerWinListX : tempComputerWinListX})
+  m.global.setFields({computerWinListO : tempComputerWinListO})
+end function
+
 'function deals with the different types of presses and when the user moves to different buttons and hover following conditionals will also deal with how a user will move to different grids, then what happens if they do
 function onKeyEvent(key, press) as Boolean
-  ? "[tictactoe] onKeyEvent" key, press
-  if not m.global.playerWin then
+  if m.global.state = 1 and not m.global.skipFirst then
+    if key = "down" and press then
+      m.global.Player.setFocus(true)
+    else if key = "up" and press then
+      m.global.Computer.setFocus(true)
+    else if key = "OK" and not press then
+      m.global.state = 2
+    end if
+  else if m.global.skipFirst then
+    m.global.skipFirst = false
+  else if m.global.state = 2 then
+    if m.global.option.isSameNode(m.global.Computer) then
+      if key = "down" and press and m.global.easy.hasFocus() then
+        m.global.medium.setFocus(true)
+      else if key = "up" and press and m.global.medium.hasFocus() then
+        m.global.easy.setFocus(true)
+      else if key = "down" and press and m.global.medium.hasFocus() then
+        m.global.hard.setFocus(true)
+      else if key = "up" and press and m.global.hard.hasFocus() then
+        m.global.medium.setFocus(true)
+      end if
+    else
+      m.global.state = 4
+    end if
+  else if m.global.state = 3 then
+    if m.global.xPlayer then
+      if m.global.level.isSameNode(m.global.easy)  then
+        easyModeComputer()
+      else if m.global.level.isSameNode(m.global.medium) then
+        mediumModeComputer()
+      end if
+      winGame()
+    end if
+  else if not m.global.playerWin and m.global.state = 4 then
     if press then
       if key = "right" then
         if checkinList(m.global.rightButtons, m.global.arrayButtons[m.global.rowIndex][m.global.colIndex])
-          m.global.arrayButtons[m.global.rowIndex][m.global.colIndex].setFocus(false)
           m.global.colIndex = m.global.colIndex + 1
         end if
       else if key = "up" then
         if checkinList(m.global.upButtons, m.global.arrayButtons[m.global.rowIndex][m.global.colIndex])
-          m.global.arrayButtons[m.global.rowIndex][m.global.colIndex].setFocus(false)
           m.global.rowIndex = m.global.rowIndex - 1
         end if
       else if key = "down" then
         if checkinList(m.global.downButtons, m.global.arrayButtons[m.global.rowIndex][m.global.colIndex])
-          m.global.arrayButtons[m.global.rowIndex][m.global.colIndex].setFocus(false)
           m.global.rowIndex = m.global.rowIndex + 1
         end if
       else if key = "left" then
         if checkinList(m.global.leftButtons, m.global.arrayButtons[m.global.rowIndex][m.global.colIndex])
-          m.global.arrayButtons[m.global.rowIndex][m.global.colIndex].setFocus(false)
           m.global.colIndex = m.global.colIndex - 1
         end if
       end if
-      if m.global.xPlayer and m.global.arrayButtons[m.global.rowIndex][m.global.colIndex].iconUri = "pkg:/images/blank.png" then
-        m.global.arrayButtons[m.global.rowIndex][m.global.colIndex].focusedIconUri = "pkg:/images/redX.jpg"
-      else if not m.global.xPlayer and m.global.arrayButtons[m.global.rowIndex][m.global.colIndex].iconUri = "pkg:/images/blank.png"
-        m.global.arrayButtons[m.global.rowIndex][m.global.colIndex].focusedIconUri = "pkg:/images/redO.jpg"
+      if m.global.xPlayer and m.global.arrayButtons[m.global.rowIndex][m.global.colIndex].iconUri = "https://sthsroku.net/team666/tictactoe/blank.png" then
+        m.global.arrayButtons[m.global.rowIndex][m.global.colIndex].focusedIconUri = "https://sthsroku.net/team666/tictactoe/redX.jpg"
+      else if (not m.global.xPlayer) and m.global.arrayButtons[m.global.rowIndex][m.global.colIndex].iconUri = "https://sthsroku.net/team666/tictactoe/blank.png" then
+        m.global.arrayButtons[m.global.rowIndex][m.global.colIndex].focusedIconUri = "https://sthsroku.net/team666/tictactoe/redO.jpg"
       end if
       m.global.arrayButtons[m.global.rowIndex][m.global.colIndex].setFocus(true)
     else
-      if key = "OK" and not m.global.skipFirst then
-        if m.global.arrayButtons[m.global.rowIndex][m.global.colIndex].iconUri = "pkg:/images/blank.png" then
-          if m.global.xPlayer then
-            m.global.arrayButtons[m.global.rowIndex][m.global.colIndex].iconUri = "pkg:/images/whiteX.jpg"
+      if key = "OK" then
+        if m.global.arrayButtons[m.global.rowIndex][m.global.colIndex].iconUri = "https://sthsroku.net/team666/tictactoe/blank.png" then
+          if m.global.xPlayer and m.global.option.isSameNode(m.global.Player) then
+            m.global.arrayButtons[m.global.rowIndex][m.global.colIndex].iconUri = "https://sthsroku.net/team666/tictactoe/whiteX.jpg"
             m.global.xPlayer = false
             m.global.playerNotify.text = "Player O's Turn"
-            m.global.arrayButtons[m.global.rowIndex][m.global.colIndex].focusedIconUri = "pkg:/images/redX.jpg"
+            m.global.arrayButtons[m.global.rowIndex][m.global.colIndex].focusedIconUri = "https://sthsroku.net/team666/tictactoe/redX.jpg"
+            winGame()
           else
-            m.global.arrayButtons[m.global.rowIndex][m.global.colIndex].iconUri = "pkg:/images/whiteO.jpg"
+            m.global.arrayButtons[m.global.rowIndex][m.global.colIndex].iconUri = "https://sthsroku.net/team666/tictactoe/whiteO.jpg"
             m.global.xPlayer = true
             m.global.playerNotify.text = "Player X's Turn"
-            m.global.arrayButtons[m.global.rowIndex][m.global.colIndex].focusedIconUri = "pkg:/images/redO.jpg"
+            m.global.arrayButtons[m.global.rowIndex][m.global.colIndex].focusedIconUri = "https://sthsroku.net/team666/tictactoe/redO.jpg"
+            winGame()
+            if not m.global.playerWin and m.global.option.isSameNode(m.global.Computer) then
+              m.global.state = 3
+            end if
           end if
         end if
-        winGame()
-      else
-        m.global.skipFirst = false
       end if
     end if
   end if
@@ -152,13 +344,13 @@ end function
 
 function winGame()
   tempCounter = 0
-  for each row in m.global.victoryOptions
+  for each row in m.global.victoryCombos
     tempXCount = 0
     tempOCount = 0
     for each col in row
-      if col.iconUri = "pkg:/images/whiteX.jpg" then
+      if col.iconUri = "https://sthsroku.net/team666/tictactoe/whiteX.jpg" then
         tempXCount = tempXCount + 1
-      else if col.iconUri = "pkg:/images/whiteO.jpg" then
+      else if col.iconUri = "https://sthsroku.net/team666/tictactoe/whiteO.jpg" then
         tempOCount = tempOCount + 1
       end if
     end for
@@ -189,7 +381,7 @@ end function
 sub checkTie()
   for each row in m.global.arrayButtons
     for each col in row
-      if col.iconUri = "pkg:/images/blank.png" then
+      if col.iconUri = "https://sthsroku.net/team666/tictactoe/blank.png" then
         return
       end if
     end for
@@ -208,18 +400,22 @@ function resetGame()
   m.global.playerNotify.text = "Player X's Turn"
   for each r in m.global.arrayButtons
     for each c in r
-      c.iconUri = "pkg:/images/blank.png"
-      c.focusedIconUri = "pkg:/images/blank.png"
+      c.iconUri = "https://sthsroku.net/team666/tictactoe/blank.png"
+      c.focusedIconUri = "https://sthsroku.net/team666/tictactoe/blank.png"
       c.setFocus(true)
     end for
   end for
 
-  m.global.r1c1.focusedIconUri = "pkg:/images/redX.jpg"
-  m.global.r1c1.setFocus(true)
+  m.global.r1c1.focusedIconUri = "https://sthsroku.net/team666/tictactoe/redX.jpg"
   m.global.rowIndex = 1
   m.global.colIndex = 1
-
+  m.global.easy.visible = false
+  m.global.medium.visible = false
+  m.global.hard.visible = false
+  m.global.Player.visible = true
   m.global.skipFirst = true
+  m.global.state = 1
+  m.global.Computer.setFocus(true)
 
   for each item in m.global.lineArray
     item.visible = false
