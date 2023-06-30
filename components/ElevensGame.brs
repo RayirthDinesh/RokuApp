@@ -4,6 +4,9 @@ function init()
     m.cardValueStart = 3
     m.cardValueLen = 2
     m.cardImgStart = 6
+    m.global.addFields({cardValueStart : m.cardValueStart})
+    m.global.addFields({cardValueLen : m.cardValueLen})
+    m.global.addFields({cardImgStart : m.cardImgStart})
 
     card00 = m.top.findNode("card00")
     card01 = m.top.findNode("card01")
@@ -48,7 +51,9 @@ function init()
     shuffleCards()
 
     currentBoard = []
+    selectedCards = []
     m.global.addFields({currentBoard: currentBoard})
+    m.global.addFields({selectedCards: selectedCards})
     dealCards()
     displayCards()
 end function
@@ -63,6 +68,36 @@ sub shuffleCards()
     end for
     m.global.setFields({deckCards : arr})
 end sub
+
+function checkSelectedCards() as Boolean
+    if m.global.selectedCards.Count() = 2 then
+        if Val(Mid(m.global.selectedCards[0], m.global.cardValueStart, m.global.cardValueLen), 10) + Val(Mid(m.global.selectedCards[1], m.global.cardValueStart, m.global.cardValueLen), 10) = 11 then
+            return true
+        else
+            return false
+        end if
+    else if m.global.selectedCards.Count() = 3 then
+        tempK = false
+        tempQ = false
+        tempJ = false
+        for each item in m.global.selectedCards
+            if Left(item, 1) = "k" then
+                tempK = true
+            else if Left(item, 1) = "q" then
+                tempQ = true
+            else if Left(item, 1) = "j" then
+                tempJ = true
+            end if
+        end for
+        if tempK and tempQ and tempJ then
+            return true
+        else
+            return false
+        end if
+    else
+        return false
+    end if
+end function
 
 ' function checkForEleven() as boolean
 '     for i = 0 to m.global.currentBoard.Count() - 1
@@ -79,25 +114,13 @@ end sub
 '     end for
 ' end function
 
-
-' sub shuffleCards() as Object
-'     temp = m.global.deckCards
-'     for i = temp.Count() - 1 to 1 step -1
-'         j = Fix(Rnd(0) * (i + 1))
-'         tempo = temp[i]
-'         temp.setEntry(i, temp[j])
-'         temp.setEntry(j, tempo)
-'     end for
-'     return temp
-' end sub
-
-' function isEmpty() as Boolean
-'     if m.global.deckCards.Count() = 0 then
-'         return true
-'     else
-'         return false
-'     end if
-' end function
+function isEmpty() as Boolean
+    if m.global.deckCards.Count() = 0 then
+        return true
+    else
+        return false
+    end if
+end function
 
 function dealCards()
     arr = m.global.currentBoard
@@ -115,9 +138,9 @@ function displayCards()
     end for
 end function
 
-' function onKeyEvent(key, press) as Boolean
-'     ? "[tictactoe] onKeyEvent" key, press
-' end function
+function onKeyEvent(key, press) as Boolean
+
+end function
 
 ' ' Shuffles the deck of cards and initializes the board
 
