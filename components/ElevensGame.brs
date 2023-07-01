@@ -27,6 +27,24 @@ function init()
     m.global.addFields({card21 : card21})
     m.global.addFields({card22 : card22})
 
+    rowIndex = 1
+    colIndex = 1
+    m.global.addFields({rowIndex : rowIndex})
+    m.global.addFields({colIndex : colIndex})
+
+'card00, card01, card02, card10, card11, card12, card20, card21, card22
+    arrayButtons = [[card00,card01,card02], [card10,card11,card12], [card20,card21,card22]]
+    m.global.addFields({arrayButtons : arrayButtons})
+
+    rightButtons = [card00,card10,card20,card01,card11,card21]
+    leftButtons = [card02,card12,card22,card01,card11,card21]
+    upButtons = [card20,card21,card22,card10,card11,card12]
+    downButtons = [card00,card01,card02,card10,card11,card12]
+    m.global.addFields({rightButtons : rightButtons})
+    m.global.addFields({leftButtons : leftButtons})
+    m.global.addfields({upButtons : upButtons})
+    m.global.addFields({downButtons : downButtons})
+
     'Create array gridCards
     gridCards = [m.global.card00, m.global.card01, m.global.card02, m.global.card10, m.global.card11, m.global.card12, m.global.card20, m.global.card21, m.global.card22]
     m.global.addFields({gridCards: gridCards})
@@ -42,9 +60,9 @@ function init()
         "f_08_https://sthsroku.net/team666/elevens/Cards//8_of_clubs.png", "f_08_https://sthsroku.net/team666/elevens/Cards//8_of_diamonds.png", "f_08_https://sthsroku.net/team666/elevens/Cards//8_of_hearts.png", "f_08_https://sthsroku.net/team666/elevens/Cards//8_of_spades.png",
         "f_09_https://sthsroku.net/team666/elevens/Cards//9_of_clubs.png", "f_09_https://sthsroku.net/team666/elevens/Cards//9_of_diamonds.png", "f_09_https://sthsroku.net/team666/elevens/Cards//9_of_hearts.png", "f_09_https://sthsroku.net/team666/elevens/Cards//9_of_spades.png",
         "f_10_https://sthsroku.net/team666/elevens/Cards//10_of_clubs.png", "f_10_https://sthsroku.net/team666/elevens/Cards//10_of_diamonds.png", "f_10_https://sthsroku.net/team666/elevens/Cards//10_of_hearts.png", "f_10_https://sthsroku.net/team666/elevens/Cards//10_of_spades.png",
-        "k_00_https://sthsroku.net/team666/elevens/Cards//king_of_clubs.png", "k_00_https://sthsroku.net/team666/elevens/Cards//king_of_diamonds.png", "k_10_https://sthsroku.net/team666/elevens/Cards//king_of_hearts.png", "k_00_https://sthsroku.net/team666/elevens/Cards//king_of_spades.png",
+        "k_00_https://sthsroku.net/team666/elevens/Cards//king_of_clubs.png", "k_00_https://sthsroku.net/team666/elevens/Cards//king_of_diamonds.png", "k_00_https://sthsroku.net/team666/elevens/Cards//king_of_hearts.png", "k_00_https://sthsroku.net/team666/elevens/Cards//king_of_spades.png",
         "q_00_https://sthsroku.net/team666/elevens/Cards//queen_of_clubs.png", "q_00_https://sthsroku.net/team666/elevens/Cards//queen_of_diamonds.png", "q_00_https://sthsroku.net/team666/elevens/Cards//queen_of_hearts.png", "q_00_https://sthsroku.net/team666/elevens/Cards//queen_of_spades.png",
-        "j_10_https://sthsroku.net/team666/elevens/Cards//jack_of_clubs.png", "j_10_https://sthsroku.net/team666/elevens/Cards//jack_of_diamonds.png", "j_10_https://sthsroku.net/team666/elevens/Cards//jack_of_hearts.png", "j_10_https://sthsroku.net/team666/elevens/Cards//jack_of_spades.png"
+        "j_00_https://sthsroku.net/team666/elevens/Cards//jack_of_clubs.png", "j_00_https://sthsroku.net/team666/elevens/Cards//jack_of_diamonds.png", "j_00_https://sthsroku.net/team666/elevens/Cards//jack_of_hearts.png", "j_00_https://sthsroku.net/team666/elevens/Cards//jack_of_spades.png"
     ]
     m.global.addFields({deckCards : deckCards})
 
@@ -68,6 +86,27 @@ sub shuffleCards()
     end for
     m.global.setFields({deckCards : arr})
 end sub
+
+function replaceCards(isMatched as Boolean)
+    arr = m.global.currentBoard
+    if isMatched then
+        for i = 0 to m.global.selectedCards.Count() - 1
+            arr.delete(m.global.selectedCards[i])
+        '    arr.delete(m.global.selectedCards[i].iconUri)
+        end for
+
+        dealCards()
+
+        arr = []
+        m.global.setFields({currentBoard: arr})
+
+        displayCards()
+    else
+        arr = []
+        m.global.setFields({currentBoard: arr})
+    end if
+
+end function
 
 function checkSelectedCards() as Boolean
     if m.global.selectedCards.Count() = 2 then
@@ -99,20 +138,7 @@ function checkSelectedCards() as Boolean
     end if
 end function
 
-' function checkForEleven() as boolean
-'     for i = 0 to m.global.currentBoard.Count() - 1
-'         'need to add a on key event or something so program handles two button clicks
-'         for each grid1 in m.global.gridCards
-'             for each grid2 in m.global.gridCards
-'                 if  then
-'                     convertInt = Mid(m.global.deckCards.focusedIconUri.substring, 3, 2)
-'       ''rid1 = ToInteger(convertInt)
-'                 end if
-'             end for
-'             dealCards()
-'         end for
-'     end for
-' end function
+
 
 function isEmpty() as Boolean
     if m.global.deckCards.Count() = 0 then
@@ -138,8 +164,57 @@ function displayCards()
     end for
 end function
 
+function checkinList(list, button) as Boolean
+    for each item in list
+        if item.isSameNode(button) then
+            return true
+        end if
+    end for
+    return false
+end function
+
+
 function onKeyEvent(key, press) as Boolean
 
+
+'need to add focusedIconUri and IconUri images from rayirth
+'i need to see if logic still fully works with xPlayer gone
+
+    if key = "right" then
+        if checkinList(m.global.rightButtons, m.global.arrayButtons[m.global.rowIndex][m.global.colIndex])
+          m.global.colIndex = m.global.colIndex + 1
+        end if
+      else if key = "up" then
+        if checkinList(m.global.upButtons, m.global.arrayButtons[m.global.rowIndex][m.global.colIndex])
+          m.global.rowIndex = m.global.rowIndex - 1
+        end if
+      else if key = "down" then
+        if checkinList(m.global.downButtons, m.global.arrayButtons[m.global.rowIndex][m.global.colIndex])
+          m.global.rowIndex = m.global.rowIndex + 1
+        end if
+      else if key = "left" then
+        if checkinList(m.global.leftButtons, m.global.arrayButtons[m.global.rowIndex][m.global.colIndex])
+          m.global.colIndex = m.global.colIndex - 1
+        end if
+      end if
+      if m.global.arrayButtons[m.global.rowIndex][m.global.colIndex].iconUri = "https://sthsroku.net/team666/elevens/blank.png" then'changed to elevens blank.png
+        m.global.arrayButtons[m.global.rowIndex][m.global.colIndex].focusedIconUri = "https://sthsroku.net/team666/tictactoe/redX.jpg"
+    '   else if (not m.global.xPlayer) and m.global.arrayButtons[m.global.rowIndex][m.global.colIndex].iconUri = "https://sthsroku.net/team666/tictactoe/blank.png" then
+    '     m.global.arrayButtons[m.global.rowIndex][m.global.colIndex].focusedIconUri = "https://sthsroku.net/team666/tictactoe/redO.jpg"
+      end if
+
+
+      if key = "OK" then
+        if m.global.arrayButtons[m.global.rowIndex][m.global.colIndex].iconUri = "https://sthsroku.net/team666/tictactoe/blank.png" then
+           if m.global.option.isSameNode(m.global.Player) then
+            m.global.arrayButtons[m.global.rowIndex][m.global.colIndex].iconUri = "https://sthsroku.net/team666/tictactoe/whiteX.jpg"
+      '      m.global.xPlayer = false
+            m.global.playerNotify.text = ""
+            m.global.arrayButtons[m.global.rowIndex][m.global.colIndex].focusedIconUri = "https://sthsroku.net/team666/tictactoe/redX.jpg"
+
+          end if
+        end if
+    end if
 end function
 
 ' ' Shuffles the deck of cards and initializes the board

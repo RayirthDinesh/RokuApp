@@ -10,6 +10,13 @@
       height="1080"
       translation="[0, 0]"
     />
+    <Poster
+      id = "cardPoster"
+      uri = "https://sthsroku.net/team666/elevens/CardHighlight.png"
+      translation="[369, 295]"
+      width="504"
+      height="210"
+      />
 
     <Poster id="card00"
       uri="https://sthsroku.net/team666/elevens/Cards/ace_of_clubs.png"
