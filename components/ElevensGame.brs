@@ -1,5 +1,6 @@
 ' Initializes the game board and variables
-function init()
+sub init()
+    ?"[Elevens]init"
     ' Glabol Constant values
     m.cardValueStart = 3
     m.cardValueLen = 2
@@ -27,19 +28,64 @@ function init()
     m.global.addFields({card21 : card21})
     m.global.addFields({card22 : card22})
 
+    cardPoster00 = m.top.findNode("cardPoster00")
+    cardPoster01 = m.top.findNode("cardPoster01")
+    cardPoster02 = m.top.findNode("cardPoster02")
+    cardPoster10 = m.top.findNode("cardPoster10")
+    cardPoster11 = m.top.findNode("cardPoster11")
+    cardPoster12 = m.top.findNode("cardPoster12")
+    cardPoster20 = m.top.findNode("cardPoster20")
+    cardPoster21 = m.top.findNode("cardPoster21")
+    cardPoster22 = m.top.findNode("cardPoster22")
+    m.global.addFields({cardPoster00 : cardPoster00})
+    m.global.addFields({cardPoster01 : cardPoster01})
+    m.global.addFields({cardPoster02 : cardPoster02})
+    m.global.addFields({cardPoster10 : cardPoster10})
+    m.global.addFields({cardPoster11 : cardPoster11})
+    m.global.addFields({cardPoster12 : cardPoster12})
+    m.global.addFields({cardPoster20 : cardPoster20})
+    m.global.addFields({cardPoster21 : cardPoster21})
+    m.global.addFields({cardPoster22 : cardPoster22})
+
+    cardSelectedPoster00 = m.top.findNode("cardSelectedPoster00")
+    cardSelectedPoster01 = m.top.findNode("cardSelectedPoster01")
+    cardSelectedPoster02 = m.top.findNode("cardSelectedPoster02")
+    cardSelectedPoster10 = m.top.findNode("cardSelectedPoster10")
+    cardSelectedPoster11 = m.top.findNode("cardSelectedPoster11")
+    cardSelectedPoster12 = m.top.findNode("cardSelectedPoster12")
+    cardSelectedPoster20 = m.top.findNode("cardSelectedPoster20")
+    cardSelectedPoster21 = m.top.findNode("cardSelectedPoster21")
+    cardSelectedPoster22 = m.top.findNode("cardSelectedPoster22")
+    m.global.addFields({cardSelectedPoster00 : cardSelectedPoster00})
+    m.global.addFields({cardSelectedPoster01 : cardSelectedPoster01})
+    m.global.addFields({cardSelectedPoster02 : cardSelectedPoster02})
+    m.global.addFields({cardSelectedPoster10 : cardSelectedPoster10})
+    m.global.addFields({cardSelectedPoster11 : cardSelectedPoster11})
+    m.global.addFields({cardSelectedPoster12 : cardSelectedPoster12})
+    m.global.addFields({cardSelectedPoster20 : cardSelectedPoster20})
+    m.global.addFields({cardSelectedPoster21 : cardSelectedPoster21})
+    m.global.addFields({cardSelectedPoster22 : cardSelectedPoster22})
+
     rowIndex = 1
     colIndex = 1
     m.global.addFields({rowIndex : rowIndex})
     m.global.addFields({colIndex : colIndex})
 
 'card00, card01, card02, card10, card11, card12, card20, card21, card22
-    arrayButtons = [[card00,card01,card02], [card10,card11,card12], [card20,card21,card22]]
+    arrayButtons = [[cardPoster00,cardPoster01,cardPoster02],
+                    [cardPoster10,cardPoster11,cardPoster12],
+                    [cardPoster20,cardPoster21,cardPoster22]]
     m.global.addFields({arrayButtons : arrayButtons})
 
-    rightButtons = [card00,card10,card20,card01,card11,card21]
-    leftButtons = [card02,card12,card22,card01,card11,card21]
-    upButtons = [card20,card21,card22,card10,card11,card12]
-    downButtons = [card00,card01,card02,card10,card11,card12]
+    arraySelectedButtons = [[cardSelectedPoster00,cardSelectedPoster01,cardSelectedPoster02],
+                            [cardSelectedPoster10,cardSelectedPoster11,cardSelectedPoster12],
+                            [cardSelectedPoster20,cardSelectedPoster21,cardSelectedPoster22]]
+    m.global.addFields({arraySelectedButtons : arraySelectedButtons})
+
+    rightButtons = [cardPoster00,cardPoster10,cardPoster20,cardPoster01,cardPoster11,cardPoster21]
+    leftButtons = [cardPoster02,cardPoster12,cardPoster22,cardPoster01,cardPoster11,cardPoster21]
+    upButtons = [cardPoster20,cardPoster21,cardPoster22,cardPoster10,cardPoster11,cardPoster12]
+    downButtons = [cardPoster00,cardPoster01,cardPoster02,cardPoster10,cardPoster11,cardPoster12]
     m.global.addFields({rightButtons : rightButtons})
     m.global.addFields({leftButtons : leftButtons})
     m.global.addfields({upButtons : upButtons})
@@ -74,7 +120,9 @@ function init()
     m.global.addFields({selectedCards: selectedCards})
     dealCards()
     displayCards()
-end function
+    ?"[Elevens]init complete"
+    cardPoster11.setFocus(true)
+end sub
 
 sub shuffleCards()
     arr = m.global.deckCards
@@ -87,30 +135,28 @@ sub shuffleCards()
     m.global.setFields({deckCards : arr})
 end sub
 
-function replaceCards(isMatched as Boolean)
+function replaceCards()
     arr = m.global.currentBoard
-    if isMatched then
-        for i = 0 to m.global.selectedCards.Count() - 1
-            arr.delete(m.global.selectedCards[i])
-        '    arr.delete(m.global.selectedCards[i].iconUri)
-        end for
+    tempArr = m.global.selectedCards
+    for i = arr.Count() - 1 to 0 step -1
+        if checkinList(m.global.selectedCards, m.global.currentBoard[i]) then
+            arr.delete(i)
+        end if
+    end for
 
-        dealCards()
+    dealCards()
 
-        arr = []
-        m.global.setFields({currentBoard: arr})
+    tempArr = []
+    m.global.setFields({currentBoard : arr})
+    m.global.setFields({selectedCards : tempArr})
 
-        displayCards()
-    else
-        arr = []
-        m.global.setFields({currentBoard: arr})
-    end if
-
+    displayCards()
 end function
 
 function checkSelectedCards() as Boolean
     if m.global.selectedCards.Count() = 2 then
-        if Val(Mid(m.global.selectedCards[0], m.global.cardValueStart, m.global.cardValueLen), 10) + Val(Mid(m.global.selectedCards[1], m.global.cardValueStart, m.global.cardValueLen), 10) = 11 then
+        print (Val(Mid(m.global.selectedCards[0], m.global.cardValueStart, m.global.cardValueLen), 10) + Val(Mid(m.global.selectedCards[1], m.global.cardValueStart, m.global.cardValueLen), 10))
+        if (Val(Mid(m.global.selectedCards[0], m.global.cardValueStart, m.global.cardValueLen), 10) + Val(Mid(m.global.selectedCards[1], m.global.cardValueStart, m.global.cardValueLen), 10)) = 11 then
             return true
         else
             return false
@@ -138,6 +184,25 @@ function checkSelectedCards() as Boolean
     end if
 end function
 
+' Need to finish this function
+function addSelectedCards()
+    arr = []
+    for i = 0 to m.global.arraySelectedButtons.Count() - 1
+        for j = 0 to m.global.arraySelectedButtons[i].Count() - 1
+            if m.global.arraySelectedButtons[i][j].visible then
+
+            end if
+        end for
+    end for
+    ' for each r in m.global.arraySelectedButtons
+    '     for each c in r
+    '         if c.visible then
+    '             Val(c.id
+    '         end if
+    '     end for
+    ' end for
+    m.global.setFields({selectedCards : arr})
+end function
 
 
 function isEmpty() as Boolean
@@ -149,6 +214,11 @@ function isEmpty() as Boolean
 end function
 
 function dealCards()
+    for each r in m.global.arraySelectedButtons
+        for each c in r
+            c.visible = false
+        end for
+    end for
     arr = m.global.currentBoard
     tempDeck = m.global.deckCards
     while arr.Count() < 9
@@ -175,170 +245,34 @@ end function
 
 
 function onKeyEvent(key, press) as Boolean
-
-
-'need to add focusedIconUri and IconUri images from rayirth
-'i need to see if logic still fully works with xPlayer gone
-
-    if key = "right" then
-        if checkinList(m.global.rightButtons, m.global.arrayButtons[m.global.rowIndex][m.global.colIndex])
-          m.global.colIndex = m.global.colIndex + 1
+    ? "onKeyEvent: " key, press
+    if press then
+        m.global.arrayButtons[m.global.rowIndex][m.global.colIndex].visible = false
+        if key = "right" then
+            if checkinList(m.global.rightButtons, m.global.arrayButtons[m.global.rowIndex][m.global.colIndex])
+                m.global.colIndex = m.global.colIndex + 1
+            end if
+        else if key = "up" then
+            if checkinList(m.global.upButtons, m.global.arrayButtons[m.global.rowIndex][m.global.colIndex])
+                m.global.rowIndex = m.global.rowIndex - 1
+            end if
+        else if key = "down" then
+            if checkinList(m.global.downButtons, m.global.arrayButtons[m.global.rowIndex][m.global.colIndex])
+                m.global.rowIndex = m.global.rowIndex + 1
+            end if
+        else if key = "left" then
+            if checkinList(m.global.leftButtons, m.global.arrayButtons[m.global.rowIndex][m.global.colIndex])
+                m.global.colIndex = m.global.colIndex - 1
+            end if
         end if
-      else if key = "up" then
-        if checkinList(m.global.upButtons, m.global.arrayButtons[m.global.rowIndex][m.global.colIndex])
-          m.global.rowIndex = m.global.rowIndex - 1
-        end if
-      else if key = "down" then
-        if checkinList(m.global.downButtons, m.global.arrayButtons[m.global.rowIndex][m.global.colIndex])
-          m.global.rowIndex = m.global.rowIndex + 1
-        end if
-      else if key = "left" then
-        if checkinList(m.global.leftButtons, m.global.arrayButtons[m.global.rowIndex][m.global.colIndex])
-          m.global.colIndex = m.global.colIndex - 1
-        end if
-      end if
-      if m.global.arrayButtons[m.global.rowIndex][m.global.colIndex].iconUri = "https://sthsroku.net/team666/elevens/blank.png" then'changed to elevens blank.png
-        m.global.arrayButtons[m.global.rowIndex][m.global.colIndex].focusedIconUri = "https://sthsroku.net/team666/tictactoe/redX.jpg"
-    '   else if (not m.global.xPlayer) and m.global.arrayButtons[m.global.rowIndex][m.global.colIndex].iconUri = "https://sthsroku.net/team666/tictactoe/blank.png" then
-    '     m.global.arrayButtons[m.global.rowIndex][m.global.colIndex].focusedIconUri = "https://sthsroku.net/team666/tictactoe/redO.jpg"
-      end if
-
-
-      if key = "OK" then
-        if m.global.arrayButtons[m.global.rowIndex][m.global.colIndex].iconUri = "https://sthsroku.net/team666/tictactoe/blank.png" then
-           if m.global.option.isSameNode(m.global.Player) then
-            m.global.arrayButtons[m.global.rowIndex][m.global.colIndex].iconUri = "https://sthsroku.net/team666/tictactoe/whiteX.jpg"
-      '      m.global.xPlayer = false
-            m.global.playerNotify.text = ""
-            m.global.arrayButtons[m.global.rowIndex][m.global.colIndex].focusedIconUri = "https://sthsroku.net/team666/tictactoe/redX.jpg"
-
-          end if
+        m.global.arrayButtons[m.global.rowIndex][m.global.colIndex].visible = true
+    end if
+    if key = "OK" and press then
+        m.global.arraySelectedButtons[m.global.rowIndex][m.global.colIndex].visible = not m.global.arraySelectedButtons[m.global.rowIndex][m.global.colIndex].visible
+        addSelectedCards()
+        if checkSelectedCards() then
+            replaceCards()
         end if
     end if
+    return false
 end function
-
-' ' Shuffles the deck of cards and initializes the board
-
-
-' 'Checks if the game is over by evaluating the board for possible moves
-' ' function isGameOver() as Boolean
-' '     ' Check if there are any valid moves left
-' '     ' return checkForNoMoves()
-' ' end function
-
-' ' ' Checks if a move made by the player is valid
-' ' function isMoveValid() as Boolean
-' '     ' Check if the selected cards form a valid combination
-' '     return checkForEleven()
-' ' end function
-
-' ' ' Executes a move made by the player
-' ' sub makeMove()
-' '  '  Replace the selected cards with new cards from the deck
-' '   replaceCards()
-
-' '   ' Clear the selected cards
-' '    selectedCards = []
-
-' '   '  Check if the game is over
-' '    if isGameOver() then
-' '    '     Game over logic
-' '    else
-' '   '      Display the updated game board
-' '  '     displayBoard()
-' '    end if
-' ' end sub
-
-' ' 'Checks if a combination of selected cards adds up to eleven
-' ' function checkForEleven() as Boolean
-' '     ' Calculate the sum of the selected cards' ranks
-' '     sum = 0
-' '     for each card in m.global.selectedCards
-' '         sum += card.rank
-' '     end for
-
-' '     ' Return true if the sum is eleven
-' '     return sum = 11
-' ' end function
-
-' ' ' Replaces the selected cards with new cards from the deck
-' ' sub replaceCards()
-' '     ' Remove the selected cards from the board
-' '     for each card in m.global.selectedCards
-' '         index = m.global.board.find(card)
-' '         if index >= 0 then
-' '             m.global.board.splice(index, 1)
-' '         end if
-' '     end for
-
-' '     ' Fill the empty spaces with new cards from the deck
-' '     for i = 0 to m.global.selectedCards.count() - 1
-' '         if m.global.deck.count() > 0 then
-' '             m.global.board.push(m.global.deck.pop())
-' '         end if
-' '     end for
-' ' end sub
-
-' ' ' Checks if there are any possible moves left on the board
-' ' 'function checkForNoMoves() as Boolean
-' '     ' ' Check if there are any pairs of cards that add up to eleven
-' '     ' for i = 0 to board.count() - 2
-' '     '     for j = i + 1 to board.count() - 1
-' '     '         sum = board[i].rank + board[j].rank
-' '     '         if sum = 11 then
-' '     '             return false
-' '     '         end if
-' '     '     end for
-' '     ' end for
-
-' '     ' ' No valid moves left
-' '     ' return true
-' ' 'end function
-
-' ' 'Handles user input and triggers appropriate actions
-' ' sub handleUserInput(event as Object)
-' '    if event.GetRoSGNode().id = "ok" then
-' '        ' Check if the move is valid
-' '        if isMoveValid() then
-' '          '   Execute the move
-' '            makeMove()
-' '        else
-' '   '          Display an error message or handle invalid move
-' '        end if
-' '    else if event.GetRoSGNode().id.startsWith("card") then
-' '  '       Handle card selection logic
-' '        cardNode = event.GetRoSGNode()
-
-' '        if cardNode.selected then
-' '   '          Deselect the card
-' '            cardNode.selected = false
-' '            m.global.selectedCards.remove(cardNode.card)
-' '        else
-' ' '            Select the card
-' '            cardNode.selected = true
-' '            m.global.selectedCards.push(cardNode.card)
-' '        end if
-' '    end if
-' ' end sub
-
-' ' ' Creates the deck of cards with their respective images
-' ' ' sub createDeck()
-' ' '    suits = ["hearts", "diamonds", "clubs", "spades"]
-' ' '    ranks = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"]
-
-' ' '     ' Create cards for each suit and rank
-' ' '     for each suit in suits
-' ' '        for each rank in ranks
-' ' '            card = {
-' ' '                "suit": suit,
-' ' '                "rank":
-' ' '                if rank = "J" or rank = "Q" or rank = "K" then
-' ' '                10 else Int(rank),
-' ' '               "image": ("/images/" + suit + "_of_"+ rank + ".png")
-' ' '                end if
-' ' '            }
-' ' '            cards.push(card)
-' ' '        end for
-' ' '    end for
-' ' '   end for
-' ' ' end sub

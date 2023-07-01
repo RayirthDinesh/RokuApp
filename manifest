@@ -14,7 +14,7 @@ splash_screen_fhd=https://sthsroku.net/team666/elevens/7elevenlogo.png
 splash_screen_hd=https://sthsroku.net/team666/elevens/7elevenlogo.png
 
 #tell the Roku we designed our app for 1080p
-ui_resolutions=fhd
+ui_resolutions=FHD
 
 #get rid of black screen flash when app starts
 splash_rsg_optimization=1

@@ -11,176 +11,237 @@
       translation="[0, 0]"
     />
     <Poster
-      id = "cardPoster"
+      id = "cardPoster00"
       uri = "https://sthsroku.net/team666/elevens/CardHighlight.png"
-      translation="[369, 295]"
-      width="504"
-      height="210"
+      translation="[622.5, 89]"
+      width="215"
+      height="322"
+      visible="false"
       />
+
+    <Poster
+      id = "cardPoster01"
+      uri = "https://sthsroku.net/team666/elevens/CardHighlight.png"
+      translation="[852.5, 89]"
+      width="215"
+      height="322"
+      visible="false"
+    />
+
+    <Poster
+      id = "cardPoster02"
+      uri = "https://sthsroku.net/team666/elevens/CardHighlight.png"
+      translation="[1082.5, 89]"
+      width="215"
+      height="322"
+      visible="false"
+    />
+
+    <Poster
+      id = "cardPoster10"
+      uri = "https://sthsroku.net/team666/elevens/CardHighlight.png"
+      translation="[622.5, 419]"
+      width="215"
+      height="322"
+      visible="false"
+    />
+
+    <Poster
+      id = "cardPoster11"
+      uri = "https://sthsroku.net/team666/elevens/CardHighlight.png"
+      translation="[852.5, 419]"
+      width="215"
+      height="322"
+      visible="true"
+    />
+
+    <Poster
+      id = "cardPoster12"
+      uri = "https://sthsroku.net/team666/elevens/CardHighlight.png"
+      translation="[1082.5, 419]"
+      width="215"
+      height="322"
+      visible="false"
+    />
+
+    <Poster
+      id = "cardPoster20"
+      uri = "https://sthsroku.net/team666/elevens/CardHighlight.png"
+      translation="[622.5, 749]"
+      width="215"
+      height="322"
+      visible="false"
+    />
+
+    <Poster
+      id = "cardPoster21"
+      uri = "https://sthsroku.net/team666/elevens/CardHighlight.png"
+      translation="[852.5, 749]"
+      width="215"
+      height="322"
+      visible="false"
+    />
+
+    <Poster
+      id = "cardPoster22"
+      uri = "https://sthsroku.net/team666/elevens/CardHighlight.png"
+      translation="[1082.5, 749]"
+      width="215"
+      height="322"
+      visible="false"
+    />
 
     <Poster id="card00"
       uri="https://sthsroku.net/team666/elevens/Cards/ace_of_clubs.png"
       width="200"
-      height="200"
-      translation="[520, 300]"
+      height="300"
+      translation="[630, 100]"
     />
 
     <Poster id="card01"
       uri="https://sthsroku.net/team666/elevens/square.png"
       width="200"
-      height="200"
-      translation="[772.67, 300]"
+      height="300"
+      translation="[860, 100]"
     />
 
     <Poster id="card02"
       uri="https://sthsroku.net/team666/elevens/square.png"
       width="200"
-      height="200"
-      translation="[1013.34, 300]"
+      height="300"
+      translation="[1090, 100]"
     />
 
     <Poster id="card10"
       uri="https://sthsroku.net/team666/elevens/square.png"
       width="200"
-      height="200"
-      translation="[520, 555.67]"
+      height="300"
+      translation="[630, 430]"
     />
 
     <Poster id="card11"
       uri="https://sthsroku.net/team666/elevens/square.png"
       width="200"
-      height="200"
-      translation="[772.67, 555.67]"
+      height="300"
+      translation="[860, 430]"
     />
 
     <Poster id="card12"
       uri="https://sthsroku.net/team666/elevens/square.png"
       width="200"
-      height="200"
-      translation="[1013.34, 555.67]"
+      height="300"
+      translation="[1090, 430]"
     />
 
     <Poster id="card20"
       uri="https://sthsroku.net/team666/elevens/square.png"
       width="200"
-      height="200"
-      translation="[520, 820.34]"
+      height="300"
+      translation="[630, 760]"
     />
 
     <Poster id="card21"
       uri="https://sthsroku.net/team666/elevens/square.png"
       width="200"
-      height="200"
-      translation="[772.67, 820.34]"
+      height="300"
+      translation="[860, 760]"
     />
 
     <Poster id="card22"
       uri="https://sthsroku.net/team666/elevens/square.png"
       width="200"
-      height="200"
-      translation="[1013.34, 820.34]"
+      height="300"
+      translation="[1090, 760]"
     />
 
-    <Button/>
+    <Poster
+      id = "cardSelectedPoster00"
+      uri = "https://sthsroku.net/team666/elevens/CardSelectedHighlight.png"
+      translation="[622.5, 89]"
+      width="215"
+      height="322"
+      visible="false"
+      opacity="0.7"
+      />
+
+    <Poster
+      id = "cardSelectedPoster01"
+      uri = "https://sthsroku.net/team666/elevens/CardSelectedHighlight.png"
+      translation="[852.5, 89]"
+      width="215"
+      height="322"
+      visible="false"
+      opacity="0.7"
+    />
+
+    <Poster
+      id = "cardSelectedPoster02"
+      uri = "https://sthsroku.net/team666/elevens/CardSelectedHighlight.png"
+      translation="[1082.5, 89]"
+      width="215"
+      height="322"
+      visible="false"
+      opacity="0.7"
+    />
+
+    <Poster
+      id = "cardSelectedPoster10"
+      uri = "https://sthsroku.net/team666/elevens/CardSelectedHighlight.png"
+      translation="[622.5, 419]"
+      width="215"
+      height="322"
+      visible="false"
+      opacity="0.7"
+    />
+
+    <Poster
+      id = "cardSelectedPoster11"
+      uri = "https://sthsroku.net/team666/elevens/CardSelectedHighlight.png"
+      translation="[852.5, 419]"
+      width="215"
+      height="322"
+      visible="false"
+      opacity="0.7"
+    />
+
+    <Poster
+      id = "cardSelectedPoster12"
+      uri = "https://sthsroku.net/team666/elevens/CardSelectedHighlight.png"
+      translation="[1082.5, 419]"
+      width="215"
+      height="322"
+      visible="false"
+      opacity="0.7"
+    />
+
+    <Poster
+      id = "cardSelectedPoster20"
+      uri = "https://sthsroku.net/team666/elevens/CardSelectedHighlight.png"
+      translation="[622.5, 749]"
+      width="215"
+      height="322"
+      visible="false"
+      opacity="0.7"
+    />
+
+    <Poster
+      id = "cardSelectedPoster21"
+      uri = "https://sthsroku.net/team666/elevens/CardSelectedHighlight.png"
+      translation="[852.5, 749]"
+      width="215"
+      height="322"
+      visible="false"
+      opacity="0.7"
+    />
+
+    <Poster
+      id = "cardSelectedPoster22"
+      uri = "https://sthsroku.net/team666/elevens/CardSelectedHighlight.png"
+      translation="[1082.5, 749]"
+      width="215"
+      height="322"
+      visible="false"
+      opacity="0.7"
+    />
   </children>
 </component>
-
-
-
-
-<!-- Import necessary components
-<component name="ElevensGame" extends="Scene">
-  <script type="text/brightscript" uri="pkg:/components/ElevensGame.brs" />
-
- Define the initial scene
-  <children>
-  Add buttons for each card
-    <button
-      id="card00"
-      translation="[0, 0]"
-      width="200"
-      height="300"
-      focusable="true"
-      text="Card 00"
-      onKeyEvent="handleUserInput" />
-
-    <button
-      id="card01"
-      translation="[200, 0]"
-      width="200"
-      height="300"
-      focusable="true"
-      text="Card 01"
-      onKeyEvent="handleUserInput" />
-
-    <button
-      id="card02"
-      translation="[400, 0]"
-      width="200"
-      height="300"
-      focusable="true"
-      text="Card 02"
-      onKeyEvent="handleUserInput" />
-
-    <button
-      id="card10"
-      translation="[0, 300]"
-      width="200"
-      height="300"
-      focusable="true"
-      text="Card 10"
-      onKeyEvent="handleUserInput" />
-
-    <button
-      id="card11"
-      translation="[200, 300]"
-      width="200"
-      height="300"
-      focusable="true"
-      text="Card 11"
-      onKeyEvent="handleUserInput" />
-
-    <button
-      id="card12"
-      translation="[400, 300]"
-      width="200"
-      height="300"
-      focusable="true"
-      text="Card 12"
-      onKeyEvent="handleUserInput" />
-
-    <button
-      id="card20"
-      translation="[0, 600]"
-      width="200"
-      height="300"
-      focusable="true"
-      text="Card 20"
-      onKeyEvent="handleUserInput" />
-
-    <button
-      id="card21"
-      translation="[200, 600]"
-      width="200"
-      height="300"
-      focusable="true"
-      text="Card 21"
-      onKeyEvent="handleUserInput" />
-
-    <button
-      id="card22"
-      translation="[400, 600]"
-      width="200"
-      height="300"
-      focusable="true"
-      text="Card 22"
-      onKeyEvent="handleUserInput" />
-
-Add an OK button for making moves
-    <button
-      id="ok"
-      translation="[600, 900]"
-      width="200"
-      height="50"
-      text="OK"
-      onKeyEvent="handleUserInput" /> -->
