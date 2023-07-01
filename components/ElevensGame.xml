@@ -243,5 +243,23 @@
       visible="false"
       opacity="0.7"
     />
+
+    <Button
+      id = "playAgain"
+      text = "Play Again? Press OK"
+      focusedIconUri = "https://sthsroku.net/team666/ElevensGame/blank.png"
+      visible = "false"
+      minWidth = "1" maxWidth="1"
+      translation = "[1920, 1080]"
+    />
+
+    <Poster
+      id = "playAgainPoster"
+      uri = "https://sthsroku.net/team666/ElevensGame/playAgain.png"
+      visible = "false"
+      width = "400"
+      height = "200"
+      translation = "[760, 460]"
+    />
   </children>
 </component>

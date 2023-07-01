@@ -71,6 +71,14 @@ sub init()
     m.global.addFields({rowIndex : rowIndex})
     m.global.addFields({colIndex : colIndex})
 
+
+    playAgain = m.top.findNode("playAgain")
+    m.global.addFields({playAgain : playAgain})
+    playAgain.observeField("buttonSelected", "onResetButtonSelected")
+
+    playAgainPoster = m.top.findNode("playAgainPoster")
+    m.global.addFields({playAgainPoster : playAgainPoster})
+
 'card00, card01, card02, card10, card11, card12, card20, card21, card22
     arrayButtons = [[cardPoster00,cardPoster01,cardPoster02],
                     [cardPoster10,cardPoster11,cardPoster12],
@@ -203,6 +211,58 @@ function addSelectedCards()
     ' end for
     m.global.setFields({selectedCards : arr})
 end function
+
+sub onResetButtonSelected(obj)
+    resetGame()
+  end sub
+
+function resetGame()
+    if checkSelectedCards() = true
+        for each grid in m.global.gridCards = "https://sthsroku.net/team666/ElevensGame/blank.png"
+            for each r in m.global.arraySelectedButtons
+                for each c in r
+                    c.visible = true
+                end for
+            end for
+            ' for each button in m.global.arrayButtons
+            '     for each reset in button
+            '         reset.iconUri = "https://sthsroku.net/team666/ElevensGame/blank.png"
+            '         reset.FocusedIconUri = "https://sthsroku.net/team666/ElevensGame/blank.png"
+            '         reset.setFocus(true)
+            '     end for
+            ' end for
+        end for
+        deckCards = [
+            "f_01_https://sthsroku.net/team666/elevens/Cards//ace_of_clubs.png", "f_01_https://sthsroku.net/team666/elevens/Cards//ace_of_diamonds.png", "f_01_https://sthsroku.net/team666/elevens/Cards//ace_of_hearts.png", "f_01_https://sthsroku.net/team666/elevens/Cards//ace_of_spades.png",
+            "f_02_https://sthsroku.net/team666/elevens/Cards//2_of_clubs.png", "f_02_https://sthsroku.net/team666/elevens/Cards//2_of_diamonds.png", "f_02_https://sthsroku.net/team666/elevens/Cards//2_of_hearts.png", "f_02_https://sthsroku.net/team666/elevens/Cards//2_of_spades.png",
+            "f_03_https://sthsroku.net/team666/elevens/Cards//3_of_clubs.png", "f_03_https://sthsroku.net/team666/elevens/Cards//3_of_diamonds.png", "f_03_https://sthsroku.net/team666/elevens/Cards//3_of_hearts.png", "f_03_https://sthsroku.net/team666/elevens/Cards//3_of_spades.png",
+            "f_04_https://sthsroku.net/team666/elevens/Cards//4_of_clubs.png", "f_04_https://sthsroku.net/team666/elevens/Cards//4_of_diamonds.png", "f_04_https://sthsroku.net/team666/elevens/Cards//4_of_hearts.png", "f_04_https://sthsroku.net/team666/elevens/Cards//4_of_spades.png",
+            "f_05_https://sthsroku.net/team666/elevens/Cards//5_of_clubs.png", "f_05_https://sthsroku.net/team666/elevens/Cards//5_of_diamonds.png", "f_05_https://sthsroku.net/team666/elevens/Cards//5_of_hearts.png", "f_05_https://sthsroku.net/team666/elevens/Cards//5_of_spades.png",
+            "f_06_https://sthsroku.net/team666/elevens/Cards//6_of_clubs.png", "f_06_https://sthsroku.net/team666/elevens/Cards//6_of_diamonds.png", "f_06_https://sthsroku.net/team666/elevens/Cards//6_of_hearts.png", "f_06_https://sthsroku.net/team666/elevens/Cards//6_of_spades.png",
+            "f_07_https://sthsroku.net/team666/elevens/Cards//7_of_clubs.png", "f_07_https://sthsroku.net/team666/elevens/Cards//7_of_diamonds.png", "f_07_https://sthsroku.net/team666/elevens/Cards//7_of_hearts.png", "f_07_https://sthsroku.net/team666/elevens/Cards//7_of_spades.png",
+            "f_08_https://sthsroku.net/team666/elevens/Cards//8_of_clubs.png", "f_08_https://sthsroku.net/team666/elevens/Cards//8_of_diamonds.png", "f_08_https://sthsroku.net/team666/elevens/Cards//8_of_hearts.png", "f_08_https://sthsroku.net/team666/elevens/Cards//8_of_spades.png",
+            "f_09_https://sthsroku.net/team666/elevens/Cards//9_of_clubs.png", "f_09_https://sthsroku.net/team666/elevens/Cards//9_of_diamonds.png", "f_09_https://sthsroku.net/team666/elevens/Cards//9_of_hearts.png", "f_09_https://sthsroku.net/team666/elevens/Cards//9_of_spades.png",
+            "f_10_https://sthsroku.net/team666/elevens/Cards//10_of_clubs.png", "f_10_https://sthsroku.net/team666/elevens/Cards//10_of_diamonds.png", "f_10_https://sthsroku.net/team666/elevens/Cards//10_of_hearts.png", "f_10_https://sthsroku.net/team666/elevens/Cards//10_of_spades.png",
+            "k_00_https://sthsroku.net/team666/elevens/Cards//king_of_clubs.png", "k_00_https://sthsroku.net/team666/elevens/Cards//king_of_diamonds.png", "k_00_https://sthsroku.net/team666/elevens/Cards//king_of_hearts.png", "k_00_https://sthsroku.net/team666/elevens/Cards//king_of_spades.png",
+            "q_00_https://sthsroku.net/team666/elevens/Cards//queen_of_clubs.png", "q_00_https://sthsroku.net/team666/elevens/Cards//queen_of_diamonds.png", "q_00_https://sthsroku.net/team666/elevens/Cards//queen_of_hearts.png", "q_00_https://sthsroku.net/team666/elevens/Cards//queen_of_spades.png",
+            "j_00_https://sthsroku.net/team666/elevens/Cards//jack_of_clubs.png", "j_00_https://sthsroku.net/team666/elevens/Cards//jack_of_diamonds.png", "j_00_https://sthsroku.net/team666/elevens/Cards//jack_of_hearts.png", "j_00_https://sthsroku.net/team666/elevens/Cards//jack_of_spades.png"
+        ]
+    '    m.global.cardPoster11.focusedIconUri = "https://sthsroku.net/team666/ElevensGame/redX.jpg" 'change redX
+        m.global.rowIndex = 1
+        m.global.colIndex = 1
+
+        cardSelectedPoster11.arraySelectedButtons.visible = true
+
+        m.global.playAgain.visible = false
+        m.global.playAgainPoster.visible = false
+
+        shuffleCards()
+        dealCards()
+        displayCards()
+
+    end if
+end function
+
 
 
 function isEmpty() as Boolean
