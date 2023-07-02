@@ -9,6 +9,10 @@ sub init()
     m.global.addFields({cardValueLen : m.cardValueLen})
     m.global.addFields({cardImgStart : m.cardImgStart})
 
+    resetGameButton = m.top.findNode("resetGameButton")
+    m.global.addFields({resetGameButton : resetGameButton})
+    resetGameButton.observeField("buttonSelected", "onResetButtonSelected")
+
     card00 = m.top.findNode("card00")
     card01 = m.top.findNode("card01")
     card02 = m.top.findNode("card02")
@@ -101,7 +105,11 @@ sub init()
 
     'Create array gridCards
     gridCards = [m.global.card00, m.global.card01, m.global.card02, m.global.card10, m.global.card11, m.global.card12, m.global.card20, m.global.card21, m.global.card22]
+    gridCards2DArray = [[m.global.card00, m.global.card01, m.global.card02],
+                        [m.global.card10, m.global.card11, m.global.card12],
+                        [m.global.card20, m.global.card21, m.global.card22]]
     m.global.addFields({gridCards: gridCards})
+    m.global.addFields({gridCards2DArray: gridCards2DArray})
 
     deckCards = [
         "f_01_https://sthsroku.net/team666/elevens/Cards//ace_of_clubs.png", "f_01_https://sthsroku.net/team666/elevens/Cards//ace_of_diamonds.png", "f_01_https://sthsroku.net/team666/elevens/Cards//ace_of_hearts.png", "f_01_https://sthsroku.net/team666/elevens/Cards//ace_of_spades.png",
@@ -128,7 +136,7 @@ sub init()
     m.global.addFields({selectedCards: selectedCards})
     dealCards()
     displayCards()
-    ?"[Elevens]init complete"
+
     cardPoster11.setFocus(true)
 end sub
 
@@ -143,19 +151,28 @@ sub shuffleCards()
     m.global.setFields({deckCards : arr})
 end sub
 
+function checkStringInList(list, string) as boolean
+    for i = 0 to list.Count() - 1
+        if list[i] = string then
+            return true
+        end if
+    end for
+    return false
+end function
+
 function replaceCards()
     arr = m.global.currentBoard
     tempArr = m.global.selectedCards
     for i = arr.Count() - 1 to 0 step -1
-        if checkinList(m.global.selectedCards, m.global.currentBoard[i]) then
+        if checkStringInList(m.global.selectedCards, arr[i]) then
             arr.delete(i)
         end if
     end for
 
+    m.global.setFields({currentBoard : arr})
     dealCards()
 
     tempArr = []
-    m.global.setFields({currentBoard : arr})
     m.global.setFields({selectedCards : tempArr})
 
     displayCards()
@@ -192,78 +209,48 @@ function checkSelectedCards() as Boolean
     end if
 end function
 
-' Need to finish this function
-function addSelectedCards()
-    arr = []
-    for i = 0 to m.global.arraySelectedButtons.Count() - 1
-        for j = 0 to m.global.arraySelectedButtons[i].Count() - 1
-            if m.global.arraySelectedButtons[i][j].visible then
-
-            end if
-        end for
-    end for
-    ' for each r in m.global.arraySelectedButtons
-    '     for each c in r
-    '         if c.visible then
-    '             Val(c.id
-    '         end if
-    '     end for
-    ' end for
-    m.global.setFields({selectedCards : arr})
-end function
-
 sub onResetButtonSelected(obj)
     resetGame()
   end sub
 
 function resetGame()
-    if checkSelectedCards() = true
-        for each grid in m.global.gridCards = "https://sthsroku.net/team666/ElevensGame/blank.png"
-            for each r in m.global.arraySelectedButtons
-                for each c in r
-                    c.visible = true
-                end for
-            end for
-            ' for each button in m.global.arrayButtons
-            '     for each reset in button
-            '         reset.iconUri = "https://sthsroku.net/team666/ElevensGame/blank.png"
-            '         reset.FocusedIconUri = "https://sthsroku.net/team666/ElevensGame/blank.png"
-            '         reset.setFocus(true)
-            '     end for
-            ' end for
+    for each r in m.global.arraySelectedButtons
+        for each c in r
+            c.visible = true
         end for
-        deckCards = [
-            "f_01_https://sthsroku.net/team666/elevens/Cards//ace_of_clubs.png", "f_01_https://sthsroku.net/team666/elevens/Cards//ace_of_diamonds.png", "f_01_https://sthsroku.net/team666/elevens/Cards//ace_of_hearts.png", "f_01_https://sthsroku.net/team666/elevens/Cards//ace_of_spades.png",
-            "f_02_https://sthsroku.net/team666/elevens/Cards//2_of_clubs.png", "f_02_https://sthsroku.net/team666/elevens/Cards//2_of_diamonds.png", "f_02_https://sthsroku.net/team666/elevens/Cards//2_of_hearts.png", "f_02_https://sthsroku.net/team666/elevens/Cards//2_of_spades.png",
-            "f_03_https://sthsroku.net/team666/elevens/Cards//3_of_clubs.png", "f_03_https://sthsroku.net/team666/elevens/Cards//3_of_diamonds.png", "f_03_https://sthsroku.net/team666/elevens/Cards//3_of_hearts.png", "f_03_https://sthsroku.net/team666/elevens/Cards//3_of_spades.png",
-            "f_04_https://sthsroku.net/team666/elevens/Cards//4_of_clubs.png", "f_04_https://sthsroku.net/team666/elevens/Cards//4_of_diamonds.png", "f_04_https://sthsroku.net/team666/elevens/Cards//4_of_hearts.png", "f_04_https://sthsroku.net/team666/elevens/Cards//4_of_spades.png",
-            "f_05_https://sthsroku.net/team666/elevens/Cards//5_of_clubs.png", "f_05_https://sthsroku.net/team666/elevens/Cards//5_of_diamonds.png", "f_05_https://sthsroku.net/team666/elevens/Cards//5_of_hearts.png", "f_05_https://sthsroku.net/team666/elevens/Cards//5_of_spades.png",
-            "f_06_https://sthsroku.net/team666/elevens/Cards//6_of_clubs.png", "f_06_https://sthsroku.net/team666/elevens/Cards//6_of_diamonds.png", "f_06_https://sthsroku.net/team666/elevens/Cards//6_of_hearts.png", "f_06_https://sthsroku.net/team666/elevens/Cards//6_of_spades.png",
-            "f_07_https://sthsroku.net/team666/elevens/Cards//7_of_clubs.png", "f_07_https://sthsroku.net/team666/elevens/Cards//7_of_diamonds.png", "f_07_https://sthsroku.net/team666/elevens/Cards//7_of_hearts.png", "f_07_https://sthsroku.net/team666/elevens/Cards//7_of_spades.png",
-            "f_08_https://sthsroku.net/team666/elevens/Cards//8_of_clubs.png", "f_08_https://sthsroku.net/team666/elevens/Cards//8_of_diamonds.png", "f_08_https://sthsroku.net/team666/elevens/Cards//8_of_hearts.png", "f_08_https://sthsroku.net/team666/elevens/Cards//8_of_spades.png",
-            "f_09_https://sthsroku.net/team666/elevens/Cards//9_of_clubs.png", "f_09_https://sthsroku.net/team666/elevens/Cards//9_of_diamonds.png", "f_09_https://sthsroku.net/team666/elevens/Cards//9_of_hearts.png", "f_09_https://sthsroku.net/team666/elevens/Cards//9_of_spades.png",
-            "f_10_https://sthsroku.net/team666/elevens/Cards//10_of_clubs.png", "f_10_https://sthsroku.net/team666/elevens/Cards//10_of_diamonds.png", "f_10_https://sthsroku.net/team666/elevens/Cards//10_of_hearts.png", "f_10_https://sthsroku.net/team666/elevens/Cards//10_of_spades.png",
-            "k_00_https://sthsroku.net/team666/elevens/Cards//king_of_clubs.png", "k_00_https://sthsroku.net/team666/elevens/Cards//king_of_diamonds.png", "k_00_https://sthsroku.net/team666/elevens/Cards//king_of_hearts.png", "k_00_https://sthsroku.net/team666/elevens/Cards//king_of_spades.png",
-            "q_00_https://sthsroku.net/team666/elevens/Cards//queen_of_clubs.png", "q_00_https://sthsroku.net/team666/elevens/Cards//queen_of_diamonds.png", "q_00_https://sthsroku.net/team666/elevens/Cards//queen_of_hearts.png", "q_00_https://sthsroku.net/team666/elevens/Cards//queen_of_spades.png",
-            "j_00_https://sthsroku.net/team666/elevens/Cards//jack_of_clubs.png", "j_00_https://sthsroku.net/team666/elevens/Cards//jack_of_diamonds.png", "j_00_https://sthsroku.net/team666/elevens/Cards//jack_of_hearts.png", "j_00_https://sthsroku.net/team666/elevens/Cards//jack_of_spades.png"
-        ]
-    '    m.global.cardPoster11.focusedIconUri = "https://sthsroku.net/team666/ElevensGame/redX.jpg" 'change redX
-        m.global.rowIndex = 1
-        m.global.colIndex = 1
+    end for
 
-        cardSelectedPoster11.arraySelectedButtons.visible = true
+    deckCards = [
+        "f_01_https://sthsroku.net/team666/elevens/Cards//ace_of_clubs.png", "f_01_https://sthsroku.net/team666/elevens/Cards//ace_of_diamonds.png", "f_01_https://sthsroku.net/team666/elevens/Cards//ace_of_hearts.png", "f_01_https://sthsroku.net/team666/elevens/Cards//ace_of_spades.png",
+        "f_02_https://sthsroku.net/team666/elevens/Cards//2_of_clubs.png", "f_02_https://sthsroku.net/team666/elevens/Cards//2_of_diamonds.png", "f_02_https://sthsroku.net/team666/elevens/Cards//2_of_hearts.png", "f_02_https://sthsroku.net/team666/elevens/Cards//2_of_spades.png",
+        "f_03_https://sthsroku.net/team666/elevens/Cards//3_of_clubs.png", "f_03_https://sthsroku.net/team666/elevens/Cards//3_of_diamonds.png", "f_03_https://sthsroku.net/team666/elevens/Cards//3_of_hearts.png", "f_03_https://sthsroku.net/team666/elevens/Cards//3_of_spades.png",
+        "f_04_https://sthsroku.net/team666/elevens/Cards//4_of_clubs.png", "f_04_https://sthsroku.net/team666/elevens/Cards//4_of_diamonds.png", "f_04_https://sthsroku.net/team666/elevens/Cards//4_of_hearts.png", "f_04_https://sthsroku.net/team666/elevens/Cards//4_of_spades.png",
+        "f_05_https://sthsroku.net/team666/elevens/Cards//5_of_clubs.png", "f_05_https://sthsroku.net/team666/elevens/Cards//5_of_diamonds.png", "f_05_https://sthsroku.net/team666/elevens/Cards//5_of_hearts.png", "f_05_https://sthsroku.net/team666/elevens/Cards//5_of_spades.png",
+        "f_06_https://sthsroku.net/team666/elevens/Cards//6_of_clubs.png", "f_06_https://sthsroku.net/team666/elevens/Cards//6_of_diamonds.png", "f_06_https://sthsroku.net/team666/elevens/Cards//6_of_hearts.png", "f_06_https://sthsroku.net/team666/elevens/Cards//6_of_spades.png",
+        "f_07_https://sthsroku.net/team666/elevens/Cards//7_of_clubs.png", "f_07_https://sthsroku.net/team666/elevens/Cards//7_of_diamonds.png", "f_07_https://sthsroku.net/team666/elevens/Cards//7_of_hearts.png", "f_07_https://sthsroku.net/team666/elevens/Cards//7_of_spades.png",
+        "f_08_https://sthsroku.net/team666/elevens/Cards//8_of_clubs.png", "f_08_https://sthsroku.net/team666/elevens/Cards//8_of_diamonds.png", "f_08_https://sthsroku.net/team666/elevens/Cards//8_of_hearts.png", "f_08_https://sthsroku.net/team666/elevens/Cards//8_of_spades.png",
+        "f_09_https://sthsroku.net/team666/elevens/Cards//9_of_clubs.png", "f_09_https://sthsroku.net/team666/elevens/Cards//9_of_diamonds.png", "f_09_https://sthsroku.net/team666/elevens/Cards//9_of_hearts.png", "f_09_https://sthsroku.net/team666/elevens/Cards//9_of_spades.png",
+        "f_10_https://sthsroku.net/team666/elevens/Cards//10_of_clubs.png", "f_10_https://sthsroku.net/team666/elevens/Cards//10_of_diamonds.png", "f_10_https://sthsroku.net/team666/elevens/Cards//10_of_hearts.png", "f_10_https://sthsroku.net/team666/elevens/Cards//10_of_spades.png",
+        "k_00_https://sthsroku.net/team666/elevens/Cards//king_of_clubs.png", "k_00_https://sthsroku.net/team666/elevens/Cards//king_of_diamonds.png", "k_00_https://sthsroku.net/team666/elevens/Cards//king_of_hearts.png", "k_00_https://sthsroku.net/team666/elevens/Cards//king_of_spades.png",
+        "q_00_https://sthsroku.net/team666/elevens/Cards//queen_of_clubs.png", "q_00_https://sthsroku.net/team666/elevens/Cards//queen_of_diamonds.png", "q_00_https://sthsroku.net/team666/elevens/Cards//queen_of_hearts.png", "q_00_https://sthsroku.net/team666/elevens/Cards//queen_of_spades.png",
+        "j_00_https://sthsroku.net/team666/elevens/Cards//jack_of_clubs.png", "j_00_https://sthsroku.net/team666/elevens/Cards//jack_of_diamonds.png", "j_00_https://sthsroku.net/team666/elevens/Cards//jack_of_hearts.png", "j_00_https://sthsroku.net/team666/elevens/Cards//jack_of_spades.png"
+    ]
 
-        m.global.playAgain.visible = false
-        m.global.playAgainPoster.visible = false
+    m.global.setFields({deckCards : deckCards})
+    shuffleCards()
+    m.global.rowIndex = 1
+    m.global.colIndex = 1
 
-        shuffleCards()
-        dealCards()
-        displayCards()
+    m.global.cardPoster11.visible = true
+    m.global.cardPoster11.setFocus(true)
 
-    end if
+    m.global.playAgain.visible = false
+    m.global.playAgainPoster.visible = false
+    tempArr = []
+    m.global.setFields({currentBoard : tempArr})
+    dealCards()
+    displayCards()
 end function
-
-
 
 function isEmpty() as Boolean
     if m.global.deckCards.Count() = 0 then
@@ -281,7 +268,7 @@ function dealCards()
     end for
     arr = m.global.currentBoard
     tempDeck = m.global.deckCards
-    while arr.Count() < 9
+    while arr.Count() < 9 and not isEmpty()
         arr.push(tempDeck.pop())
     end while
     m.global.setFields({deckCards : tempDeck})
@@ -290,6 +277,8 @@ end function
 
 function displayCards()
     for i = 0 to m.global.currentBoard.Count() - 1
+        print m.global.currentBoard[i]
+        print Mid(m.global.currentBoard[i], m.cardImgStart)
         m.global.gridCards[i].uri = Mid(m.global.currentBoard[i], m.cardImgStart)
     end for
 end function
@@ -303,35 +292,77 @@ function checkinList(list, button) as Boolean
     return false
 end function
 
+function getSelectedCards()
+    tempSelectedCards = []
+    for each r in m.global.arraySelectedButtons
+        for each card in r
+            if card.visible then
+                if card.id = "cardSelectedPoster00"
+                    tempSelectedCards.push(m.global.currentBoard[0])
+                else if card.id = "cardSelectedPoster01"
+                    tempSelectedCards.push(m.global.currentBoard[1])
+                else if card.id = "cardSelectedPoster02"
+                    tempSelectedCards.push(m.global.currentBoard[2])
+                else if card.id = "cardSelectedPoster10"
+                    tempSelectedCards.push(m.global.currentBoard[3])
+                else if card.id = "cardSelectedPoster11"
+                    tempSelectedCards.push(m.global.currentBoard[4])
+                else if card.id = "cardSelectedPoster12"
+                    tempSelectedCards.push(m.global.currentBoard[5])
+                else if card.id = "cardSelectedPoster20"
+                    tempSelectedCards.push(m.global.currentBoard[6])
+                else if card.id = "cardSelectedPoster21"
+                    tempSelectedCards.push(m.global.currentBoard[7])
+                else if card.id = "cardSelectedPoster22"
+                    tempSelectedCards.push(m.global.currentBoard[8])
+                end if
+            end if
+        end for
+    end for
+    m.global.setFields({selectedCards : tempSelectedCards})
+end function
 
 function onKeyEvent(key, press) as Boolean
     ? "onKeyEvent: " key, press
     if press then
         m.global.arrayButtons[m.global.rowIndex][m.global.colIndex].visible = false
-        if key = "right" then
+        if key = "right" and m.global.colIndex = 2 and m.global.rowIndex = 1 then
+            m.global.resetGameButton.setFocus(true)
+        else if key = "right" then
             if checkinList(m.global.rightButtons, m.global.arrayButtons[m.global.rowIndex][m.global.colIndex])
                 m.global.colIndex = m.global.colIndex + 1
+                m.global.arrayButtons[m.global.rowIndex][m.global.colIndex].visible = true
             end if
         else if key = "up" then
             if checkinList(m.global.upButtons, m.global.arrayButtons[m.global.rowIndex][m.global.colIndex])
                 m.global.rowIndex = m.global.rowIndex - 1
+                m.global.arrayButtons[m.global.rowIndex][m.global.colIndex].visible = true
             end if
         else if key = "down" then
             if checkinList(m.global.downButtons, m.global.arrayButtons[m.global.rowIndex][m.global.colIndex])
                 m.global.rowIndex = m.global.rowIndex + 1
+                m.global.arrayButtons[m.global.rowIndex][m.global.colIndex].visible = true
             end if
         else if key = "left" then
             if checkinList(m.global.leftButtons, m.global.arrayButtons[m.global.rowIndex][m.global.colIndex])
-                m.global.colIndex = m.global.colIndex - 1
+                if not m.global.resetGameButton.hasFocus() then
+                    m.global.colIndex = m.global.colIndex - 1
+                    m.global.arrayButtons[m.global.rowIndex][m.global.colIndex].visible = true
+                else
+                    m.global.arrayButtons[m.global.rowIndex][m.global.colIndex].visible = true
+                    m.global.arrayButtons[m.global.rowIndex][m.global.colIndex].setFocus(true)
+                end if
             end if
         end if
-        m.global.arrayButtons[m.global.rowIndex][m.global.colIndex].visible = true
     end if
     if key = "OK" and press then
         m.global.arraySelectedButtons[m.global.rowIndex][m.global.colIndex].visible = not m.global.arraySelectedButtons[m.global.rowIndex][m.global.colIndex].visible
-        addSelectedCards()
+        getSelectedCards()
         if checkSelectedCards() then
             replaceCards()
+        end if
+        if isEmpty() then
+            m.global.resetGameButton.setFocus(true)
         end if
     end if
     return false
