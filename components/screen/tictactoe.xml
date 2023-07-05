@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<component name="tictactoe" extends="Scene">
+<component name="tictactoe_scene" extends="Group">
   <script type="text/brightscript" uri="pkg:/components/screen/tictactoe.brs"/>
   <children>
 <!-- shows where in the app something is -->
@@ -11,7 +11,7 @@
     horizAlign = "center"
     vertAlign = "center"
     />
- <Poster
+    <Poster
       id="tictactoe"
       uri="pkg:/images/board.png"
       translation="[560, 160]"
@@ -25,13 +25,12 @@
     iconUri="pkg:/images/blank.png"
     focusedTextColor="0xff0000ff"
     focusedIconUri="pkg:/images/square.png"
-    focusBitmapUri="pkg:/images/whiteO.png"
-    focusFootprintBitmapUri="whiteO.png"
+    focusBitmapUri="pkg:/images/whiteO.jpg"
     minWidth="1"
     maxWidth="1"
     height="1"
     translation="[520, 300]"
-    showFocusedFootprint = "true"
+    
     />
 
     <Button id="r0c1"
@@ -121,7 +120,60 @@
     height="1"
     translation="[1013.34, 820.34]"/>
 
-    <Label
+  <Button
+    id="Player"
+    translation="[25, 700]"
+    iconUri="pkg:/images/playervsplayerbig.png"
+    focusedIconUri = "pkg:/images/playervsplayer.png"
+    minWidth="1"
+    maxWidth="1"
+    height="1"
+  />
+
+  <Button
+    id="Easy"
+    translation="[25, 700]"
+    iconUri="pkg:/images/easy.png"
+    focusedIconUri = "pkg:/images/easysmall.png"
+    visible="false"
+    minWidth="1"
+    maxWidth="1"
+    height="1"
+  />
+
+  <Button
+    id="Medium"
+    translation="[25, 770]"
+    iconUri="pkg:/images/medium.png"
+    focusedIconUri = "pkg:/images/mediumsmall.png"
+    visible="false"
+    minWidth="1"
+    maxWidth="1"
+    height="1"
+  />
+
+  <Button
+    id="Hard"
+    translation="[25, 840]"
+    iconUri="pkg:/images/hard.png"
+    focusedIconUri = "pkg:/images/hardsmall.png"
+    visible="false"
+    minWidth="1"
+    maxWidth="1"
+    height="1"
+  />
+  
+  <Button
+    id="Computer"
+    translation="[25, 325]"
+    iconUri="pkg:/images/playervscomputerbig.png"
+    focusedIconUri="pkg:/images/playervscomputer.png"
+    minWidth="1"
+    maxWidth="1"
+    height="1"
+  />
+
+  <Label
     id="playerNotify"
     text="Player X's Turn"
     visible="true"
@@ -131,7 +183,7 @@
     height="50"
     horizAlign = "center"
     vertAlign = "center"
-    />
+  />
 
   </children>
 </component>

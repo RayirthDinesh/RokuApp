@@ -1,20 +1,50 @@
 sub init()
-    ? "[home] init"
+    ? "[homescreen] init"
+    m.top.backgroundURI = "pkg:/images/LinedPaper.jpg"
+    m.tictactoe_scene = m.top.findNode("tictactoe_scene")
+    m.elevens_scene = m.top.findNode("elevens_scene")
+    m.appHomeScene = m.top.findNode("appHomeScene")
+    m.ElevensGame = m.top.findNode("ElevensGame")
 
+    m.appHomeScene.observeField("tictactoe_button", "onTicTacToeButtonSelected")
+    m.appHomeScene.observeField("elevens_button", "onElevensButtonSelected")
 
-    m.tictactoe = m.top.findNode("tictactoe")
-    m.elevens = m.top.findNode("elevens")
+    m.appHomeScene.setFocus(true)
+  end sub
+  
+  function onTicTacToeButtonSelected(obj)
+    ? "[homescreen] onTicTacToeButtonSelected"
+    m.appHomeScene.visible = false
+    m.appHomeScene.setFocus(false)
+    m.tictactoe_scene.visible = true
+    m.tictactoe_scene.setFocus(true)
+    m.top.backgroundURI = "pkg:/images/background.png"
+  end function
 
-    ' m.global.addFields({tictactoe : tictactoe})
-    ' m.global.addFields({elevens : elevens})
+  function onElevensButtonSelected(obj)
+    ? "[homescreen] onElevensButtonSelected"
+    m.appHomeScene.visible = false
+    m.appHomeScene.setFocus(false)
+    m.ElevensGame.visible = true
+    m.ElevensGame.setFocus(true)
+  end function
 
-end sub
-
-function onKeyEvent(key, press) as Boolean
-    if key = "OK" then
-        if m.global.tictactoe.buttonSelected then
-            ' scene  = screen.CreateScene("Scene")
-            ' screen.show()
-        end if
+  function onKeyEvent(key, press) as Boolean
+    ? "[homescreen] onKeyEvent" key, press
+  if key = "back" and press
+    if m.tictactoe_scene.visible
+        m.tictactoe_scene.visible = false
+        m.appHomeScene.visible = true
+        m.appHomeScene.setFocus(true)
+        m.top.backgroundURI = "pkg:/images/LinedPaper.jpg"
+        return true
+    else if m.ElevensGame.visible
+        m.ElevensGame.visible = false
+        m.appHomeScene.visible = true
+        m.appHomeScene.setFocus(true)
+        m.top.backgroundURI = "pkg:/images/LinedPaper.jpg"
+        return true
     end if
-end function
+  end if
+  return false
+  end function

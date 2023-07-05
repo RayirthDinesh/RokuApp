@@ -1,34 +1,31 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<component name="home" extends="Scene">
+<component name="homescreen" extends="Scene" initialFocus="appHomeScene">
 <script type="text/brightscript" uri="pkg:/components/homescreen.brs"/>
     <children>
-        <Label
-            id="PickGameLabel"
-            text="Pick Games To Play"
-            color="0xff0000ff"
-            translation = "[770, 100]"
-            font="font:LargeBoldSystemFont"
-        />
-        <Button
-            id="tictactoe"
-            text="Tic-Tac-Toe"
-            color="0xff0000ff"
-            translation = "[520,300]"
-            minWidth="1"
-            maxWidth="1"
-            height="1"
+    
+        <appHomeScene
+            id="appHomeScene"
+            visible="true"
+            translation="[0,0]"
+            />
 
-        />
+        <tictactoe_scene
+            id="tictactoe_scene"
+            visible="false"
+            translation="[0,0]"
+            />
 
-        <Button
-            id="elevens"
-            text="Elevens"
-            color="0xff0000ff"
-            translation = "[1120,300]"
-            minWidth="1"
-            maxWidth="1"
-            height="1"
-        />
+        <elevens_scene
+            id="elevens_scene"
+            visible="false"
+            translation="[0,0]"
+            />
+
+        <ElevensGame
+            id="ElevensGame"
+            visible="false"
+            translation="[0,0]"
+            />
 
     </children>
 </component>
