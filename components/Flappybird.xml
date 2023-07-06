@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<component name="flappyBird" extends="Scene">
-  <script type="text/brightscript" uri="pkg:/components/flappybird.brs"/>
+<component name="FlappyBird" extends="Scene">
+  <script type="text/brightscript" uri="pkg:/components/FlappyBird.brs"/>
     <children>
 
     <Poster
@@ -11,32 +11,34 @@
       height="1080"
       visible="true"
     />
+
     <Poster
       id="pillarTop"
       uri="https://sthsroku.net/team666/FlappyBird/pillar.png"
-      translation="[860,-10]"
+      translation="[990,350]"
       width="200"   
       height="400"
       visible="true"
+      rotation = "3.1415926535"
     />
 
-      <Poster
+    <Sprite
       id="pillarBottom"
       uri="https://sthsroku.net/team666/FlappyBird/pillar.png"
       translation="[860,670]"
       width="200"   
       height="400"
-      visible="true"
+      visible="true" 
     />
 
-    <Poster
+    <!-- <Sprite
       id="bird"
       uri="https://sthsroku.net/team666/FlappyBird/bird.png"
       width="200"   
       height="200"
       translation="[860,440]"
       visible="true"
-      />
+    /> -->
 
 
 
