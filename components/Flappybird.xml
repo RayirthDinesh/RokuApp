@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<component name="flappyBird" extends="Scene">
+  <script type="text/brightscript" uri="pkg:/components/flappybird.brs"/>
+    <children>
+
+    <Poster
+      id="background"
+      uri="https://sthsroku.net/team666/FlappyBird/FlappyBirdBackground.png"
+      translation="[0, 0]"
+      width="1920"
+      height="1080"
+      visible="true"
+    />
+    <Poster
+      id="pillarTop"
+      uri="https://sthsroku.net/team666/FlappyBird/pillar.png"
+      translation="[860,-10]"
+      width="200"   
+      height="400"
+      visible="true"
+    />
+
+      <Poster
+      id="pillarBottom"
+      uri="https://sthsroku.net/team666/FlappyBird/pillar.png"
+      translation="[860,670]"
+      width="200"   
+      height="400"
+      visible="true"
+    />
+
+    <Poster
+      id="bird"
+      uri="https://sthsroku.net/team666/FlappyBird/bird.png"
+      width="200"   
+      height="200"
+      translation="[860,440]"
+      visible="true"
+      />
+
+
+
+   </children>
+</component>

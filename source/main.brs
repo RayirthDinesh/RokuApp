@@ -3,7 +3,7 @@ sub main()
 
 	screen = createObject("roSGScreen")
 	' scene = screen.createScene("home")
-	scene = screen.createScene("tictactoe")
+	scene = screen.createScene("flappybird")
 	screen.Show()
 	port = createObject("roMessagePort")
 	screen.setMessagePort(m.port)

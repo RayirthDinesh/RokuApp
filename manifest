@@ -4,10 +4,10 @@ major_version=1
 minor_version=0
 build_version=0
 
+mm_icon_focus_hd=pkg:/images/icon.png
 
-mm_icon_focus_hd=https://sthsroku.net/team666/tictactoe/Logo.png
+splash_screen_hd=pkg:/images/loadingScreen.png
+splash_screen_fhd=pkg/images/loadingScreen.png
 
-splash_screen_hd=https://sthsroku.net/team666/tictactoe/TicTacToeLoading.png
-splash_screen_fhd=https://sthsroku.net/team666/tictactoe/TicTacToeLoading.png
 
 ui_resolutions=fhd
