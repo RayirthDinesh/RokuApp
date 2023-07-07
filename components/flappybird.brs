@@ -1,71 +1,49 @@
 sub init()
-    ? "[tictactoe] init" ' essentially a print statment that is called only once
-   
-    pillarTop = m.top.findNode("pillarTop")
-    pillarBottom = m.Top.findNode("pillarBottom")
+    ? "[tictactoe] init"
     bird = m.top.findNode("bird")
+    background = m.top.findNode("background")
 
-    m.global.bal.bird.addFields({bird : bird})
-    m.global.pillarTop.addFields({pillarTop: pillarTop})
-    m.global.pillarBottoaddFields({pillarBottom: pillarBottom})
-    
-    pillarArr = [m.global.pillarTop, m.global.pillarBottom]
-    m.global.addFields({pillarArr : pillarArr})
-    
-    m.global.addFields({playerNotify: m.playerNotify})
+    bird.setFocus(true)
+    ? "[flappybird] init end"
 
-    birdImage = CreateObject("roBitmap","https://sthsroku.net/team666/FlappyBird/bird.png")
-    birdRegion = CreateObject("roRegion", birdImage, 960, 540, 200, 200)
-    birdRegion.SetWrap(true)
-    
     compositor = CreateObject("roCompositor")
-    black=&hFF'RGBA
-    compositor.DetDAllrawTo(birdImage, black)
-    birdSprite = compositor.NewSprite(500, 500, birdRegion, 0)
-    compositor.DrawAll()
-    m.global.addFields({birdSprite : birdSprite})
+    birdImage = CreateObject("roBitmap","pkg:/images/bird.png")
+    birdRegion = CreateObject("roRegion", birdImage, 0, 0, 225, 225)
+
+    m.birdSprite = compositor.NewSprite(960, 540, birdRegion, 0)
+
+    m.global.addFields({bird : bird})
+    m.global.addFields({birdSprite : m.birdSprite})
 end sub
 
 'Handles user input from the remote
 function onKeyEvent(key, press) as Boolean
-    ? "[tictactoe] onKeyEvent"
+    while m.birdSprite.getY() < 1080
+        moveDown()
+    end while
+    ? "onKeyEvent: " key, press
     if press then
         if key = "up" then
-            moveBirdTo(860, 300)
-        else if key = "down" then
-            moveBirdTo(860, 560)
+            moveup()
         end if
     end if
+
+    ' m.birdSprite.MoveOffset(0, 10)
+
+
+    return false
 end function
 
-'Moves bird position to param
-sub moveBirdTo(x,y)
-    m.global.birdSprite.moveTo(x,y)
+sub moveUp()
+    m.birdSprite.MoveOffset(0, -20)
+    updateBird()
 end sub
 
-'**
-'*Checks if the bird collides with the pipe
-'*Assumes that the pipe will be Sprite type
-'*Untested function
-'**/
-function pipeCollision() as Boolean
-     if (birdSprite.checkCollision() = invalid)
-        return false
-     end if
-     
-     return true
-end function
-
-
-
-'**
-'*End the game when the player loses
-'*For now, the app will quit
-'*Untested function
-'**/
-sub gameOver()
-
-    end
-
+sub moveDown()
+    m.birdSprite.MoveOffset(0, 1)
+    updateBird()
 end sub
 
+sub updateBird()
+    m.global.bird.translation = [m.birdSprite.getX(), m.birdSprite.getY()]
+end sub

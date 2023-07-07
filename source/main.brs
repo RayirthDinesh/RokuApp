@@ -1,14 +1,10 @@
 sub main()
-	'create a screen when an app is starting up
-
-	screen = createObject("roSGScreen")
-	' scene = screen.createScene("home")
-	scene = screen.createScene("FlappyBird")
-	screen.Show()
+	screen = CreateObject("roSGScreen")
+	scene = screen.CreateScene("flappybird")
+	screen.show()
 	port = createObject("roMessagePort")
 	screen.setMessagePort(m.port)
 
-'needs this so the screen doesn't close. Every app needs this in order to close immediately
 	while(true)
 		msg = wait(0, m.port)
 		msgType = type(msg)

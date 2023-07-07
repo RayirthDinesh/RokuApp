@@ -1,46 +1,21 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<component name="FlappyBird" extends="Scene">
-  <script type="text/brightscript" uri="pkg:/components/FlappyBird.brs"/>
+<component name="flappybird" extends="Scene">
+  <script type="text/brightscript" uri="pkg:/components/flappybird.brs"/>
     <children>
+      <Poster
+        id="background"
+        uri="pkg:/images/black.png"
+        translation="[0, 0]"
+        width="1920"
+        height="1080"
+      />
 
-    <Poster
-      id="background"
-      uri="https://sthsroku.net/team666/FlappyBird/FlappyBirdBackground.png"
-      translation="[0, 0]"
-      width="1920"
-      height="1080"
-      visible="true"
-    />
-
-    <Poster
-      id="pillarTop"
-      uri="https://sthsroku.net/team666/FlappyBird/pillar.png"
-      translation="[990,350]"
-      width="200"   
-      height="400"
-      visible="true"
-      rotation = "3.1415926535"
-    />
-
-    <Sprite
-      id="pillarBottom"
-      uri="https://sthsroku.net/team666/FlappyBird/pillar.png"
-      translation="[860,670]"
-      width="200"   
-      height="400"
-      visible="true" 
-    />
-
-    <!-- <Sprite
-      id="bird"
-      uri="https://sthsroku.net/team666/FlappyBird/bird.png"
-      width="200"   
-      height="200"
-      translation="[860,440]"
-      visible="true"
-    /> -->
-
-
-
-   </children>
+      <Poster
+        id="bird"
+        uri="https://sthsroku.net/team666/FlappyBird/bird.png"
+        width="200"
+        height="200"
+        translation="[960, 540]"
+      />
+    </children>
 </component>
