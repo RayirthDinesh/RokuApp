@@ -27,5 +27,11 @@
             translation="[0,0]"
             />
 
+        <flappybird
+            id="flappybird"
+            visible="false"
+            translation="[0,0]"
+            />
+
     </children>
 </component>

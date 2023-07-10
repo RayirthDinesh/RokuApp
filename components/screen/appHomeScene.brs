@@ -3,6 +3,7 @@ sub init()
     m.top.observeField("visible", "onVisibleChange")
     m.tictactoe = m.top.findNode("tictactoe")
     m.elevens = m.top.findNode("elevens")
+    m.flappybirdLabel = m.top.findNode("flappybirdLabel")
 
     m.tictactoe.setFocus(true)
   end sub
@@ -22,6 +23,10 @@ sub init()
       else if key ="left" and press then
         m.tictactoe.setFocus(true)
         return true
+      else if key = "down" and press then
+        m.flappybirdLabel.setFocus(true)
+        return true
       end if
+      
     return false
   end function

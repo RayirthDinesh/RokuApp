@@ -5,9 +5,11 @@ sub init()
     m.elevens_scene = m.top.findNode("elevens_scene")
     m.appHomeScene = m.top.findNode("appHomeScene")
     m.ElevensGame = m.top.findNode("ElevensGame")
+    m.flappybird = m.top.findNode("flappybird")
 
     m.appHomeScene.observeField("tictactoe_button", "onTicTacToeButtonSelected")
     m.appHomeScene.observeField("elevens_button", "onElevensButtonSelected")
+    m.appHomeScene.observeField("flappybird_button", "onflappybirdButtonSelected")
 
     m.appHomeScene.setFocus(true)
   end sub
@@ -29,6 +31,15 @@ sub init()
     m.ElevensGame.setFocus(true)
   end function
 
+  function onflappybirdButtonSelected(obj)
+    ? "[homescreen] onflappybirdButtonSelected"
+    m.appHomeScene.visible = false
+    m.appHomeScene.setFocus(false)
+    m.flappybird.visible = true
+    m.flappybird.setFocus(true)
+  end function
+  
+
   function onKeyEvent(key, press) as Boolean
     ? "[homescreen] onKeyEvent" key, press
   if key = "back" and press
@@ -43,6 +54,11 @@ sub init()
         m.appHomeScene.visible = true
         m.appHomeScene.setFocus(true)
         m.top.backgroundURI = "pkg:/images/LinedPaper.jpg"
+        return true
+    else if m.flappybird.visible
+        m.flappybird.visible = false
+        m.appHomeScene.visible = true
+        m.appHomeScene.setFocus(true)
         return true
     end if
   end if

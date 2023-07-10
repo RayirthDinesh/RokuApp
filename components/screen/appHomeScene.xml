@@ -10,6 +10,10 @@
             type="node"
             alias="elevens.buttonSelected"
         />
+        <field id ="flappybird_button"
+            type = "node"
+            alias="flappybird.buttonSelected"
+        />
     </interface>
 
     <children>
@@ -24,7 +28,7 @@
             />
         <Label
             id="TictactoeLabel"
-            text="Tic-Tac-Toe"
+            text="Tic Tac Toe"
             color="0xff0000ff"
             translation = "[550, 250]"
             />
@@ -34,6 +38,12 @@
             color="0xff0000ff"
             translation = "[1170, 250]"
             />
+        <Label
+            id="flappybirdLabel"
+            text="Flappy Bird"
+            color="0xff0000ff"
+            translation = "[860, 350]"
+            />    
         
         <Button
             id="tictactoe"
@@ -56,6 +66,16 @@
             focusFootprintBitmapUri="pkg:/images/ElevensIcon.png"
             showFocusFootprint="true"
             />
+
+        <Button
+            id="flappybird"
+            translation = "[860, 750]"
+            minWidth="1"
+            maxWidth="1"
+            height="1"
+            iconUri="pkg:/images/FlappyBirdIcon.png"
+            focusedIconUri="pkg:/images/TictactoeBoxing.png"
+            />    
 
     </children>
 </component>
