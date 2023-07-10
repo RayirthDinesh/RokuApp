@@ -4,10 +4,34 @@
     <children>
       <Poster
         id="background"
-        uri="pkg:/images/black.png"
+        uri="https://sthsroku.net/team666/FlappyBird/background.png"
         translation="[0, 0]"
         width="1920"
         height="1080"
+      />
+
+      <Poster
+        id="ground"
+        uri="https://sthsroku.net/team666/FlappyBird/Ground.png"
+        width="200"
+        height="1080"
+        translation="[1920, 0]"
+      />
+
+      <Poster
+        id="pillarTop"
+        uri="https://sthsroku.net/team666/FlappyBird/pillar.png"
+        width="200"
+        height="500"
+        translation="[1000, 500]"
+      />
+
+      <Poster
+        id="pillarBottom"
+        uri="https://sthsroku.net/team666/FlappyBird/pillar.png"
+        width="200"
+        height="500"
+        translation="[1000, 1000]"
       />
 
       <Poster
@@ -16,6 +40,28 @@
         width="200"
         height="200"
         translation="[960, 540]"
+      />
+
+      <Poster
+        id="title"
+        uri="https://sthsroku.net/team666/FlappyBird/FlappyBird.png"
+        width="500"
+        height="200"
+        translation="[200, 75]"
+      />
+
+      <Poster
+        id="startButton"
+        uri="https://sthsroku.net/team666/FlappyBird/StartButton.png"
+        width="200"
+        height="500"
+        translation="[200, 75]"
+      />
+
+      <Timer
+        id="flappyTimer"
+        repeat="true"
+        duration="0.1"
       />
     </children>
 </component>
