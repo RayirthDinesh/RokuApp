@@ -11,19 +11,12 @@
       />
 
       <Poster
-        id="ground"
-        uri="https://sthsroku.net/team666/FlappyBird/Ground.png"
-        width="200"
-        height="1080"
-        translation="[1920, 0]"
-      />
-
-      <Poster
         id="pillarTop"
         uri="https://sthsroku.net/team666/FlappyBird/pillar.png"
         width="200"
         height="500"
-        translation="[1000, 500]"
+        translation="[300, 500]"
+        rotation="3.1415926598"
       />
 
       <Poster
@@ -31,7 +24,7 @@
         uri="https://sthsroku.net/team666/FlappyBird/pillar.png"
         width="200"
         height="500"
-        translation="[1000, 1000]"
+        translation="[1000, 580]"
       />
 
       <Poster
@@ -42,21 +35,29 @@
         translation="[960, 540]"
       />
 
-      <Poster
+      <!-- <Poster
         id="title"
         uri="https://sthsroku.net/team666/FlappyBird/FlappyBird.png"
         width="500"
         height="200"
-        translation="[200, 75]"
-      />
+        translation="[2, 75]"
+      /> -->
 
-      <Poster
+      <!-- <Poster
         id="startButton"
-        uri="https://sthsroku.net/team666/FlappyBird/StartButton.png"
+        uri="https://sthsroku.net/team666/FlappyBird/Start.png"
+        width="200"
+        height="500"
+        translation="[490, 0]"
+      /> -->
+<!--
+      <Poster
+        id="ground"
+        uri="https://sthsroku.net/team666/FlappyBird/Ground.png"
         width="200"
         height="500"
         translation="[200, 75]"
-      />
+      /> -->
 
       <Timer
         id="flappyTimer"
