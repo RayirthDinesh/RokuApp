@@ -5,9 +5,10 @@
       <Poster
         id="background"
         uri="https://sthsroku.net/team666/FlappyBird/background.png"
-        translation="[0, 0]"
+        translation="[-160, 0]"
         width="1920"
         height="1080"
+        clippingRect="[750, 0, 750, 1080]"
       />
 
       <Poster
@@ -15,8 +16,8 @@
         uri="https://sthsroku.net/team666/FlappyBird/pillar.png"
         width="200"
         height="500"
-        translation="[300, 500]"
-        rotation="3.1415926598"
+        translation="[1000, 500]"
+        rotation="3.1415926535"
       />
 
       <Poster
@@ -35,21 +36,21 @@
         translation="[960, 540]"
       />
 
-      <!-- <Poster
+      <Poster
         id="title"
         uri="https://sthsroku.net/team666/FlappyBird/FlappyBird.png"
-        width="500"
-        height="200"
-        translation="[2, 75]"
-      /> -->
+        width="700"
+        height="180"
+        translation="[710, 150]"
+      />
 
-      <!-- <Poster
+      <Poster
         id="startButton"
         uri="https://sthsroku.net/team666/FlappyBird/Start.png"
         width="200"
-        height="500"
+        height="66.66"
         translation="[490, 0]"
-      /> -->
+      />
 <!--
       <Poster
         id="ground"
