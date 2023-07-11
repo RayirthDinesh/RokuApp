@@ -9,7 +9,7 @@ sub init()
 
     m.appHomeScene.observeField("tictactoe_button", "onTicTacToeButtonSelected")
     m.appHomeScene.observeField("elevens_button", "onElevensButtonSelected")
-    m.appHomeScene.observeField("flappybird_button", "onflappybirdButtonSelected")
+    m.appHomeScene.observeField("flappybird_button", "onFlappyBirdButtonSelected")
 
     m.appHomeScene.setFocus(true)
   end sub
@@ -20,7 +20,7 @@ sub init()
     m.appHomeScene.setFocus(false)
     m.tictactoe_scene.visible = true
     m.tictactoe_scene.setFocus(true)
-    m.top.backgroundURI = "pkg:/images/background.png"
+    m.top.backgroundURI = "https://sthsroku.net/team666/tictactoe/background.png"
   end function
 
   function onElevensButtonSelected(obj)
@@ -31,7 +31,7 @@ sub init()
     m.ElevensGame.setFocus(true)
   end function
 
-  function onflappybirdButtonSelected(obj)
+  function onFlappyBirdButtonSelected(obj)
     ? "[homescreen] onflappybirdButtonSelected"
     m.appHomeScene.visible = false
     m.appHomeScene.setFocus(false)
@@ -59,6 +59,7 @@ sub init()
         m.flappybird.visible = false
         m.appHomeScene.visible = true
         m.appHomeScene.setFocus(true)
+        m.top.backgroundURI = "pkg:/images/LinedPaper.jpg"
         return true
     end if
   end if

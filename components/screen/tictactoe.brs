@@ -1,6 +1,5 @@
 sub init()
   ? "[tictactoe] init" ' essentially a print statment that is called only once
-  m.top.backgroundURI = "https://sthsroku.net/team666/tictactoe/background.png"
   m.gamename = m.top.findNode("gamename")
   m.poster = m.top.findNode("tictactoe")
   m.playerNotify = m.top.findNode("playerNotify")

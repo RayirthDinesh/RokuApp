@@ -15,12 +15,6 @@
             translation="[0,0]"
             />
 
-        <elevens_scene
-            id="elevens_scene"
-            visible="false"
-            translation="[0,0]"
-            />
-
         <ElevensGame
             id="ElevensGame"
             visible="false"

@@ -21,7 +21,7 @@
             id="PickGameLabel"
             text="Pick Games To Play"
             color="0xff0000ff"
-            translation = "[770, 100]"
+            translation = "[715, 100]"
             font="font:LargeBoldSystemFont"
             horizAlign = "center"
             vertAlign = "center"
@@ -38,43 +38,44 @@
             color="0xff0000ff"
             translation = "[1170, 250]"
             />
+
         <Label
             id="flappybirdLabel"
             text="Flappy Bird"
             color="0xff0000ff"
-            translation = "[860, 350]"
+            translation = "[840, 660]"
             />    
         
         <Button
             id="tictactoe"
-            translation = "[420, 500]"
+            translation = "[458, 465]"
             minWidth="1"
             maxWidth="1"
             height="1"
             iconUri="pkg:/images/Tictactoe.png"
-            focusedIconUri="pkg:/images/TictactoeBoxing.png"
+            focusedIconUri="pkg:/images/Tictactoe.png"
             />
 
         <Button
             id="elevens"
-            translation = "[1020, 500]"
+            translation = "[1048, 465]"
             minWidth="1"
             maxWidth="1"
             height="1"
             iconUri="pkg:/images/ElevensIcon.png"
-            focusedIconUri="pkg:/images/ElevensIconBoxing.png"
+            focusedIconUri="pkg:/images/ElevensIcon.png"
             focusFootprintBitmapUri="pkg:/images/ElevensIcon.png"
             showFocusFootprint="true"
             />
 
         <Button
             id="flappybird"
-            translation = "[860, 750]"
+            translation = "[755, 875]"
             minWidth="1"
             maxWidth="1"
             height="1"
             iconUri="pkg:/images/FlappyBirdIcon.png"
-            focusedIconUri="pkg:/images/TictactoeBoxing.png"
+            focusedIconUri="pkg:/images/FlappyBirdIcon.png"
             />    
 
     </children>
