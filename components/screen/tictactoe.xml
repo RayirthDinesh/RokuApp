@@ -11,9 +11,9 @@
     horizAlign = "center"
     vertAlign = "center"
     />
- <Poster
+    <Poster
       id="tictactoe"
-      uri="pkg:/images/board.png"
+      uri="https://sthsroku.net/team666/tictactoe/board.png"
       translation="[560, 160]"
       width="800"
       height="800"
@@ -22,11 +22,9 @@
     <Button id="r0c0"
     text=""
     textColor="0xff0000ff"
-    iconUri="pkg:/images/blank.png"
+    iconUri="https://sthsroku.net/team666/tictactoe/blank.png"
     focusedTextColor="0xff0000ff"
-    focusedIconUri="pkg:/images/square.png"
-    focusBitmapUri="pkg:/images/whiteO.png"
-    focusFootprintBitmapUri="whiteO.png"
+    focusedIconUri="https://sthsroku.net/team666/tictactoe/square.png"
     minWidth="1"
     maxWidth="1"
     height="1"
@@ -37,9 +35,9 @@
     <Button id="r0c1"
     text=""
     textColor="0xff0000ff"
-    iconUri="pkg:/images/blank.png"
+    iconUri="https://sthsroku.net/team666/tictactoe/blank.png"
     focusedTextColor="0xff0000ff"
-    focusedIconUri="pkg:/images/square.png"
+    focusedIconUri="https://sthsroku.net/team666/tictactoe/square.png"
     minWidth="1" maxWidth="1"
     height="1"
     translation="[772.67, 300]"/>
@@ -47,9 +45,9 @@
     <Button id="r0c2"
     text=""
     textColor="0xff0000ff"
-    iconUri="pkg:/images/blank.png"
+    iconUri="https://sthsroku.net/team666/tictactoe/blank.png"
     focusedTextColor="0xff0000ff"
-    focusedIconUri="pkg:/images/square.png"
+    focusedIconUri="https://sthsroku.net/team666/tictactoe/square.png"
     minWidth="1"
     maxWidth="1"
     height="1"
@@ -58,9 +56,9 @@
     <Button id="r1c0"
     text=""
     textColor="0xff0000ff"
-    iconUri="pkg:/images/blank.png"
+    iconUri="https://sthsroku.net/team666/tictactoe/blank.png"
     focusedTextColor="0xff0000ff"
-    focusedIconUri="pkg:/images/square.png"
+    focusedIconUri="https://sthsroku.net/team666/tictactoe/square.png"
     minWidth="1"
     maxWidth="1"
     height="1"
@@ -69,9 +67,10 @@
     <Button id="r1c1"
     text=""
     textColor="0xff0000ff"
-    iconUri="pkg:/images/blank.png"
+    iconUri="https://sthsroku.net/team666/tictactoe/blank.png"
     focusedTextColor="0xff0000ff"
-    focusedIconUri="pkg:/images/redX.jpg"
+    focusedIconUri="https://sthsroku.net/team666/tictactoe/square.png"
+    minWidth="1"
     minWidth="1"
     maxWidth="1"
     height="1"
@@ -80,9 +79,9 @@
     <Button id="r1c2"
     text=""
     textColor="0xff0000ff"
-    iconUri="pkg:/images/blank.png"
+    iconUri="https://sthsroku.net/team666/tictactoe/blank.png"
     focusedTextColor="0xff0000ff"
-    focusedIconUri="pkg:/images/square.png"
+    focusedIconUri="https://sthsroku.net/team666/tictactoe/square.png"
     minWidth="1"
     maxWidth="1"
     height="1"
@@ -91,9 +90,9 @@
     <Button id="r2c0"
     text=""
     textColor="0xff0000ff"
-    iconUri="pkg:/images/blank.png"
+    iconUri="https://sthsroku.net/team666/tictactoe/blank.png"
     focusedTextColor="0xff0000ff"
-    focusedIconUri="pkg:/images/square.png"
+    focusedIconUri="https://sthsroku.net/team666/tictactoe/square.png"
     minWidth="1"
     maxWidth="1"
     height="1"
@@ -102,9 +101,9 @@
     <Button id="r2c1"
     text=""
     textColor="0xff0000ff"
-    iconUri="pkg:/images/blank.png"
+    iconUri="https://sthsroku.net/team666/tictactoe/blank.png"
     focusedTextColor="0xff0000ff"
-    focusedIconUri="pkg:/images/square.png"
+    focusedIconUri="https://sthsroku.net/team666/tictactoe/square.png"
     minWidth="1"
     maxWidth="1"
     height="1"
@@ -113,15 +112,68 @@
     <Button id="r2c2"
     text=""
     textColor="0xff0000ff"
-    iconUri="pkg:/images/blank.png"
+    iconUri="https://sthsroku.net/team666/tictactoe/blank.png"
     focusedTextColor="0xff0000ff"
-    focusedIconUri="pkg:/images/square.png"
+    focusedIconUri="https://sthsroku.net/team666/tictactoe/square.png"
     minWidth="1"
     maxWidth="1"
     height="1"
     translation="[1013.34, 820.34]"/>
 
-    <Label
+  <Button
+    id="Player"
+    translation="[25, 700]"
+    iconUri="https://sthsroku.net/team666/tictactoe/playervsplayerbig.pngt"
+    focusedIconUri = "https://sthsroku.net/team666/tictactoe/playervsplayer.png"
+    mminWidth="1"
+    maxWidth="1"
+    height="1"
+  />
+
+  <Button
+    id="Easy"
+    translation="[25, 700]"
+    iconUri="https://sthsroku.net/team666/tictactoe/easy.png"
+    focusedIconUri = "https://sthsroku.net/team666/tictactoe/easysmall.png"
+    visible="false"
+    minWidth="1"
+    maxWidth="1"
+    height="1"
+  />
+
+  <Button
+    id="Medium"
+    translation="[25, 770]"
+    iconUri="https://sthsroku.net/team666/tictactoe/medium.png"
+    focusedIconUri = "https://sthsroku.net/team666/tictactoe/mediumsmall.png"
+    visible="false"
+    minWidth="1"
+    maxWidth="1"
+    height="1"
+  />
+
+  <Button
+    id="Hard"
+    translation="[25, 840]"
+    iconUri = "https://sthsroku.net/team666/tictactoe/hard.png"
+    focusedIconUri = "https://sthsroku.net/team666/tictactoe/hardsmall.png"
+    visible="false"
+    minWidth="1"
+    maxWidth="1"
+    height="1"
+  />
+  
+  <Button
+    id="Computer"
+    translation="[25, 325]"
+    iconUri="https://sthsroku.net/team666/tictactoe/playervscomputerbig.png"
+    focusedIconUri="https://sthsroku.net/team666/tictactoe/playervscomputer.png"
+    minWidth="1"
+    maxWidth="1"
+    height="1"
+  />
+
+  <Label
     id="playerNotify"
     text="Player X's Turn"
     visible="true"
@@ -131,7 +183,7 @@
     height="50"
     horizAlign = "center"
     vertAlign = "center"
-    />
+  />
 
   </children>
 </component>
