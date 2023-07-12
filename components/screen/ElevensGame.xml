@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<component name="ElevensGame" extends="Group">
+  <script type="text/brightscript" uri="pkg:/components/screen/ElevensGame.brs"/>
+    <children>
+
+    <Poster
+      id="ElevensGame"
+      uri="https://sthsroku.net/team666/elevens/background.png"
+      width="1920"
+      height="1080"
+      translation="[0, 0]"
+    />
+    <Poster
+      id = "cardPoster00"
+      uri = "https://sthsroku.net/team666/elevens/CardHighlight.png"
+      translation="[622.5, 89]"
+      width="215"
+      height="322"
+      visible="false"
+      />
+
+    <Poster
+      id = "cardPoster01"
+      uri = "https://sthsroku.net/team666/elevens/CardHighlight.png"
+      translation="[852.5, 89]"
+      width="215"
+      height="322"
+      visible="false"
+    />
+
+    <Poster
+      id = "cardPoster02"
+      uri = "https://sthsroku.net/team666/elevens/CardHighlight.png"
+      translation="[1082.5, 89]"
+      width="215"
+      height="322"
+      visible="false"
+    />
+
+    <Poster
+      id = "cardPoster10"
+      uri = "https://sthsroku.net/team666/elevens/CardHighlight.png"
+      translation="[622.5, 419]"
+      width="215"
+      height="322"
+      visible="false"
+    />
+
+    <Poster
+      id = "cardPoster11"
+      uri = "https://sthsroku.net/team666/elevens/CardHighlight.png"
+      translation="[852.5, 419]"
+      width="215"
+      height="322"
+      visible="true"
+    />
+
+    <Poster
+      id = "cardPoster12"
+      uri = "https://sthsroku.net/team666/elevens/CardHighlight.png"
+      translation="[1082.5, 419]"
+      width="215"
+      height="322"
+      visible="false"
+    />
+
+    <Poster
+      id = "cardPoster20"
+      uri = "https://sthsroku.net/team666/elevens/CardHighlight.png"
+      translation="[622.5, 749]"
+      width="215"
+      height="322"
+      visible="false"
+    />
+
+    <Poster
+      id = "cardPoster21"
+      uri = "https://sthsroku.net/team666/elevens/CardHighlight.png"
+      translation="[852.5, 749]"
+      width="215"
+      height="322"
+      visible="false"
+    />
+
+    <Poster
+      id = "cardPoster22"
+      uri = "https://sthsroku.net/team666/elevens/CardHighlight.png"
+      translation="[1082.5, 749]"
+      width="215"
+      height="322"
+      visible="false"
+    />
+
+    <Poster id="card00"
+      uri="https://sthsroku.net/team666/elevens/Cards/ace_of_clubs.png"
+      width="200"
+      height="300"
+      translation="[630, 100]"
+    />
+
+    <Poster id="card01"
+      uri="https://sthsroku.net/team666/elevens/square.png"
+      width="200"
+      height="300"
+      translation="[860, 100]"
+    />
+
+    <Poster id="card02"
+      uri="https://sthsroku.net/team666/elevens/square.png"
+      width="200"
+      height="300"
+      translation="[1090, 100]"
+    />
+
+    <Poster id="card10"
+      uri="https://sthsroku.net/team666/elevens/square.png"
+      width="200"
+      height="300"
+      translation="[630, 430]"
+    />
+
+    <Poster id="card11"
+      uri="https://sthsroku.net/team666/elevens/square.png"
+      width="200"
+      height="300"
+      translation="[860, 430]"
+    />
+
+    <Poster id="card12"
+      uri="https://sthsroku.net/team666/elevens/square.png"
+      width="200"
+      height="300"
+      translation="[1090, 430]"
+    />
+
+    <Poster id="card20"
+      uri="https://sthsroku.net/team666/elevens/square.png"
+      width="200"
+      height="300"
+      translation="[630, 760]"
+    />
+
+    <Poster id="card21"
+      uri="https://sthsroku.net/team666/elevens/square.png"
+      width="200"
+      height="300"
+      translation="[860, 760]"
+    />
+
+    <Poster id="card22"
+      uri="https://sthsroku.net/team666/elevens/square.png"
+      width="200"
+      height="300"
+      translation="[1090, 760]"
+    />
+
+    <Poster
+      id = "cardSelectedPoster00"
+      uri = "https://sthsroku.net/team666/elevens/CardSelectedHighlight.png"
+      translation="[622.5, 89]"
+      width="215"
+      height="322"
+      visible="false"
+      opacity="0.7"
+      />
+
+    <Poster
+      id = "cardSelectedPoster01"
+      uri = "https://sthsroku.net/team666/elevens/CardSelectedHighlight.png"
+      translation="[852.5, 89]"
+      width="215"
+      height="322"
+      visible="false"
+      opacity="0.7"
+    />
+
+    <Poster
+      id = "cardSelectedPoster02"
+      uri = "https://sthsroku.net/team666/elevens/CardSelectedHighlight.png"
+      translation="[1082.5, 89]"
+      width="215"
+      height="322"
+      visible="false"
+      opacity="0.7"
+    />
+
+    <Poster
+      id = "cardSelectedPoster10"
+      uri = "https://sthsroku.net/team666/elevens/CardSelectedHighlight.png"
+      translation="[622.5, 419]"
+      width="215"
+      height="322"
+      visible="false"
+      opacity="0.7"
+    />
+
+    <Poster
+      id = "cardSelectedPoster11"
+      uri = "https://sthsroku.net/team666/elevens/CardSelectedHighlight.png"
+      translation="[852.5, 419]"
+      width="215"
+      height="322"
+      visible="false"
+      opacity="0.7"
+    />
+
+    <Poster
+      id = "cardSelectedPoster12"
+      uri = "https://sthsroku.net/team666/elevens/CardSelectedHighlight.png"
+      translation="[1082.5, 419]"
+      width="215"
+      height="322"
+      visible="false"
+      opacity="0.7"
+    />
+
+    <Poster
+      id = "cardSelectedPoster20"
+      uri = "https://sthsroku.net/team666/elevens/CardSelectedHighlight.png"
+      translation="[622.5, 749]"
+      width="215"
+      height="322"
+      visible="false"
+      opacity="0.7"
+    />
+
+    <Poster
+      id = "cardSelectedPoster21"
+      uri = "https://sthsroku.net/team666/elevens/CardSelectedHighlight.png"
+      translation="[852.5, 749]"
+      width="215"
+      height="322"
+      visible="false"
+      opacity="0.7"
+    />
+
+    <Poster
+      id = "cardSelectedPoster22"
+      uri = "https://sthsroku.net/team666/elevens/CardSelectedHighlight.png"
+      translation="[1082.5, 749]"
+      width="215"
+      height="322"
+      visible="false"
+      opacity="0.7"
+    />
+
+    <Button
+      id = "playAgain"
+      text = "Play Again? Press OK"
+      focusedIconUri = "https://sthsroku.net/team666/ElevensGame/blank.png"
+      visible = "false"
+      minWidth = "1" maxWidth="1"
+      translation = "[1920, 1080]"
+    />
+
+    <Poster
+      id = "playAgainPoster"
+      uri = "https://sthsroku.net/team666/ElevensGame/playAgain.png"
+      visible = "false"
+      width = "400"
+      height = "200"
+      translation = "[760, 460]"
+    />
+  </children>
+</component>

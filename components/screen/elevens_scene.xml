@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<component name="elevens_scene" extends="Group">
+    <script type="text/brightscript" uri="pkg:/components/screen/elevens_scene.brs"/>
+    <children>
+        <Label
+        id="gamename"
+        text="Elevens"
+        color="0xff0000ff"
+        visible="true"
+        translation="[870,100]"
+        horizAlign = "center"
+        vertAlign = "center"
+        font="font:LargeBoldSystemFont"
+        />
+        
+        <Button
+        id="play1"
+        Text="Play1"
+        translation = "[420, 500]"
+        visible="true"
+        />
+
+        <Button
+        id="play2"
+        Text="Play2"
+        translation = "[820, 500]"
+        visible="true"
+        />
+    </children>
+</component>

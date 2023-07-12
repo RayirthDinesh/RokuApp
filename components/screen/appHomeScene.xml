@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<component name="appHomeScene" extends="Group" initialFocus="tictactoe">
+<script type="text/brightscript" uri="pkg:/components/screen/appHomeScene.brs"/>
+    <interface>
+        <field id="tictactoe_button"
+            type="node"
+            alias="tictactoe.buttonSelected"
+        />
+        <field id="elevens_button"
+            type="node"
+            alias="elevens.buttonSelected"
+        />
+    </interface>
+
+    <children>
+        <Label
+            id="PickGameLabel"
+            text="Pick Games To Play"
+            color="0xff0000ff"
+            translation = "[770, 100]"
+            font="font:LargeBoldSystemFont"
+            horizAlign = "center"
+            vertAlign = "center"
+            />
+        <Label
+            id="TictactoeLabel"
+            text="Tic-Tac-Toe"
+            color="0xff0000ff"
+            translation = "[550, 250]"
+            />
+        <Label
+            id="ElevensLabel"
+            text="Elevens"
+            color="0xff0000ff"
+            translation = "[1170, 250]"
+            />
+        
+        <Button
+            id="tictactoe"
+            translation = "[420, 500]"
+            minWidth="1"
+            maxWidth="1"
+            height="1"
+            iconUri="pkg:/images/Tictactoe.png"
+            focusedIconUri="pkg:/images/TictactoeBoxing.png"
+            />
+
+        <Button
+            id="elevens"
+            translation = "[1020, 500]"
+            minWidth="1"
+            maxWidth="1"
+            height="1"
+            iconUri="pkg:/images/ElevensIcon.png"
+            focusedIconUri="pkg:/images/ElevensIconBoxing.png"
+            focusFootprintBitmapUri="pkg:/images/ElevensIcon.png"
+            showFocusFootprint="true"
+            />
+
+    </children>
+</component>
