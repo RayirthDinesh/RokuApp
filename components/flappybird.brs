@@ -5,6 +5,7 @@ pillarTop = m.top.findNode("pillarTop")
 pillarBottom = m.top.findNode("pillarBottom")
 background = m.top.findNode("background")
 m.timer = m.top.findNode("flappyTimer")
+m.uptimer = m.top.findNode("UpTimer")
 counterLabel = m.top.findNode("score")
 title = m.top.findNode("title")
 
@@ -18,7 +19,6 @@ birdRegion = CreateObject("roRegion", birdImage, 0, 0, 225, 225)
 
 m.birdSprite = compositor.NewSprite(870, 540, birdRegion, 0)
 
-
 ground = m.top.findNode("ground")
 
 m.global.addFields({bird : bird})
@@ -28,12 +28,12 @@ m.global.addFields({pillarTop : pillarTop})
 pillarTopImage = CreateObject("roBitmap", "pkg:/images/pillarTop.png")
 pillarTopRegion = CreateObject("roRegion", pillarTopImage, 0, 0, 65, 400)
 
-m.pillarTopSprite = compositor.NewSprite(1000, 500, pillarTopRegion, 0)
+m.pillarTopSprite = compositor.NewSprite(1190, -10, pillarTopRegion, 0)
 
 pillarBottomImage = CreateObject("roBitmap", "pkg:/images/pillar.png")
 pillarBottomRegion = CreateObject("roRegion", pillarBottomImage, 0, 0, 65, 400)
 
-m.pillarBottomSprite = compositor.NewSprite(1000, 580, pillarBottomRegion, 0)
+m.pillarBottomSprite = compositor.NewSprite(1190, 650, pillarBottomRegion, 0)
 
 m.arraySprites = CreateObject("roArray", 1, true)
 m.arraySprites.push(m.pillarTopSprite)
@@ -57,7 +57,7 @@ function onKeyEvent(key, press) as boolean
         startGame()
         m.global.title.visible = false
         m.global.counter = 0
-        slide()
+        
     else if key = "OK" and m.global.counter > -1  then' and not checkMultipleCollision()'  
         moveUp()
         m.global.counter =  m.global.counter + 1
@@ -68,10 +68,11 @@ function onKeyEvent(key, press) as boolean
             end if    
             m.global.clickCount = m.global.clickCount + 1
     end if
-  
     if m.timer.control = "stop" and m.global.clickCount > 0 then
-        sleep(100)
-        m.timer.control = "start"
+        m.uptimer.control = "start"
+        if m.uptimer.control = "stop" then
+            m.timer.control = "start"
+        end if
     end if
     return false
 end function
@@ -103,11 +104,12 @@ end sub
 
 sub moveDown()
     ' if not checkMultipleCollision then
-    if m.birdSprite.getY() <= 850 then
+    if m.birdSprite.getY() <= 880 then
         m.birdSprite.MoveOffset(0, 40)
         updateBird()
     end if
     ' end if
+    
 end sub
 
 sub moveRightGround()
@@ -125,10 +127,13 @@ end sub
 ' end function
 
 sub slide()
-    if not m.pillarTopSprite.getX() >= 750 and not m.pillarBottomSprite.getX() >= 750
+    if m.pillarBottomSprite.getX() > 750 and m.pillarTopSprite.getX() < 1500
         m.pillarBottomSprite.MoveOffset(-70,0)
         m.pillarTopSprite.MoveOffSet(-70,0)
         updatePillar()
+    else
+        m.global.pillarBottom.translation = [1190, 650]
+        m.global.pillarTop.translation = [1190, -10]
     end if
 end sub
 

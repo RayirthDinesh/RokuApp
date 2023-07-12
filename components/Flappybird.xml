@@ -49,7 +49,7 @@
       height="100"
       translation="[585,1000]"
     /> -->
-    <Video
+    <Poster
       id ="ground"
       uri ="https://sthsroku.net/team666/FlappyBird/flappyBirdGround.gif"
       width ="750"
@@ -57,8 +57,33 @@
       translation ="[585,1000]"
       looping ="true"
       controls = "play"
+    />
+
+
+      <!-- <Poster 
+      id="ground"
+      opacity="1.0"
+      uri="https://sthsroku.net/team666/FlappyBird/flappyBirdGround.gif" 
       />
-    
+      <Animation id="scaleAnimation"
+            duration="1"
+            repeat="true"
+            easeFunction="linear" >
+          <Vector2DFieldInterpolator id = "myInterp"
+          key="[0.0, 0.25, 0.5, 0.75, 1.0]"
+          keyValue="[ [0.0, 0.0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1.0, 1.0]]"
+          fieldToInterp="myPoster.scale" />
+      </Animation>
+      <Animation id="transAnimation"
+            duration="1"
+            repeat="true"
+            easeFunction="linear" >
+          <Vector2DFieldInterpolator id = "myInterp2"
+              key="[0.0, 1.0]"
+              keyValue="[ [640.0, 320.0], [100.0, 100.0] ]"
+          fieldToInterp="myPoster.translation" />
+      </Animation>
+               -->
     <Poster
       id="bird"
       uri="https://sthsroku.net/team666/FlappyBird/bird.png"
@@ -110,6 +135,12 @@
       id="flappyTimer"
       repeat="true"
       duration="0.1"
+    />
+
+    <Timer
+      id ="UpTimer"
+      repeat="false"
+      duration="5"
     />
 
   </children>
