@@ -16,8 +16,7 @@
       uri="https://sthsroku.net/team666/FlappyBird/pillarTop.png"
       width="150"
       height="450"
-      translation="[1190,-10]"
-    
+      translation="[1390, -10]"
     />
 
     <Poster
@@ -25,65 +24,40 @@
       uri="https://sthsroku.net/team666/FlappyBird/pillar.png"
       width="150"
       height="450"
-      translation="[1190,650]"
+      translation="[1390, 650]"
     />
 
-    <!-- <Animation 
-      id="groundAnimation"
-      duration="10000000"
-      repeat="true"
-      easeFunction="linear" 
-      uri="https://sthsroku.net/team666/FlappyBird/FlappyGround.png"
-      >
-      <Vector2DFieldInterpolator 
-        id = "myInterp2"
-        key="[0.0, 1.0]"
-        keyValue="[ [640.0, 320.0], [100.0, 100.0] ]"
-        fieldToInterp="myPoster.translation" 
-       />
-    </Animation>
-      <Poster
-      id="ground"
-      uri="https://sthsroku.net/team666/FlappyBird/FlappyGround.png"
-      width="750"
-      height="100"
-      translation="[585,1000]"
-    /> -->
     <Poster
-      id ="ground"
-      uri ="https://sthsroku.net/team666/FlappyBird/flappyBirdGround.gif"
-      width ="750"
-      height ="100"
-      translation ="[585,1000]"
-      looping ="true"
-      controls = "play"
+      id="pillarTopSecond"
+      uri="https://sthsroku.net/team666/FlappyBird/pillarTop.png"
+      width="150"
+      height="450"
+      translation="[1790, -10]"
     />
 
+    <Poster
+      id="pillarBottomSecond"
+      uri="https://sthsroku.net/team666/FlappyBird/pillar.png"
+      width="150"
+      height="450"
+      translation="[1990, 650]"
+    />
 
-      <!-- <Poster 
-      id="ground"
-      opacity="1.0"
-      uri="https://sthsroku.net/team666/FlappyBird/flappyBirdGround.gif" 
-      />
-      <Animation id="scaleAnimation"
-            duration="1"
-            repeat="true"
-            easeFunction="linear" >
-          <Vector2DFieldInterpolator id = "myInterp"
-          key="[0.0, 0.25, 0.5, 0.75, 1.0]"
-          keyValue="[ [0.0, 0.0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1.0, 1.0]]"
-          fieldToInterp="myPoster.scale" />
-      </Animation>
-      <Animation id="transAnimation"
-            duration="1"
-            repeat="true"
-            easeFunction="linear" >
-          <Vector2DFieldInterpolator id = "myInterp2"
-              key="[0.0, 1.0]"
-              keyValue="[ [640.0, 320.0], [100.0, 100.0] ]"
-          fieldToInterp="myPoster.translation" />
-      </Animation>
-               -->
+    <Poster
+      id = "blackPosterOne"
+      uri = "pkg:/images/black.png"
+      width ="585"
+      height = "1080"
+    />
+
+    <Poster
+      id = "blackPosterSecond"
+      uri = "pkg:/images/black.png"
+      width = "800"
+      height = "1080"
+      translation = "[1305, 0]"
+    />
+
     <Poster
       id="bird"
       uri="https://sthsroku.net/team666/FlappyBird/bird.png"
@@ -106,9 +80,6 @@
       width="400"
       height="133.132"
       translation="[760, 750]"
-      minWidth="1"
-      maxWidth="1"
-      focusedIconUri="https://sthsroku.net/team666/FlappyBird/Start.png"
     />
 
     <Label
@@ -122,14 +93,37 @@
       vertAlign="center"
       color="0xFFFF00FF"
     />
-    <!--
-      <Poster
-        id="ground"
-        uri="https://sthsroku.net/team666/FlappyBird/Ground.png"
-        width="200"
-        height="500"
-        translation="[200, 75]"
+
+    <!-- <Poster
+      id="ground"
+      uri="pkg:/images/ground1.png"
+      width="750"
+      height="100"
+      translation="[1920, 1000]"
       /> -->
+
+    <!-- <Poster id="ground"
+        opacity="1.0"
+        uri="https://sthsroku.net/team666/FlappyBird/ground1.png" />
+    <Animation id="scaleAnimation"
+          duration="1"
+          repeat="true"
+          easeFunction="linear" >
+        <Vector2DFieldInterpolator id = "myInterp"
+        key="[0.0, 0.25, 0.5, 0.75, 1.0]"
+        keyValue="[ [0.0, 0.0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1.0, 1.0]]"
+        fieldToInterp="ground.scale" />
+    </Animation>
+    <Animation id="transAnimation"
+          duration="1"
+          repeat="true"
+          easeFunction="linear" >
+        <Vector2DFieldInterpolator id = "myInterp2"
+            key="[0.0, 1.0]"
+            keyValue="[ [640.0, 320.0], [100.0, 100.0] ]"
+        fieldToInterp="ground.translation" />
+    </Animation> -->
+
 
     <Timer
       id="flappyTimer"
