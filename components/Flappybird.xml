@@ -13,27 +13,58 @@
 
     <Poster
       id="pillarTop"
-      uri="https://sthsroku.net/team666/FlappyBird/pillar.png"
+      uri="https://sthsroku.net/team666/FlappyBird/pillarTop.png"
       width="150"
-      height="500"
-      translation="[1100, 460]"
-      rotation="3.1415926535"
+      height="450"
+      translation="[1190,-10]"
+    
     />
 
     <Poster
       id="pillarBottom"
       uri="https://sthsroku.net/team666/FlappyBird/pillar.png"
       width="150"
-      height="500"
-      translation="[1000, 600]"
+      height="450"
+      translation="[1190,650]"
     />
 
+    <!-- <Animation 
+      id="groundAnimation"
+      duration="10000000"
+      repeat="true"
+      easeFunction="linear" 
+      uri="https://sthsroku.net/team666/FlappyBird/FlappyGround.png"
+      >
+      <Vector2DFieldInterpolator 
+        id = "myInterp2"
+        key="[0.0, 1.0]"
+        keyValue="[ [640.0, 320.0], [100.0, 100.0] ]"
+        fieldToInterp="myPoster.translation" 
+       />
+    </Animation>
+      <Poster
+      id="ground"
+      uri="https://sthsroku.net/team666/FlappyBird/FlappyGround.png"
+      width="750"
+      height="100"
+      translation="[585,1000]"
+    /> -->
+    <Video
+      id ="ground"
+      uri ="https://sthsroku.net/team666/FlappyBird/flappyBirdGround.gif"
+      width ="750"
+      height ="100"
+      translation ="[585,1000]"
+      looping ="true"
+      controls = "play"
+      />
+    
     <Poster
       id="bird"
       uri="https://sthsroku.net/team666/FlappyBird/bird.png"
       width="200"
       height="200"
-      translation="[870, 540]"
+      translation="[700, 425]"
     />
 
     <Poster
@@ -50,6 +81,9 @@
       width="400"
       height="133.132"
       translation="[760, 750]"
+      minWidth="1"
+      maxWidth="1"
+      focusedIconUri="https://sthsroku.net/team666/FlappyBird/Start.png"
     />
 
     <Label
