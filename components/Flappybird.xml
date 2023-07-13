@@ -94,36 +94,30 @@
       color="0xFFFF00FF"
     />
 
-    <!-- <Poster
-      id="ground"
+    <Poster
+      id="ground1"
       uri="pkg:/images/ground1.png"
       width="750"
       height="100"
       translation="[1920, 1000]"
-      /> -->
-
-    <!-- <Poster id="ground"
-        opacity="1.0"
-        uri="https://sthsroku.net/team666/FlappyBird/ground1.png" />
-    <Animation id="scaleAnimation"
-          duration="1"
-          repeat="true"
-          easeFunction="linear" >
-        <Vector2DFieldInterpolator id = "myInterp"
-        key="[0.0, 0.25, 0.5, 0.75, 1.0]"
-        keyValue="[ [0.0, 0.0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1.0, 1.0]]"
-        fieldToInterp="ground.scale" />
-    </Animation>
-    <Animation id="transAnimation"
-          duration="1"
-          repeat="true"
-          easeFunction="linear" >
-        <Vector2DFieldInterpolator id = "myInterp2"
-            key="[0.0, 1.0]"
-            keyValue="[ [640.0, 320.0], [100.0, 100.0] ]"
-        fieldToInterp="ground.translation" />
-    </Animation> -->
-
+      visible="true"
+    />
+    <Poster
+      id="ground2"
+      uri="pkg:/images/ground2.png"
+      width="750"
+      height="100"
+      translation="[1920, 1000]"
+      visible="false"
+    />
+    <Poster
+      id="ground3"
+      uri="pkg:/images/ground3.png"
+      width="750"
+      height="100"
+      translation="[1920, 1000]"
+      visible="false"
+    />
 
     <Timer
       id="flappyTimer"
@@ -136,6 +130,22 @@
       repeat="false"
       duration="5"
     />
+
+    <Timer
+      id="groundTimer"
+      repeat="true"
+      duration="0.1"
+    />
+
+    <Poster
+      id = "playAgainPoster"
+      uri = "https://sthsroku.net/team666/tictactoe/playAgain.png"
+      visible = "false"
+      width = "400"
+      height = "200"
+      translation = "[760, 460]"
+    />
+
 
   </children>
 </component>
