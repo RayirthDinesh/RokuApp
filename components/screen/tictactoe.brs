@@ -146,8 +146,16 @@ sub init()
   m.global.addFields({computerPairFinderList : computerPairFinderList})
 
   Computer.setFocus(true)
-  ' r1c1.setFocus(true)
+  
+  m.top.observeField("visible", "onVisibleChange")
 end sub
+
+function onVisibleChange()
+  ? "[tictactoe] onVisibleChanged"
+  if m.top.visible = true then
+    m.global.Computer.setFocus(true)
+  end if
+end function
 
 function checkinList(list, button) as Boolean
   for each item in list
@@ -161,6 +169,7 @@ end function
 function playerOptionButton(obj)
   m.global.option = m.global.Player
   m.global.r1c1.setFocus(true)
+  m.global.state = 2
 end function
 
 function computerOptionButton(obj)
@@ -170,6 +179,7 @@ function computerOptionButton(obj)
   m.global.medium.visible = true
   m.global.hard.visible = true
   m.global.easy.setFocus(true)
+  m.global.state = 2
 end function
 
 function easyOptionButton(obj)
@@ -258,13 +268,13 @@ end function
 
 'function deals with the different types of presses and when the user moves to different buttons and hover following conditionals will also deal with how a user will move to different grids, then what happens if they do
 function onKeyEvent(key, press) as Boolean
+  ?"[tictactoe] onKeyEvent," key, press
+
   if m.global.state = 1 and not m.global.skipFirst then
     if key = "down" and press then
       m.global.Player.setFocus(true)
     else if key = "up" and press then
       m.global.Computer.setFocus(true)
-    else if key = "OK" and not press then
-      m.global.state = 2
     end if
   else if m.global.skipFirst then
     m.global.skipFirst = false

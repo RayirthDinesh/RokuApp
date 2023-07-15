@@ -20,7 +20,7 @@ sub init()
     m.appHomeScene.setFocus(false)
     m.tictactoe_scene.visible = true
     m.tictactoe_scene.setFocus(true)
-    m.top.backgroundURI = "https://sthsroku.net/team666/tictactoe/background.png"
+    m.top.backgroundURI = "pkg:/images/background.png"
   end function
 
   function onElevensButtonSelected(obj)

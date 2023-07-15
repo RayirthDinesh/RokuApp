@@ -1,5 +1,5 @@
 sub init()
-    ? "[flappybird] init end"
+    ? "[flappybird] init"
     bird = m.top.findNode("bird")
     background = m.top.findNode("background")
     m.timer = m.top.findNode("flappyTimer")
@@ -24,6 +24,15 @@ sub init()
     m.pillarTopSprite = compositor.NewSprite(1000, 500, pillarTopRegion, 0)
 
     m.global.addFields({pillarTopSprite : m.pillarTopSprite})
+    
+    m.top.observeField("visible","onVisible")
+end sub
+
+sub onVisible()
+    ? "[flappybird] onVisibleChanged"
+    if m.top.visible = true then
+        m.global.bird.setFocus(true)
+    end if
 end sub
 
 function onKeyEvent(key, press) as Boolean

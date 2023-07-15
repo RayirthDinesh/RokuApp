@@ -247,7 +247,7 @@
     <Button
       id = "playAgain"
       text = "Play Again? Press OK"
-      focusedIconUri = "https://sthsroku.net/team666/ElevensGame/blank.png"
+      focusedIconUri = "https://sthsroku.net/team666/elevens/blank.png"
       visible = "false"
       minWidth = "1" maxWidth="1"
       translation = "[1920, 1080]"
@@ -255,11 +255,21 @@
 
     <Poster
       id = "playAgainPoster"
-      uri = "https://sthsroku.net/team666/ElevensGame/playAgain.png"
+      uri = "https://sthsroku.net/team666/elevens/playAgain.png"
       visible = "false"
       width = "400"
       height = "200"
       translation = "[760, 460]"
+    />
+
+    <Button
+      id = "resetGameButton"
+      text = "Reset Game"
+      iconUri = "https://sthsroku.net/team666/elevens/playAgain.png"
+      focusedIconUri = "https://sthsroku.net/team666/elevens/playAgain.png"
+      visible = "true"
+      minWidth = "1" maxWidth="1"
+      translation = "[1500, 540]"
     />
   </children>
 </component>

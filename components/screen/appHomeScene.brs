@@ -1,6 +1,5 @@
 sub init()
     ? "[appHomeScene]] init"
-    m.top.backgroundURI = "pkg:/images/LinedPaper.jpg"
     m.top.observeField("visible", "onVisibleChange")
     m.tictactoe = m.top.findNode("tictactoe")
     m.elevens = m.top.findNode("elevens")
@@ -13,7 +12,6 @@ sub init()
     ? "[appHomeScene] onVisibleChanged"
     if m.top.visible = true then
         m.tictactoe.setFocus(true)
-        
     end if
   end function
 
