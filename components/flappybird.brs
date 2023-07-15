@@ -38,7 +38,7 @@ sub init()
     m.global.addFields({scoreKeeper: scoreKeeper})
 
     groundImage = CreateObject("roBitmap", "pkg:/images/ground1.png")
-    groundRegion = CreateObject("roRegion", groundImage, 0, 980, 1980, 100)
+    groundRegion = CreateObject("roRegion", groundImage, 0, 0, 1796, 268)
 
     '   id="bird"
     '   uri="https://sthsroku.net/team666/FlappyBird/bird.png"
