@@ -40,13 +40,7 @@ sub init()
     groundImage = CreateObject("roBitmap", "pkg:/images/ground1.png")
     groundRegion = CreateObject("roRegion", groundImage, 0, 0, 1796, 268)
 
-    '   id="bird"
-    '   uri="https://sthsroku.net/team666/FlappyBird/bird.png"
-    '   width="200"
-    '   height="200"
-    '   translation="[700, 425]"
     m.groundSprite = compositor.NewSprite(585, 980, groundRegion, 0)
-   
 
     m.global.addFields({bird : bird})
     m.global.addFields({pillarBottom : pillarBottom})
@@ -134,10 +128,10 @@ sub autoMoveBird()
 end sub
 
 sub moveGround() 
-    if m.groundSprite.getX() >= 585 then
-        m.groundSprite.MoveTo(5, 980)
+    if m.groundSprite.getX() < 0 then
+        m.groundSprite.MoveTo(585, 980)
     end if
-    m.groundSprite.MoveOffSet(-5,0)
+    m.groundSprite.MoveOffSet(-20,0)
     
     updateGround()
 end sub
