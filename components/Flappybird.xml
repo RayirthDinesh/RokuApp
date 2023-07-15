@@ -5,24 +5,24 @@
     <Poster
       id="background"
       uri="https://sthsroku.net/team666/FlappyBird/background.png"
-      translation="[-165, 0]"
-      width="1920"
+      translation="[585, 0]"
+      width="750"
       height="1080"
-      clippingRect="[750, 0, 750, 1080]"
+      
     />
 
     <Poster
       id="pillarTop"
       uri="https://sthsroku.net/team666/FlappyBird/pillarTop.png"
-      width="150"
+      width="160"
       height="450"
-      translation="[1390, -10]"
+      translation="[1390, -20]"
     />
 
     <Poster
       id="pillarBottom"
       uri="https://sthsroku.net/team666/FlappyBird/pillar.png"
-      width="150"
+      width="160"
       height="450"
       translation="[1390, 650]"
     />
@@ -30,7 +30,7 @@
     <Poster
       id="pillarTopSecond"
       uri="https://sthsroku.net/team666/FlappyBird/pillarTop.png"
-      width="150"
+      width="160"
       height="450"
       translation="[1790, -10]"
     />
@@ -38,7 +38,7 @@
     <Poster
       id="pillarBottomSecond"
       uri="https://sthsroku.net/team666/FlappyBird/pillar.png"
-      width="150"
+      width="160"
       height="450"
       translation="[1990, 650]"
     />
@@ -53,9 +53,9 @@
     <Poster
       id = "blackPosterSecond"
       uri = "pkg:/images/black.png"
-      width = "800"
+      width = "585"
       height = "1080"
-      translation = "[1305, 0]"
+      translation = "[1335, 0]"
     />
 
     <Poster
@@ -95,36 +95,50 @@
     />
 
     <Poster
-      id="ground1"
+      id="groundOne"
       uri="pkg:/images/ground1.png"
-      width="750"
+      width="1980"
       height="100"
-      translation="[1920, 1000]"
+      translation="[0, 980]"
       visible="true"
     />
+        <Poster
+      id = "blackPosterOne"
+      uri = "pkg:/images/black.png"
+      width ="585"
+      height = "1080"
+    />
+
     <Poster
-      id="ground2"
+      id = "blackPosterSecond"
+      uri = "pkg:/images/black.png"
+      width = "585"
+      height = "1080"
+      translation = "[1335, 0]"
+    />
+    <!-- <Poster
+      id="groundTwo"
       uri="pkg:/images/ground2.png"
       width="750"
       height="100"
-      translation="[1920, 1000]"
+      translation="[585, 980]"
       visible="false"
     />
     <Poster
-      id="ground3"
+      id="groundThree"
       uri="pkg:/images/ground3.png"
       width="750"
       height="100"
-      translation="[1920, 1000]"
+      translation="[585, 980]"
       visible="false"
-    />
+    /> -->
 
     <Timer
       id="flappyTimer"
       repeat="true"
       duration="0.1"
     />
-
+<!-- 
     <Timer
       id ="UpTimer"
       repeat="false"
@@ -134,8 +148,8 @@
     <Timer
       id="groundTimer"
       repeat="true"
-      duration="0.1"
-    />
+      duration="1"
+    /> -->
 
     <Poster
       id = "playAgainPoster"

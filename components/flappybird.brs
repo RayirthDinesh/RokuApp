@@ -17,12 +17,12 @@ sub init()
     birdMoveUp = false
     m.global.addFields({birdMoveUp: birdMoveUp})
 
-    ground1 = m.top.findNode("ground1")
-    ground2 = m.top.findNode("ground2")
-    ground3 = m.top.findNode("ground3")
-    m.global.addFields({ground1:ground1})
-    m.global.addFields({ground2:ground2})
-    m.global.addFields({ground3:ground3})
+    groundOne = m.top.findNode("groundOne")
+    ' groundTwo = m.top.findNode("groundTwo")
+    ' groundThree = m.top.findNode("groundThree")
+    m.global.addFields({groundOne:groundOne})
+    ' m.global.addFields({groundTwo:groundTwo})
+    ' m.global.addFields({groundThree:groundThree})
 
     startButton = m.top.findNode("startButton")
     startButton.setFocus(true)
@@ -37,7 +37,16 @@ sub init()
     scoreKeeper = 0
     m.global.addFields({scoreKeeper: scoreKeeper})
 
-    ground = m.top.findNode("ground") 'probably unnecessary
+    groundImage = CreateObject("roBitmap", "pkg:/images/ground1.png")
+    groundRegion = CreateObject("roRegion", groundImage, 0, 980, 1980, 100)
+
+    '   id="bird"
+    '   uri="https://sthsroku.net/team666/FlappyBird/bird.png"
+    '   width="200"
+    '   height="200"
+    '   translation="[700, 425]"
+    m.groundSprite = compositor.NewSprite(585, 980, groundRegion, 0)
+   
 
     m.global.addFields({bird : bird})
     m.global.addFields({pillarBottom : pillarBottom})
@@ -67,7 +76,7 @@ sub init()
     m.global.addFields({scoreSecondPillars: scoreSecondPillars})
     ' m.groundTimer.ObserveField("fire", "dollarTreeAnimationGround")
 
-    randomPillarTranslation = ((Rnd(0) * 700) + 200)
+    randomPillarTranslation = ((Rnd(0) * 650) + 200)
     randomPillarTranslationSecond = randomPillarTranslation
     m.global.addFields({randomPillarTranslation: randomPillarTranslation})
     m.global.addFields({randomPillarTranslationSecond: randomPillarTranslationSecond})
@@ -77,24 +86,25 @@ sub init()
 
     m.pillarBottomSpriteSecond.MoveTo(1990, m.global.randomPillarTranslationSecond)
     m.pillarTopSpriteSecond.MoveTo(1990, -10)
-
+    
     changeFirstPillar()
     changeSecondPillar()
 
     updatePillar()
+    ' m.groundTimer.control = "start"
+    ' m.groundTimer.ObserveField("fire", "dollarTreeAnimationGround")
 end sub
 
-' function dollarTreeAnimationGround()
-'     m.groundTimer.stop()
-'     if m.global.startButton.setFocus() = true then
-'         m.groundTimer.control()
-'         m.global.ground1.visible = true
-'         m.global.ground1.visible = false
-'         m.global.ground2.visible = true
+' sub dollarTreeAnimationGround()
+    
+'     m.global.groundThree.visible = false
+  
+'     '  m.global.groundOne.uri = "pkg:/images/ground1.png"
+'     '  m.global.groundTwo.uri = "pkg:/images/ground2.png"
+'     '  m.global.groundOne.uri = "pkg:/images/ground3.png"
 
-
-'     end if
-' end function
+ 
+' end sub
 
 
 function onKeyEvent(key, press) as boolean
@@ -113,11 +123,28 @@ sub startGame()
     m.timer.ObserveField("fire", "autoMoveBird")
     m.global.startButton.visible = false
     m.global.bird.setFocus(true)
+    
+
 end sub
 
 sub autoMoveBird()
+    moveGround()
     move()
     movePillars()
+end sub
+
+sub moveGround() 
+    if m.groundSprite.getX() >= 585 then
+        m.groundSprite.MoveTo(5, 980)
+    end if
+    m.groundSprite.MoveOffSet(-5,0)
+    
+    updateGround()
+end sub
+
+sub updateGround()
+    m.global.groundOne.translation = [m.groundSprite.getX(), m.groundSprite.getY()]
+
 end sub
 
 sub move()
@@ -138,8 +165,10 @@ sub move()
 end sub
 
 sub movePillars()
-    m.global.randomPillarTranslation = ((Rnd(0) * 700) + 200)
-    m.global.randomPillarTranslationSecond = m.global.randomPillarTranslation
+    
+
+    m.global.randomPillarTranslation = ((Rnd(0) * 700) + 200)+10
+    m.global.randomPillarTranslationSecond = m.global.randomPillarTranslation+10
 
     if m.pillarBottomSprite.getX() <= 500
         m.pillarBottomSprite.MoveTo(1790, m.global.randomPillarTranslationSecond)
