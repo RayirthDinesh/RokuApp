@@ -138,7 +138,15 @@ sub init()
     displayCards()
 
     cardPoster11.setFocus(true)
+    m.top.observeField("visible", "onVisibleChange")
 end sub
+
+function onVisibleChange()
+    ? "[ElevensGame] onVisibleChanged"
+    if m.top.visible = true then
+        resetGame()
+    end if
+end function
 
 sub shuffleCards()
     arr = m.global.deckCards
