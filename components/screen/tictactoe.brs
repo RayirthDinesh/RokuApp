@@ -153,7 +153,8 @@ end sub
 function onVisibleChange()
   ? "[tictactoe] onVisibleChanged"
   if m.top.visible = true then
-    m.global.Computer.setFocus(true)
+    resetGame()
+    m.global.playerWin = false
   end if
 end function
 
@@ -349,6 +350,7 @@ function onKeyEvent(key, press) as Boolean
       end if
     end if
   end if
+  return false
 end function
 
 function winGame()
