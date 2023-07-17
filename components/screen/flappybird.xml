@@ -1,68 +1,165 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <component name="flappybird" extends="Group">
-  <script type="text/brightscript" uri="pkg:/components/screen/flappybird.brs"/>
-    <children>
-      <Poster
-        id="background"
-        uri="https://sthsroku.net/team666/FlappyBird/background.png"
-        translation="[0, 0]"
-        width="1920"
-        height="1080"
-      />
+  <script type="text/brightscript" uri="pkg:/components/screen/flappybird.brs" />
+  <children>
+    <Poster
+      id="background"
+      uri="https://sthsroku.net/team666/FlappyBird/background.png"
+      translation="[585, 0]"
+      width="750"
+      height="1080"
+      
+    />
 
-      <Poster
-        id="pillarTop"
-        uri="https://sthsroku.net/team666/FlappyBird/pillar.png"
-        width="200"
-        height="500"
-        translation="[300, 0]"
-        rotation="3.1415926598"
-      />
+    <Poster
+      id="pillarTop"
+      uri="https://sthsroku.net/team666/FlappyBird/pillarTop.png"
+      width="160"
+      height="450"
+      translation="[1390, -20]"
+    />
 
-      <Poster
-        id="pillarBottom"
-        uri="https://sthsroku.net/team666/FlappyBird/pillar.png"
-        width="200"
-        height="500"
-        translation="[1000, 580]"
-      />
+    <Poster
+      id="pillarBottom"
+      uri="https://sthsroku.net/team666/FlappyBird/pillar.png"
+      width="160"
+      height="450"
+      translation="[1390, 650]"
+    />
 
-      <Poster
-        id="bird"
-        uri="https://sthsroku.net/team666/FlappyBird/bird.png"
-        width="200"
-        height="200"
-        translation="[960, 540]"
-      />
+    <Poster
+      id="pillarTopSecond"
+      uri="https://sthsroku.net/team666/FlappyBird/pillarTop.png"
+      width="160"
+      height="450"
+      translation="[1790, -10]"
+    />
 
-      <!-- <Poster
-        id="title"
-        uri="https://sthsroku.net/team666/FlappyBird/FlappyBird.png"
-        width="500"
-        height="200"
-        translation="[2, 75]"
-      /> -->
+    <Poster
+      id="pillarBottomSecond"
+      uri="https://sthsroku.net/team666/FlappyBird/pillar.png"
+      width="160"
+      height="450"
+      translation="[1990, 650]"
+    />
 
-      <!-- <Poster
-        id="startButton"
-        uri="https://sthsroku.net/team666/FlappyBird/Start.png"
-        width="200"
-        height="500"
-        translation="[490, 0]"
-      /> -->
-<!--
-      <Poster
-        id="ground"
-        uri="https://sthsroku.net/team666/FlappyBird/Ground.png"
-        width="200"
-        height="500"
-        translation="[200, 75]"
-      /> -->
+    <Poster
+      id = "blackPosterOne"
+      uri = "pkg:/images/black.png"
+      width ="585"
+      height = "1080"
+    />
 
-      <Timer
-        id="flappyTimer"
-        repeat="true"
-        duration="0.1"
-      />
-    </children>
+    <Poster
+      id = "blackPosterSecond"
+      uri = "pkg:/images/black.png"
+      width = "585"
+      height = "1080"
+      translation = "[1335, 0]"
+    />
+
+    <Poster
+      id="bird"
+      uri="https://sthsroku.net/team666/FlappyBird/bird.png"
+      width="200"
+      height="200"
+      translation="[700, 425]"
+    />
+
+    <Poster
+      id="title"
+      uri="https://sthsroku.net/team666/FlappyBird/FlappyBird.png"
+      width="650"
+      height="120"
+      translation="[635, 150]"
+    />
+
+    <Poster
+      id="startButton"
+      uri="https://sthsroku.net/team666/FlappyBird/Start.png"
+      width="400"
+      height="133.132"
+      translation="[760, 750]"
+    />
+
+    <Label
+      id="score"
+      translation="[760, 0]"
+      width="400"
+      height="200"
+      text="High Score: 00"
+      font="font:LargeBoldSystemFont"
+      horizAlign="center"
+      vertAlign="center"
+      color="0xFFFF00FF"
+    />
+
+    <Poster
+      id="groundOne"
+      uri="pkg:/images/ground1.png"
+      width="1980"
+      height="100"
+      translation="[0, 980]"
+      visible="true"
+    />
+        <Poster
+      id = "blackPosterOne"
+      uri = "pkg:/images/black.png"
+      width ="585"
+      height = "1080"
+    />
+
+    <Poster
+      id = "blackPosterSecond"
+      uri = "pkg:/images/black.png"
+      width = "585"
+      height = "1080"
+      translation = "[1335, 0]"
+    />
+    <!-- <Poster
+      id="groundTwo"
+      uri="pkg:/images/ground2.png"
+      width="750"
+      height="100"
+      translation="[585, 980]"
+      visible="false"
+    />
+    <Poster
+      id="groundThree"
+      uri="pkg:/images/ground3.png"
+      width="750"
+      height="100"
+      translation="[585, 980]"
+      visible="false"
+    /> -->
+
+    <Timer
+      id="flappyTimer"
+      repeat="true"
+      duration="0.1"
+    />
+<!-- 
+    <Timer
+      id ="UpTimer"
+      repeat="false"
+      duration="5"
+    />
+
+    <Timer
+      id="groundTimer"
+      repeat="true"
+      duration="1"
+    /> -->
+
+    <Poster
+      id = "playAgainPoster"
+      uri = "https://sthsroku.net/team666/tictactoe/playAgain.png"
+      visible = "false"
+      width = "400"
+      height = "200"
+      translation = "[760, 460]"
+    />
+
+
+  </children>
 </component>
