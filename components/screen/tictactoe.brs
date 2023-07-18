@@ -39,9 +39,6 @@ sub init()
   m.global.addFields({rowIndex : rowIndex})
   m.global.addFields({colIndex : colIndex})
 
-  arrayButtons = [[r0c0,r0c1,r0c2], [r1c0,r1c1,r1c2], [r2c0,r2c1,r2c2]]
-  m.global.addFields({arrayButtons : arrayButtons})
-
   rightButtons = [r0c0,r1c0,r2c0,r0c1,r1c1,r2c1]
   leftButtons = [r0c2,r1c2,r2c2,r0c1,r1c1,r2c1]
   upButtons = [r2c0,r2c1,r2c2,r1c0,r1c1,r1c2]
@@ -79,22 +76,30 @@ sub init()
   m.global.addFields({Vertical_Line_Middle : Vertical_Line_Middle})
   m.global.addFields({Vertical_Line_Bottom : Vertical_Line_Bottom})
 
-  arrayButtons = [[r0c0, r0c1, r0c2], [r1c0, r1c1, r1c2], [r2c0, r2c1, r2c2]]
+  arrayButtons = [[r0c0, r0c1, r0c2], 
+                  [r1c0, r1c1, r1c2], 
+                  [r2c0, r2c1, r2c2]]
   listButtons = [r0c0, r0c1, r0c2, r1c0, r1c1, r1c2, r2c0, r2c1, r2c2]
-  victoryCombos = [[r0c0, r0c1, r0c2], [r1c0, r1c1, r1c2], [r2c0, r2c1, r2c2], [r0c0, r1c0, r2c0], [r0c1, r1c1, r2c1], [r2c0, r2c1, r2c2], [r0c0, r1c1, r2c2], [r0c2, r1c1, r2c0]]
+  victoryCombos =  [[r0c0, r0c1, r0c2], 
+                    [r1c0, r1c1, r1c2], 
+                    [r2c0, r2c1, r2c2], 
+                    [r0c0, r1c0, r2c0], 
+                    [r0c1, r1c1, r2c1], 
+                    [r2c0, r2c1, r2c2], 
+                    [r0c0, r1c1, r2c2], 
+                    [r0c2, r1c1, r2c0]]
   rightButtons = [r0c0, r1c0, r2c0, r0c1, r1c1, r2c1]
   leftButtons = [r0c2, r1c2, r2c2, r0c1, r1c1, r2c1]
   upButtons = [r2c0, r2c1, r2c2, r1c0, r1c1, r1c2]
   downButtons = [r0c0, r0c1, r0c2, r1c0, r1c1, r1c2]
 
   m.global.addFields({arrayButtons : arrayButtons})
-  m.global.addFields({victorycombos : victorycombos})
   m.global.addFields({listButtons : listButtons})
+  m.global.addFields({victorycombos : victorycombos})
   m.global.addFields({rightButtons : rightButtons})
   m.global.addFields({leftButtons : leftButtons})
   m.global.addFields({upButtons : upButtons})
   m.global.addFields({downButtons : downButtons})
-  m.global.addFields({leftButtons : leftButtons})
 
   easyOptionRandomCol = 0
   easyOptionRandomRow = 0
@@ -121,7 +126,6 @@ sub init()
 
   xPlayer = true
   m.global.addFields({xPlayer : xPlayer})
-   'set focus starts at the middle grid
 
   Player = m.top.findNode("Player")
   Computer = m.top.findNode("Computer")
@@ -140,10 +144,10 @@ sub init()
 
   computerWinListX = []
   computerWinListO = []
-  computerPairFinderList = []
+  ' computerPairFinderList = []
   m.global.addFields({computerWinListX : computerWinListX})
   m.global.addFields({computerWinListO : computerWinListO})
-  m.global.addFields({computerPairFinderList : computerPairFinderList})
+  ' m.global.addFields({computerPairFinderList : computerPairFinderList})
 
   Computer.setFocus(true)
   
@@ -209,6 +213,7 @@ function easyModeComputer()
     m.global.easyOptionRandomRow = Fix(rnd(0) * 3)
     m.global.easyOptionRandomCol = Fix(rnd(0) * 3)
   end while
+  
   m.global.xPlayer = false
   m.global.arrayButtons[m.global.easyOptionRandomRow][m.global.easyOptionRandomCol].iconUri = "https://sthsroku.net/team666/tictactoe/whiteX.jpg"
   m.global.state = 4
@@ -250,18 +255,17 @@ function searchForWin()
         countO = countO + 1
       end if
     end for
-      for each item in combo
-        if countX = 2 then
-          if item.iconUri = "https://sthsroku.net/team666/tictactoe/blank.png" then
-            tempComputerWinListX.push(item)
-
-          end if
-          else if countO = 2
-            if item.iconUri = "https://sthsroku.net/team666/tictactoe/blank.png" then
-              tempComputerWinListO.push(item)
-            end if
-          end if
-      end for
+    for each item in combo
+      if countX = 2 then
+        if item.iconUri = "https://sthsroku.net/team666/tictactoe/blank.png" then
+          tempComputerWinListX.push(item)
+        end if
+      else if countO = 2
+        if item.iconUri = "https://sthsroku.net/team666/tictactoe/blank.png" then
+          tempComputerWinListO.push(item)
+        end if
+      end if
+    end for
   end for
   m.global.setFields({computerWinListX : tempComputerWinListX})
   m.global.setFields({computerWinListO : tempComputerWinListO})
@@ -277,8 +281,10 @@ function onKeyEvent(key, press) as Boolean
     else if key = "up" and press then
       m.global.Computer.setFocus(true)
     end if
+
   else if m.global.skipFirst then
     m.global.skipFirst = false
+
   else if m.global.state = 2 then
     if m.global.option.isSameNode(m.global.Computer) then
       if key = "down" and press and m.global.easy.hasFocus() then
@@ -293,6 +299,7 @@ function onKeyEvent(key, press) as Boolean
     else
       m.global.state = 4
     end if
+
   else if m.global.state = 3 then
     if m.global.xPlayer then
       if m.global.level.isSameNode(m.global.easy)  then
@@ -300,8 +307,10 @@ function onKeyEvent(key, press) as Boolean
       else if m.global.level.isSameNode(m.global.medium) then
         mediumModeComputer()
       end if
+
       winGame()
     end if
+    
   else if not m.global.playerWin and m.global.state = 4 then
     if press then
       if key = "right" then
@@ -321,12 +330,14 @@ function onKeyEvent(key, press) as Boolean
           m.global.colIndex = m.global.colIndex - 1
         end if
       end if
+      '317-334 seems right
       if m.global.xPlayer and m.global.arrayButtons[m.global.rowIndex][m.global.colIndex].iconUri = "https://sthsroku.net/team666/tictactoe/blank.png" then
         m.global.arrayButtons[m.global.rowIndex][m.global.colIndex].focusedIconUri = "https://sthsroku.net/team666/tictactoe/redX.jpg"
       else if (not m.global.xPlayer) and m.global.arrayButtons[m.global.rowIndex][m.global.colIndex].iconUri = "https://sthsroku.net/team666/tictactoe/blank.png" then
         m.global.arrayButtons[m.global.rowIndex][m.global.colIndex].focusedIconUri = "https://sthsroku.net/team666/tictactoe/redO.jpg"
       end if
       m.global.arrayButtons[m.global.rowIndex][m.global.colIndex].setFocus(true)
+      '335-340 seems right
     else
       if key = "OK" then
         if m.global.arrayButtons[m.global.rowIndex][m.global.colIndex].iconUri = "https://sthsroku.net/team666/tictactoe/blank.png" then
@@ -365,6 +376,7 @@ function winGame()
         tempOCount = tempOCount + 1
       end if
     end for
+
     if tempXCount = 3 or tempOCount = 3 then
       m.global.playerWin = true
       m.global.lineArray[tempCounter].visible = true
@@ -379,8 +391,10 @@ function winGame()
     if m.global.playerWin then
       exit for
     end if
+
     tempCounter = tempCounter + 1
   end for
+
   checkTie()
   if m.global.playerWin then
     m.global.playAgain.visible = true

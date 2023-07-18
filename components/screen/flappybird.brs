@@ -40,7 +40,7 @@ sub init()
     groundImage = CreateObject("roBitmap", "pkg:/images/ground1.png")
     groundRegion = CreateObject("roRegion", groundImage, 0, 0, 1796, 268)
 
-    m.groundSprite = compositor.NewSprite(585, 980, groundRegion, 0)
+    m.groundSprite = compositor.NewSprite(300, 980, groundRegion, 0) 'originally was (585,980)
 
     m.global.addFields({bird : bird})
     m.global.addFields({pillarBottom : pillarBottom})
@@ -128,8 +128,8 @@ sub autoMoveBird()
 end sub
 
 sub moveGround() 
-    if m.groundSprite.getX() < 100 then
-        m.groundSprite.MoveTo(585, 980)
+    if m.groundSprite.getX() < 50 then
+        m.groundSprite.MoveTo(300, 980)
     end if
     m.groundSprite.MoveOffSet(-20,0)
     
@@ -138,7 +138,7 @@ end sub
 
 sub updateGround()
     m.global.groundOne.translation = [m.groundSprite.getX(), m.groundSprite.getY()]
-
+    
 end sub
 
 sub move()
