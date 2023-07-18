@@ -1,11 +1,12 @@
 sub init()
-    ? "[flappybird] init end"
+    ' ? "[flappybird] init end"
     bird = m.top.findNode("bird")
     pillarTop = m.top.findNode("pillarTop")
     pillarBottom = m.top.findNode("pillarBottom")
     pillarTopSecond = m.top.findNode("pillarTopSecond")
     pillarBottomSecond = m.top.findNode("pillarBottomSecond")
 
+    'coded by vikram satesh nandi(July 16, 2023)
     background = m.top.findNode("background")
     m.timer = m.top.findNode("flappyTimer")
     m.groundTimer = m.top.findNode("groundTimer")
@@ -18,12 +19,7 @@ sub init()
     m.global.addFields({birdMoveUp: birdMoveUp})
 
     groundOne = m.top.findNode("groundOne")
-    ' groundTwo = m.top.findNode("groundTwo")
-    ' groundThree = m.top.findNode("groundThree")
-    m.global.addFields({groundOne:groundOne})
-    ' m.global.addFields({groundTwo:groundTwo})
-    ' m.global.addFields({groundThree:groundThree})
-
+    m.global.addFields({groundOne: groundOne})
     startButton = m.top.findNode("startButton")
     startButton.setFocus(true)
     m.global.addFields({startButton: startButton})
@@ -68,44 +64,30 @@ sub init()
     scoreSecondPillars = true
     m.global.addFields({scoreFirstPillars: scoreFirstPillars})
     m.global.addFields({scoreSecondPillars: scoreSecondPillars})
-    ' m.groundTimer.ObserveField("fire", "dollarTreeAnimationGround")
 
-    randomPillarTranslation = ((Rnd(0) * 650) + 200)
-    randomPillarTranslationSecond = randomPillarTranslation
+    randomPillarTranslation = ((Rnd(0) * 700) + 260)
     m.global.addFields({randomPillarTranslation: randomPillarTranslation})
-    m.global.addFields({randomPillarTranslationSecond: randomPillarTranslationSecond})
+    m.global.randomPillarTranslation = ((Rnd(0) * 700) + 260)
 
-    m.pillarBottomSprite.MoveTo(1390, m.global.randomPillarTranslationSecond)
-    m.pillarTopSprite.MoveTo(1390, -10)
-
-    m.pillarBottomSpriteSecond.MoveTo(1990, m.global.randomPillarTranslationSecond)
-    m.pillarTopSpriteSecond.MoveTo(1990, -10)
-    
+    m.pillarBottomSprite.MoveTo(1390, m.global.randomPillarTranslation)
+    m.pillarTopSprite.MoveTo(1390, -30)
     changeFirstPillar()
+
+    m.global.randomPillarTranslation = ((Rnd(0) * 700) + 260)
+
+    m.pillarBottomSpriteSecond.MoveTo(1990, m.global.randomPillarTranslation)
+    m.pillarTopSpriteSecond.MoveTo(1990, -30)
     changeSecondPillar()
 
     updatePillar()
-    ' m.groundTimer.control = "start"
-    ' m.groundTimer.ObserveField("fire", "dollarTreeAnimationGround")
 end sub
 
-' sub dollarTreeAnimationGround()
-    
-'     m.global.groundThree.visible = false
-  
-'     '  m.global.groundOne.uri = "pkg:/images/ground1.png"
-'     '  m.global.groundTwo.uri = "pkg:/images/ground2.png"
-'     '  m.global.groundOne.uri = "pkg:/images/ground3.png"
-
- 
-' end sub
-
-
 function onKeyEvent(key, press) as boolean
-    ? "onKeyEvent: " key, press
+    ' ? "onKeyEvent: " key, press
     if key = "OK" and m.global.title.visible then
         startGame()
         m.global.title.visible = false
+        m.timer.repeat = true
     else if key = "OK" then
         m.global.birdMoveUp = true
     end if
@@ -117,8 +99,8 @@ sub startGame()
     m.timer.ObserveField("fire", "autoMoveBird")
     m.global.startButton.visible = false
     m.global.bird.setFocus(true)
-    
-
+    m.global.playAgainPoster.visible = false
+    m.global.title.visible = false
 end sub
 
 sub autoMoveBird()
@@ -127,12 +109,12 @@ sub autoMoveBird()
     movePillars()
 end sub
 
-sub moveGround() 
+sub moveGround()
     if m.groundSprite.getX() < 0 then
         m.groundSprite.MoveTo(585, 980)
     end if
-    m.groundSprite.MoveOffSet(-20,0)
-    
+    m.groundSprite.MoveOffSet(-30, 0)
+
     updateGround()
 end sub
 
@@ -150,29 +132,26 @@ sub move()
     end if
     updateBird()
 
-    if checkCollision() = false then
+    if checkCollision() then
         m.global.playAgainPoster.visible = true
         m.global.title.visible = true
-
+        m.timer.repeat = false
+        m.timer.control = "stop"
         resetGame()
     end if
 end sub
 
 sub movePillars()
-    
-
-    m.global.randomPillarTranslation = ((Rnd(0) * 700) + 200)+10
-    m.global.randomPillarTranslationSecond = m.global.randomPillarTranslation+10
-
+    randomizePillarSize()
     if m.pillarBottomSprite.getX() <= 500
-        m.pillarBottomSprite.MoveTo(1790, m.global.randomPillarTranslationSecond)
-        m.pillarTopSprite.MoveTo(1790, -10)
+        m.pillarBottomSprite.MoveTo(1790, m.global.randomPillarTranslation)
+        m.pillarTopSprite.MoveTo(1790, -30)
         changeFirstPillar()
     end if
 
     if m.pillarBottomSpriteSecond.getX() <= 500
-        m.pillarBottomSpriteSecond.MoveTo(1790, m.global.randomPillarTranslationSecond)
-        m.pillarTopSpriteSecond.MoveTo(1790, -10)
+        m.pillarBottomSpriteSecond.MoveTo(1790, m.global.randomPillarTranslation)
+        m.pillarTopSpriteSecond.MoveTo(1790, -30)
         changeSecondPillar()
     end if
 
@@ -222,13 +201,46 @@ sub updatePillar()
     m.global.pillarTopSecond.translation = [m.pillarTopSpriteSecond.getX(), m.pillarTopSpriteSecond.getY()]
 end sub
 
+sub randomizePillarSize()
+    ran = ((Rnd(0) * 700) + 260)
+    m.global.setFields({randomPillarTranslation : ran})
+end sub
+
 sub checkCollision() as Boolean
-    if m.birdSprite.CheckCollision() = invalid then
+    if (m.birdSprite.getX() + 100 > m.pillarBottomSprite.getX() and m.birdSprite.getX() < m.pillarBottomSprite.getX() + 60 and m.birdSprite.getY() + 50 > m.pillarBottomSprite.getY()) then
+        return true
+    else if m.birdSprite.getX() + 100 > m.pillarTopSprite.getX() and m.birdSprite.getX() < m.pillarTopSprite.getX() + 160 and m.birdSprite.getY() < m.pillarTopSprite.getY() + m.global.pillarTop.Width + 25 then
+        return true
+    else if m.birdSprite.getX() + 100 > m.pillarBottomSpriteSecond.getX() and m.birdSprite.getX() < m.pillarBottomSpriteSecond.getX() + 60 and m.birdSprite.getY() + 50 > m.pillarBottomSpriteSecond.getY() then
+        return true
+    else if m.birdSprite.getX() + 100 > m.pillarTopSpriteSecond.getX() and m.birdSprite.getX() < m.pillarTopSpriteSecond.getX() + 160 and m.birdSprite.getY() < m.pillarTopSpriteSecond.getY() + m.global.pillarTopSecond.Width + 25 then
+        return true
+    else if m.birdSprite.getY() > 880 then
         return true
     end if
     return false
 end sub
 
 sub resetGame()
+    m.global.birdMoveUp = false
+    m.global.scoreKeeper = 0
+    m.global.counterLabel.text = "Score: " + m.global.scoreKeeper.ToStr()
+    m.global.groundOne.translation = [585, 980]
 
+    m.global.title.visible = true
+
+    randomizePillarSize()
+
+    m.pillarBottomSprite.MoveTo(1390, m.global.randomPillarTranslation)
+    m.pillarTopSprite.MoveTo(1390, -30)
+    changeFirstPillar()
+
+    randomizePillarSize()
+    m.pillarBottomSpriteSecond.MoveTo(1990, m.global.randomPillarTranslation)
+    m.pillarTopSpriteSecond.MoveTo(1990, -30)
+    changeSecondPillar()
+    updatePillar()
+
+    m.birdSprite.MoveTo(870, 540)
+    updateBird()
 end sub
