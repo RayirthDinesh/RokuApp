@@ -149,7 +149,7 @@ sub move()
         ' m.global.playAgainPoster.visible = true
         ' m.playAgainButton.visible = true
         ' m.playAgainButton.setFocus(true)
-        m.global.title.visible = true
+        ' m.global.title.visible = true
         m.global.timer.control = "stop"
         m.global.timer.repeat = false
         
