@@ -3,8 +3,8 @@ sub init()
   m.top.backgroundURI = "https://sthsroku.net/team666/tictactoe/background.png"
   m.gamename = m.top.findNode("gamename")
   m.poster = m.top.findNode("tictactoe")
-  m.playerNotify = m.top.findNode("playerNotify")
-  m.global.addFields({playerNotify: m.playerNotify})
+  ' m.playerNotify = m.top.findNode("playerNotify")
+  ' m.global.addFields({playerNotify: m.playerNotify})
 'variables that we call from XML and we want to edit
   r0c0 = m.top.findNode("r0c0")
   r0c1 = m.top.findNode("r0c1")
@@ -325,13 +325,13 @@ function onKeyEvent(key, press) as Boolean
           if m.global.xPlayer and m.global.option.isSameNode(m.global.Player) then
             m.global.arrayButtons[m.global.rowIndex][m.global.colIndex].iconUri = "https://sthsroku.net/team666/tictactoe/whiteX.jpg"
             m.global.xPlayer = false
-            m.global.playerNotify.text = "Player O's Turn"
+            ' m.global.playerNotify.text = "Player O's Turn"
             m.global.arrayButtons[m.global.rowIndex][m.global.colIndex].focusedIconUri = "https://sthsroku.net/team666/tictactoe/redX.jpg"
             winGame()
           else
             m.global.arrayButtons[m.global.rowIndex][m.global.colIndex].iconUri = "https://sthsroku.net/team666/tictactoe/whiteO.jpg"
             m.global.xPlayer = true
-            m.global.playerNotify.text = "Player X's Turn"
+            ' m.global.playerNotify.text = "Player X's Turn"
             m.global.arrayButtons[m.global.rowIndex][m.global.colIndex].focusedIconUri = "https://sthsroku.net/team666/tictactoe/redO.jpg"
             winGame()
             if not m.global.playerWin and m.global.option.isSameNode(m.global.Computer) then
@@ -361,10 +361,10 @@ function winGame()
       m.global.lineArray[tempCounter].visible = true
     end if
     if tempXCount = 3 then
-      m.global.playerNotify.text = "Player X wins"
+      ' m.global.playerNotify.text = "Player X wins"
       exit for
     else if tempOCount = 3 then
-      m.global.playerNotify.text = "Player O wins"
+      ' m.global.playerNotify.text = "Player O wins"
       exit for
     end if
     if m.global.playerWin then
@@ -388,7 +388,7 @@ sub checkTie()
       end if
     end for
   end for
-  m.global.playerNotify.text = "It's a tie!"
+  ' m.global.playerNotify.text = "It's a tie!"
   m.global.playerWin = true
 end sub
 
@@ -399,7 +399,7 @@ end sub
 
 function resetGame()
   m.global.xPlayer = true
-  m.global.playerNotify.text = "Player X's Turn"
+  ' m.global.playerNotify.text = "Player X's Turn"
   for each r in m.global.arrayButtons
     for each c in r
       c.iconUri = "https://sthsroku.net/team666/tictactoe/blank.png"

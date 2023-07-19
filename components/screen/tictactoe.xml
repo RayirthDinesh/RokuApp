@@ -253,7 +253,7 @@
     height="1"
   />
 
-    <Label
+    <!-- <Label
       id="playerNotify"
       text="Player X's Turn"
       visible="true"
@@ -263,7 +263,7 @@
       height="50"
       horizAlign = "center"
       vertAlign = "center"
-    />
+    /> -->
 
     <Button
       id = "playAgain"
