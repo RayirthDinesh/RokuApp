@@ -115,40 +115,12 @@
       height = "1080"
       translation = "[1335, 0]"
     />
-    <!-- <Poster
-      id="groundTwo"
-      uri="pkg:/images/ground2.png"
-      width="750"
-      height="100"
-      translation="[585, 980]"
-      visible="false"
-    />
-    <Poster
-      id="groundThree"
-      uri="pkg:/images/ground3.png"
-      width="750"
-      height="100"
-      translation="[585, 980]"
-      visible="false"
-    /> -->
 
     <Timer
       id="flappyTimer"
-      repeat="false"
+      repeat="true"
       duration="0.1"
     />
-<!--
-    <Timer
-      id ="UpTimer"
-      repeat="false"
-      duration="5"
-    />
-
-    <Timer
-      id="groundTimer"
-      repeat="true"
-      duration="1"
-    /> -->
 
     <Poster
       id = "playAgainPoster"
