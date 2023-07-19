@@ -79,7 +79,6 @@ sub init()
   arrayButtons = [[r0c0, r0c1, r0c2], 
                   [r1c0, r1c1, r1c2], 
                   [r2c0, r2c1, r2c2]]
-  listButtons = [r0c0, r0c1, r0c2, r1c0, r1c1, r1c2, r2c0, r2c1, r2c2]
   victoryCombos =  [[r0c0, r0c1, r0c2], 
                     [r1c0, r1c1, r1c2], 
                     [r2c0, r2c1, r2c2], 
@@ -88,13 +87,13 @@ sub init()
                     [r2c0, r2c1, r2c2], 
                     [r0c0, r1c1, r2c2], 
                     [r0c2, r1c1, r2c0]]
+
   rightButtons = [r0c0, r1c0, r2c0, r0c1, r1c1, r2c1]
   leftButtons = [r0c2, r1c2, r2c2, r0c1, r1c1, r2c1]
   upButtons = [r2c0, r2c1, r2c2, r1c0, r1c1, r1c2]
   downButtons = [r0c0, r0c1, r0c2, r1c0, r1c1, r1c2]
 
   m.global.addFields({arrayButtons : arrayButtons})
-  m.global.addFields({listButtons : listButtons})
   m.global.addFields({victorycombos : victorycombos})
   m.global.addFields({rightButtons : rightButtons})
   m.global.addFields({leftButtons : leftButtons})
@@ -381,6 +380,7 @@ function winGame()
       m.global.playerWin = true
       m.global.lineArray[tempCounter].visible = true
     end if
+
     if tempXCount = 3 then
       m.global.playerNotify.text = "Player X wins"
       exit for
@@ -388,13 +388,14 @@ function winGame()
       m.global.playerNotify.text = "Player O wins"
       exit for
     end if
+
     if m.global.playerWin then
       exit for
     end if
 
     tempCounter = tempCounter + 1
   end for
-
+  
   checkTie()
   if m.global.playerWin then
     m.global.playAgain.visible = true

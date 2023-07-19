@@ -8,7 +8,6 @@
       translation="[585, 0]"
       width="750"
       height="1080"
-      
     />
 
     <Poster
@@ -99,7 +98,7 @@
       uri="pkg:/images/ground1.png"
       width="1980"
       height="100"
-      translation="[300, 980]"
+      translation="[0, 980]"
       visible="true"
     />
         <Poster
@@ -138,7 +137,7 @@
       repeat="true"
       duration="0.1"
     />
-<!-- 
+<!--
     <Timer
       id ="UpTimer"
       repeat="false"
@@ -159,7 +158,24 @@
       height = "200"
       translation = "[760, 460]"
     />
+    
+    <Button
+    id = "playAgainButton"
+    text = "Play Again? Press OK"
+    focusedIconUri = "https://sthsroku.net/team666/tictactoe/blank.png"
+    visible = "false"
+    minWidth = "1" maxWidth="1"
+    translation = "[1920, 1080]"
+    />
 
+    <Button
+    id = "playGameButton"
+    text = "Play Again? Press OK"
+    focusedIconUri = "https://sthsroku.net/team666/tictactoe/blank.png"
+    visible = "true"
+    minWidth = "1" maxWidth="1"
+    translation = "[1920, 1080]"
+    />
 
   </children>
 </component>
