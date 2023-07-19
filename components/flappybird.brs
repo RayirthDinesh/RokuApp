@@ -6,7 +6,6 @@ sub init()
     pillarTopSecond = m.top.findNode("pillarTopSecond")
     pillarBottomSecond = m.top.findNode("pillarBottomSecond")
 
-    'coded by vikram satesh nandi(July 16, 2023)
     background = m.top.findNode("background")
     m.timer = m.top.findNode("flappyTimer")
     m.global.addFields({timer: m.timer})
@@ -111,7 +110,9 @@ sub startGame()
     m.global.timer.control = "start"
     m.global.startButton.visible = false
     m.global.playGameButton.visible = false
+
     m.global.bird.setFocus(true)
+
     m.global.playAgainPoster.visible = false
     m.global.title.visible = false
 end sub
@@ -133,7 +134,6 @@ end sub
 
 sub updateGround()
     m.global.groundOne.translation = [m.groundSprite.getX(), m.groundSprite.getY()]
-
 end sub
 
 sub move()
@@ -152,7 +152,6 @@ sub move()
         m.global.title.visible = true
         m.global.timer.control = "stop"
         m.global.timer.repeat = false
-        
     end if
 end sub
 
@@ -237,8 +236,7 @@ sub checkCollision() as Boolean
 end sub
 
 sub resetGame()
-    m.global.timer.duration = 0.1
-
+'    m.global.timer.duration = 0.1
     m.global.playAgainPoster.visible = false
     m.global.startButton.visible = true
     m.global.playGameButton.visible = true
