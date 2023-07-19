@@ -15,8 +15,8 @@ sub init()
     title = m.top.findNode("title")
     playAgainPoster = m.top.findNode("playAgainPoster")
 
-    m.playAgainButton = m.top.findNode("playAgainButton")
-    m.playAgainButton.observeField("buttonSelected", "playAgainButton")
+    ' m.playAgainButton = m.top.findNode("playAgainButton")
+    ' m.playAgainButton.observeField("buttonSelected", "playAgainButton")
     m.playGameButton = m.top.findNode("playGameButton")
     m.playGameButton.observeField("buttonSelected", "playGameButton")
     m.global.addFields({playGameButton: m.playGameButton})
@@ -88,9 +88,9 @@ sub init()
     updatePillar()
 end sub
 
-sub playAgainButton()
-    resetGame()
-end sub
+' sub playAgainButton()
+'     resetGame()
+' end sub
 
 sub playGameButton()
     startGame()
@@ -146,9 +146,9 @@ sub move()
     updateBird()
 
     if checkCollision() then
-        m.global.playAgainPoster.visible = true
-        m.playAgainButton.visible = true
-        m.playAgainButton.setFocus(true)
+        ' m.global.playAgainPoster.visible = true
+        ' m.playAgainButton.visible = true
+        ' m.playAgainButton.setFocus(true)
         m.global.title.visible = true
         m.global.timer.control = "stop"
         m.global.timer.repeat = false
@@ -236,33 +236,33 @@ sub checkCollision() as Boolean
     return false
 end sub
 
-sub resetGame()
-    m.global.timer.duration = 0.1
+' sub resetGame()
+'     m.global.timer.duration = 0.1
 
-    m.global.playAgainPoster.visible = false
-    m.global.startButton.visible = true
-    m.global.playGameButton.visible = true
-    m.global.playGameButton.setFocus(true)
+'     m.global.playAgainPoster.visible = false
+'     m.global.startButton.visible = true
+'     m.global.playGameButton.visible = true
+'     m.global.playGameButton.setFocus(true)
 
-    m.global.birdMoveUp = false
-    m.global.scoreKeeper = 0
-    m.global.counterLabel.text = "Score: " + m.global.scoreKeeper.ToStr()
+'     m.global.birdMoveUp = false
+'     m.global.scoreKeeper = 0
+'     m.global.counterLabel.text = "Score: " + m.global.scoreKeeper.ToStr()
     
-    m.groundSprite.MoveTo(585, 980)
-    updateGround()
+'     m.groundSprite.MoveTo(585, 980)
+'     updateGround()
 
-    randomizePillarSize()
+'     randomizePillarSize()
 
-    m.pillarBottomSprite.MoveTo(1390, m.global.randomPillarTranslation)
-    m.pillarTopSprite.MoveTo(1390, -30)
-    changeFirstPillar()
+'     m.pillarBottomSprite.MoveTo(1390, m.global.randomPillarTranslation)
+'     m.pillarTopSprite.MoveTo(1390, -30)
+'     changeFirstPillar()
 
-    randomizePillarSize()
-    m.pillarBottomSpriteSecond.MoveTo(1990, m.global.randomPillarTranslation)
-    m.pillarTopSpriteSecond.MoveTo(1990, -30)
-    changeSecondPillar()
-    updatePillar()
+'     randomizePillarSize()
+'     m.pillarBottomSpriteSecond.MoveTo(1990, m.global.randomPillarTranslation)
+'     m.pillarTopSpriteSecond.MoveTo(1990, -30)
+'     changeSecondPillar()
+'     updatePillar()
 
-    m.birdSprite.MoveTo(700, 425)
-    updateBird()
-end sub
+'     m.birdSprite.MoveTo(700, 425)
+'     updateBird()
+' end sub
