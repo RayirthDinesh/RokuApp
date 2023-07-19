@@ -9,11 +9,17 @@ sub init()
     'coded by vikram satesh nandi(July 16, 2023)
     background = m.top.findNode("background")
     m.timer = m.top.findNode("flappyTimer")
-    m.groundTimer = m.top.findNode("groundTimer")
+    m.global.addFields({timer: m.timer})
 
     counterLabel = m.top.findNode("score")
     title = m.top.findNode("title")
     playAgainPoster = m.top.findNode("playAgainPoster")
+
+    m.playAgainButton = m.top.findNode("playAgainButton")
+    m.playAgainButton.observeField("buttonSelected", "playAgainButton")
+    m.playGameButton = m.top.findNode("playGameButton")
+    m.playGameButton.observeField("buttonSelected", "playGameButton")
+    m.global.addFields({playGameButton: m.playGameButton})
 
     birdMoveUp = false
     m.global.addFields({birdMoveUp: birdMoveUp})
@@ -21,14 +27,14 @@ sub init()
     groundOne = m.top.findNode("groundOne")
     m.global.addFields({groundOne: groundOne})
     startButton = m.top.findNode("startButton")
-    startButton.setFocus(true)
     m.global.addFields({startButton: startButton})
+    m.playGameButton.setFocus(true)
 
     compositor = CreateObject("roCompositor")
     birdImage = CreateObject("roBitmap", "pkg:/images/bird.png")
     birdRegion = CreateObject("roRegion", birdImage, 0, 0, 225, 225)
 
-    m.birdSprite = compositor.NewSprite(870, 540, birdRegion, 0)
+    m.birdSprite = compositor.NewSprite(700, 425, birdRegion, 0)
 
     scoreKeeper = 0
     m.global.addFields({scoreKeeper: scoreKeeper})
@@ -82,22 +88,29 @@ sub init()
     updatePillar()
 end sub
 
+sub playAgainButton()
+    resetGame()
+end sub
+
+sub playGameButton()
+    startGame()
+end sub
+
 function onKeyEvent(key, press) as boolean
     ' ? "onKeyEvent: " key, press
-    if key = "OK" and m.global.title.visible then
-        startGame()
-        m.global.title.visible = false
-        m.timer.repeat = true
-    else if key = "OK" then
+    if key = "OK" then
         m.global.birdMoveUp = true
     end if
+
     return false
 end function
 
 sub startGame()
-    m.timer.control = "start"
-    m.timer.ObserveField("fire", "autoMoveBird")
+    m.global.timer.repeat = true
+    m.global.timer.control = "start"
+    m.global.timer.ObserveField("fire", "autoMoveBird")
     m.global.startButton.visible = false
+    m.global.playGameButton.visible = false
     m.global.bird.setFocus(true)
     m.global.playAgainPoster.visible = false
     m.global.title.visible = false
@@ -134,10 +147,12 @@ sub move()
 
     if checkCollision() then
         m.global.playAgainPoster.visible = true
+        m.playAgainButton.visible = true
+        m.playAgainButton.setFocus(true)
         m.global.title.visible = true
-        m.timer.repeat = false
-        m.timer.control = "stop"
-        resetGame()
+        m.global.timer.control = "stop"
+        m.global.timer.repeat = false
+        
     end if
 end sub
 
@@ -222,12 +237,19 @@ sub checkCollision() as Boolean
 end sub
 
 sub resetGame()
+    m.global.timer.duration = 0.1
+
+    m.global.playAgainPoster.visible = false
+    m.global.startButton.visible = true
+    m.global.playGameButton.visible = true
+    m.global.playGameButton.setFocus(true)
+
     m.global.birdMoveUp = false
     m.global.scoreKeeper = 0
     m.global.counterLabel.text = "Score: " + m.global.scoreKeeper.ToStr()
-    m.global.groundOne.translation = [585, 980]
-
-    m.global.title.visible = true
+    
+    m.groundSprite.MoveTo(585, 980)
+    updateGround()
 
     randomizePillarSize()
 
@@ -241,6 +263,6 @@ sub resetGame()
     changeSecondPillar()
     updatePillar()
 
-    m.birdSprite.MoveTo(870, 540)
+    m.birdSprite.MoveTo(700, 425)
     updateBird()
 end sub

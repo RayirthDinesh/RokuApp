@@ -135,7 +135,7 @@
     <Timer
       id="flappyTimer"
       repeat="true"
-      duration="0.1"
+      duration="0"
     />
 <!--
     <Timer
@@ -158,5 +158,24 @@
       height = "200"
       translation = "[760, 460]"
     />
+    
+    <Button
+    id = "playAgainButton"
+    text = "Play Again? Press OK"
+    focusedIconUri = "https://sthsroku.net/team666/tictactoe/blank.png"
+    visible = "false"
+    minWidth = "1" maxWidth="1"
+    translation = "[1920, 1080]"
+    />
+
+    <Button
+    id = "playGameButton"
+    text = "Play Again? Press OK"
+    focusedIconUri = "https://sthsroku.net/team666/tictactoe/blank.png"
+    visible = "true"
+    minWidth = "1" maxWidth="1"
+    translation = "[1920, 1080]"
+    />
+
   </children>
 </component>
