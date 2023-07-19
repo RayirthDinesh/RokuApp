@@ -134,8 +134,8 @@
 
     <Timer
       id="flappyTimer"
-      repeat="true"
-      duration="0"
+      repeat="false"
+      duration="0.1"
     />
 <!--
     <Timer
