@@ -107,7 +107,6 @@ function onKeyEvent(key, press) as boolean
 end function
 
 sub startGame()
-    count = 0
     m.global.timer.repeat = true
     m.global.timer.control = "start"
     m.global.startButton.visible = false
