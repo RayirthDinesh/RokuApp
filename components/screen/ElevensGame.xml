@@ -12,7 +12,7 @@
     />
     <Poster
       id = "cardPoster00"
-      uri = "https://sthsroku.net/team666/elevens/CardHighlight.png"
+      uri = "pkg:/images/CardHighlight.png"
       translation="[622.5, 89]"
       width="215"
       height="322"
@@ -21,7 +21,7 @@
 
     <Poster
       id = "cardPoster01"
-      uri = "https://sthsroku.net/team666/elevens/CardHighlight.png"
+      uri = "pkg:/images/CardHighlight.png"
       translation="[852.5, 89]"
       width="215"
       height="322"
@@ -30,7 +30,7 @@
 
     <Poster
       id = "cardPoster02"
-      uri = "https://sthsroku.net/team666/elevens/CardHighlight.png"
+      uri = "pkg:/images/CardHighlight.png"
       translation="[1082.5, 89]"
       width="215"
       height="322"
@@ -39,7 +39,7 @@
 
     <Poster
       id = "cardPoster10"
-      uri = "https://sthsroku.net/team666/elevens/CardHighlight.png"
+      uri = "pkg:/images/CardHighlight.png"
       translation="[622.5, 419]"
       width="215"
       height="322"
@@ -48,7 +48,7 @@
 
     <Poster
       id = "cardPoster11"
-      uri = "https://sthsroku.net/team666/elevens/CardHighlight.png"
+      uri = "pkg:/images/CardHighlight.png"
       translation="[852.5, 419]"
       width="215"
       height="322"
@@ -57,7 +57,7 @@
 
     <Poster
       id = "cardPoster12"
-      uri = "https://sthsroku.net/team666/elevens/CardHighlight.png"
+      uri = "pkg:/images/CardHighlight.png"
       translation="[1082.5, 419]"
       width="215"
       height="322"
@@ -66,7 +66,7 @@
 
     <Poster
       id = "cardPoster20"
-      uri = "https://sthsroku.net/team666/elevens/CardHighlight.png"
+      uri = "pkg:/images/CardHighlight.png"
       translation="[622.5, 749]"
       width="215"
       height="322"
@@ -75,7 +75,7 @@
 
     <Poster
       id = "cardPoster21"
-      uri = "https://sthsroku.net/team666/elevens/CardHighlight.png"
+      uri = "pkg:/images/CardHighlight.png"
       translation="[852.5, 749]"
       width="215"
       height="322"
@@ -84,7 +84,7 @@
 
     <Poster
       id = "cardPoster22"
-      uri = "https://sthsroku.net/team666/elevens/CardHighlight.png"
+      uri = "pkg:/images/CardHighlight.png"
       translation="[1082.5, 749]"
       width="215"
       height="322"

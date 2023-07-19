@@ -2,6 +2,7 @@
 sub init()
     ?"[Elevens]init"
     ' Glabol Constant values
+
     m.cardValueStart = 3
     m.cardValueLen = 2
     m.cardImgStart = 6
@@ -139,6 +140,8 @@ sub init()
 
     cardPoster11.setFocus(true)
     m.top.observeField("visible", "onVisibleChange")
+    arrayButtons[1][1].visible = false
+    
 end sub
 
 function onVisibleChange()
@@ -332,6 +335,7 @@ end function
 
 function onKeyEvent(key, press) as Boolean
     ? "onKeyEvent: " key, press
+    
     if press then
         m.global.arrayButtons[m.global.rowIndex][m.global.colIndex].visible = false
         if key = "right" and m.global.colIndex = 2 and m.global.rowIndex = 1 then
@@ -340,22 +344,34 @@ function onKeyEvent(key, press) as Boolean
             if checkinList(m.global.rightButtons, m.global.arrayButtons[m.global.rowIndex][m.global.colIndex])
                 m.global.colIndex = m.global.colIndex + 1
                 m.global.arrayButtons[m.global.rowIndex][m.global.colIndex].visible = true
+                if m.global.arrayButtons[m.global.rowIndex][m.global.colIndex].visible = true then
+                    print "visible true"
+                end if
             end if
         else if key = "up" then
             if checkinList(m.global.upButtons, m.global.arrayButtons[m.global.rowIndex][m.global.colIndex])
                 m.global.rowIndex = m.global.rowIndex - 1
                 m.global.arrayButtons[m.global.rowIndex][m.global.colIndex].visible = true
+                if m.global.arrayButtons[m.global.rowIndex][m.global.colIndex].visible = true then
+                    print "visible true"
+                end if
             end if
         else if key = "down" then
             if checkinList(m.global.downButtons, m.global.arrayButtons[m.global.rowIndex][m.global.colIndex])
                 m.global.rowIndex = m.global.rowIndex + 1
                 m.global.arrayButtons[m.global.rowIndex][m.global.colIndex].visible = true
+                if m.global.arrayButtons[m.global.rowIndex][m.global.colIndex].visible = true then
+                    print "visible true"
+                end if
             end if
         else if key = "left" then
             if checkinList(m.global.leftButtons, m.global.arrayButtons[m.global.rowIndex][m.global.colIndex])
                 if not m.global.resetGameButton.hasFocus() then
                     m.global.colIndex = m.global.colIndex - 1
                     m.global.arrayButtons[m.global.rowIndex][m.global.colIndex].visible = true
+                    if m.global.arrayButtons[m.global.rowIndex][m.global.colIndex].visible = true then
+                        print "visible true"
+                    end if
                 else
                     m.global.arrayButtons[m.global.rowIndex][m.global.colIndex].visible = true
                     m.global.arrayButtons[m.global.rowIndex][m.global.colIndex].setFocus(true)

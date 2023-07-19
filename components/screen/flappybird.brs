@@ -9,6 +9,7 @@ sub init()
     'coded by vikram satesh nandi(July 16, 2023)
     background = m.top.findNode("background")
     m.timer = m.top.findNode("flappyTimer")
+    
     m.global.addFields({timer: m.timer})
 
     counterLabel = m.top.findNode("score")
@@ -18,7 +19,8 @@ sub init()
     m.playAgainButton = m.top.findNode("playAgainButton")
     m.playAgainButton.observeField("buttonSelected", "playAgainButton")
     m.playGameButton = m.top.findNode("playGameButton")
-    m.playGameButton.observeField("buttonSelected", "playGameButton")
+    m.playGameButton.setFocus(true)
+    m.playGameButton.observeField("buttonSelected", "playGameButtonSelected")
     m.global.addFields({playGameButton: m.playGameButton})
 
     birdMoveUp = false
@@ -28,7 +30,6 @@ sub init()
     m.global.addFields({groundOne: groundOne})
     startButton = m.top.findNode("startButton")
     m.global.addFields({startButton: startButton})
-    m.playGameButton.setFocus(true)
 
     compositor = CreateObject("roCompositor")
     birdImage = CreateObject("roBitmap", "pkg:/images/bird.png")
@@ -71,34 +72,38 @@ sub init()
     m.global.addFields({scoreFirstPillars: scoreFirstPillars})
     m.global.addFields({scoreSecondPillars: scoreSecondPillars})
 
-    randomPillarTranslation = ((Rnd(0) * 700) + 260)
-    m.global.addFields({randomPillarTranslation: randomPillarTranslation})
-    m.global.randomPillarTranslation = ((Rnd(0) * 700) + 260)
+    ' randomPillarTranslation = ((Rnd(0) * 700) + 260)
+    ' m.global.addFields({randomPillarTranslation: randomPillarTranslation})
 
-    m.pillarBottomSprite.MoveTo(1390, m.global.randomPillarTranslation)
-    m.pillarTopSprite.MoveTo(1390, -30)
-    changeFirstPillar()
+    ' m.pillarBottomSprite.MoveTo(1390, randomPillarTranslation)
+    ' m.pillarTopSprite.MoveTo(1390, -30)
+    ' changeFirstPillar()
 
-    m.global.randomPillarTranslation = ((Rnd(0) * 700) + 260)
+    ' m.global.randomPillarTranslation = ((Rnd(0) * 700) + 260)
 
-    m.pillarBottomSpriteSecond.MoveTo(1990, m.global.randomPillarTranslation)
-    m.pillarTopSpriteSecond.MoveTo(1990, -30)
-    changeSecondPillar()
+    ' m.pillarBottomSpriteSecond.MoveTo(1990, randomPillarTranslation)
+    ' m.pillarTopSpriteSecond.MoveTo(1990, -30)
+    ' changeSecondPillar()
 
-    updatePillar()
+    ' updatePillar()
 end sub
 
 sub playAgainButton()
     resetGame()
 end sub
 
-sub playGameButton()
+sub playGameButtonSelected()
+    ?"playGameButton"
     startGame()
 end sub
 
 function onKeyEvent(key, press) as boolean
-    ' ? "onKeyEvent: " key, press
+    ? "onKeyEvent: " key, press
+    if key = "up" and m.global.playGameButton.hasFocus() then
+        startGame()
+    end if
     if key = "OK" then
+        ?"line 106"
         m.global.birdMoveUp = true
     end if
 
@@ -118,12 +123,13 @@ end sub
 
 sub autoMoveBird()
     moveGround()
+    ?"print" m.groundSprite.getX()
     move()
     movePillars()
 end sub
 
 sub moveGround()
-    if m.groundSprite.getX() < 0 then
+    if m.groundSprite.getX() <= 150 then
         m.groundSprite.MoveTo(585, 980)
     end if
     m.groundSprite.MoveOffSet(-30, 0)

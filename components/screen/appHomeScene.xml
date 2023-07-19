@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <component name="appHomeScene" extends="Group" initialFocus="tictactoe">
 <script type="text/brightscript" uri="pkg:/components/screen/appHomeScene.brs"/>
+
     <interface>
         <field id="tictactoe_button"
             type="node"
