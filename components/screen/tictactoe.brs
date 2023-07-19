@@ -277,8 +277,8 @@ function onKeyEvent(key, press) as Boolean
         m.global.easy.setFocus(true)
       else if key = "down" and press and m.global.medium.hasFocus() then
         m.global.hard.setFocus(true)
-      else if key = "up" and press and m.global.hard.hasFocus() then
-        m.global.medium.setFocus(true)
+      ' else if key = "up" and press and m.global.hard.hasFocus() then
+      '   m.global.medium.setFocus(true)
       end if
     else
       m.global.state = 4
