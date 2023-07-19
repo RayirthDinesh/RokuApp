@@ -107,13 +107,13 @@ sub init()
 
   easy = m.top.findNode("easy")
   medium = m.top.findNode("medium")
-  hard = m.top.findNode("hard")
+  ' hard = m.top.findNode("hard")
 
   level = easy
 
   m.global.addFields({easy : easy})
   m.global.addFields({medium : medium})
-  m.global.addFields({hard : hard})
+  ' m.global.addFields({hard : hard})
   m.global.addFields({level : level})
 
   rowIndex = 1
@@ -139,7 +139,7 @@ sub init()
   Computer.observeField("buttonSelected", "computerOptionButton")
   easy.observeField("buttonSelected", "easyOptionButton")
   medium.observeField("buttonSelected", "mediumOptionButton")
-  hard.observeField("buttonSelected", "hardOptionButton")
+  ' hard.observeField("buttonSelected", "hardOptionButton")
 
   computerWinListX = []
   computerWinListO = []
@@ -171,7 +171,7 @@ function computerOptionButton(obj)
   m.global.option = m.global.Computer
   m.global.easy.visible = true
   m.global.medium.visible = true
-  m.global.hard.visible = true
+  ' m.global.hard.visible = true
   m.global.easy.setFocus(true)
 end function
 
@@ -187,11 +187,11 @@ function mediumOptionButton(obj)
   m.global.r1c1.setFocus(true)
 end function
 
-function hardOptionButton(obj)
-  m.global.level = m.global.hard
-  m.global.state = 3
-  m.global.r1c1.setFocus(true)
-end function
+' function hardOptionButton(obj)
+'   m.global.level = m.global.hard
+'   m.global.state = 3
+'   m.global.r1c1.setFocus(true)
+' end function
 
 'Computer Movement Functions
 function easyModeComputer()
@@ -277,8 +277,8 @@ function onKeyEvent(key, press) as Boolean
         m.global.medium.setFocus(true)
       else if key = "up" and press and m.global.medium.hasFocus() then
         m.global.easy.setFocus(true)
-      else if key = "down" and press and m.global.medium.hasFocus() then
-        m.global.hard.setFocus(true)
+      ' else if key = "down" and press and m.global.medium.hasFocus() then
+      '   m.global.hard.setFocus(true)
       ' else if key = "up" and press and m.global.hard.hasFocus() then
       '   m.global.medium.setFocus(true)
       end if
@@ -413,7 +413,7 @@ function resetGame()
   m.global.colIndex = 1
   m.global.easy.visible = false
   m.global.medium.visible = false
-  m.global.hard.visible = false
+  ' m.global.hard.visible = false
   m.global.Player.visible = true
   m.global.skipFirst = true
   m.global.state = 1

@@ -232,7 +232,7 @@
     height="1"
   />
 
-  <Button
+  <!-- <Button
     id="Hard"
     translation="[25, 840]"
     iconUri = "https://sthsroku.net/team666/tictactoe/hard.png"
@@ -241,7 +241,7 @@
     minWidth="1"
     maxWidth="1"
     height="1"
-  />
+  /> -->
 
   <Button
     id="Computer"
