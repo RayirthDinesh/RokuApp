@@ -53,13 +53,13 @@ sub init()
     pillarTopRegion = CreateObject("roRegion", pillarTopImage, 0, 0, 65, 400)
 
     m.pillarTopSprite = compositor.NewSprite(1390, -10, pillarTopRegion, 0)
-    m.pillarTopSpriteSecond = compositor.NewSprite(1990, -10, pillarTopRegion, 0)
+    m.pillarTopSpriteSecond = compositor.NewSprite(2015, -10, pillarTopRegion, 0)
 
     pillarBottomImage = CreateObject("roBitmap", "pkg:/images/pillar.png")
     pillarBottomRegion = CreateObject("roRegion", pillarBottomImage, 0, 0, 65, 400)
 
     m.pillarBottomSprite = compositor.NewSprite(1390, 650, pillarBottomRegion, 0)
-    m.pillarBottomSpriteSecond = compositor.NewSprite(1990, 650, pillarBottomRegion, 0)
+    m.pillarBottomSpriteSecond = compositor.NewSprite(2015, 650, pillarBottomRegion, 0)
 
     m.global.addFields({counterLabel: counterLabel})
     m.global.addFields({title: title})
@@ -80,12 +80,14 @@ sub init()
 
     m.global.randomPillarTranslation = ((Rnd(0) * 700) + 260)
 
-    m.pillarBottomSpriteSecond.MoveTo(1990, m.global.randomPillarTranslation)
-    m.pillarTopSpriteSecond.MoveTo(1990, -30)
+    m.pillarBottomSpriteSecond.MoveTo(2015, m.global.randomPillarTranslation)
+    m.pillarTopSpriteSecond.MoveTo(2015, -30)
     changeSecondPillar()
 
     updatePillar()
     m.global.timer.ObserveField("fire", "autoMoveBird")
+    gravityCounter = 0
+    m.global.addFields({gravityCounter: gravityCounter})
 end sub
 
 sub playAgainButton()
@@ -98,7 +100,7 @@ end sub
 
 function onKeyEvent(key, press) as boolean
     ' ? "onKeyEvent: " key, press
-    if key = "OK" then
+    if key = "OK" and press then
         m.global.birdMoveUp = true
     end if
     return false
@@ -125,7 +127,7 @@ sub moveGround()
     if m.groundSprite.getX() < 0 then
         m.groundSprite.MoveTo(585, 980)
     end if
-    m.groundSprite.MoveOffSet(-30, 0)
+    m.groundSprite.MoveOffSet(-5, 0)
 
     updateGround()
 end sub
@@ -136,10 +138,19 @@ end sub
 
 sub move()
     if m.global.birdMoveUp and m.birdSprite.getY() >= 0 then
-        m.birdSprite.MoveOffset(0, -40)
         m.global.birdMoveUp = false
+        temp = 0
+        m.global.gravityCounter = 0
+        while temp < 6
+            m.global.gravityCounter = m.global.gravityCounter + 1
+            temp = 0.002 * (m.global.gravityCounter * m.global.gravityCounter) + 0.08 * m.global.gravityCounter + 0.5
+            m.birdSprite.MoveOffset(0, temp * -1)
+        end while
+        m.global.gravityCounter = 0
     else if m.birdSprite.getY() <= 880
-        m.birdSprite.MoveOffset(0, 30)
+        m.global.gravityCounter = m.global.gravityCounter + 1
+        y = 0.002 * (m.global.gravityCounter * m.global.gravityCounter) + 0.08 * m.global.gravityCounter + 0.5
+        m.birdSprite.MoveOffset(0, y)
     end if
     updateBird()
     movePillars()
@@ -155,22 +166,22 @@ end sub
 
 sub movePillars()
     randomizePillarSize()
-    if m.pillarBottomSprite.getX() <= 500
+    if m.pillarBottomSprite.getX() <= 450
         m.pillarBottomSprite.MoveTo(1790, m.global.randomPillarTranslation)
         m.pillarTopSprite.MoveTo(1790, -30)
         changeFirstPillar()
     end if
 
-    if m.pillarBottomSpriteSecond.getX() <= 500
+    if m.pillarBottomSpriteSecond.getX() <= 450
         m.pillarBottomSpriteSecond.MoveTo(1790, m.global.randomPillarTranslation)
         m.pillarTopSpriteSecond.MoveTo(1790, -30)
         changeSecondPillar()
     end if
 
-    m.pillarBottomSprite.MoveOffset(-30, 0)
-    m.pillarTopSprite.MoveOffSet(-30, 0)
-    m.pillarBottomSpriteSecond.MoveOffset(-30, 0)
-    m.pillarTopSpriteSecond.MoveOffSet(-30, 0)
+    m.pillarBottomSprite.MoveOffset(-5, 0)
+    m.pillarTopSprite.MoveOffSet(-5, 0)
+    m.pillarBottomSpriteSecond.MoveOffset(-5, 0)
+    m.pillarTopSpriteSecond.MoveOffSet(-5, 0)
     updatePillar()
     score()
 end sub
@@ -219,12 +230,11 @@ sub randomizePillarSize()
 end sub
 
 sub checkCollision() as Boolean
-
-    if m.birdSprite.getX() + 100 > m.pillarBottomSprite.getX() and m.birdSprite.getX() < m.pillarBottomSprite.getX() + 60 and m.birdSprite.getY() + 50 > m.pillarBottomSprite.getY() then
+    if m.birdSprite.getX() + 100 > m.pillarBottomSprite.getX() and m.birdSprite.getX() < m.pillarBottomSprite.getX() + 60 and m.birdSprite.getY() + 80 > m.pillarBottomSprite.getY() then
         return true
     else if m.birdSprite.getX() + 100 > m.pillarTopSprite.getX() and m.birdSprite.getX() < m.pillarTopSprite.getX() + 60 and m.birdSprite.getY() < m.pillarTopSprite.getY() + m.global.pillarTop.Height - 90 then
         return true
-    else if m.birdSprite.getX() + 100 > m.pillarBottomSpriteSecond.getX() and m.birdSprite.getX() < m.pillarBottomSpriteSecond.getX() + 60 and m.birdSprite.getY() + 50 > m.pillarBottomSpriteSecond.getY() then
+    else if m.birdSprite.getX() + 100 > m.pillarBottomSpriteSecond.getX() and m.birdSprite.getX() < m.pillarBottomSpriteSecond.getX() + 60 and m.birdSprite.getY() + 80 > m.pillarBottomSpriteSecond.getY() then
         return true
     else if m.birdSprite.getX() + 100 > m.pillarTopSpriteSecond.getX() and m.birdSprite.getX() < m.pillarTopSpriteSecond.getX() + 60 and m.birdSprite.getY() < m.pillarTopSpriteSecond.getY() + m.global.pillarTopSecond.Height - 90 then
         return true
@@ -254,11 +264,12 @@ sub resetGame()
     changeFirstPillar()
 
     randomizePillarSize()
-    m.pillarBottomSpriteSecond.MoveTo(1990, m.global.randomPillarTranslation)
-    m.pillarTopSpriteSecond.MoveTo(1990, -30)
+    m.pillarBottomSpriteSecond.MoveTo(2015, m.global.randomPillarTranslation)
+    m.pillarTopSpriteSecond.MoveTo(2015, -30)
     changeSecondPillar()
     updatePillar()
 
     m.birdSprite.MoveTo(700, 425)
     updateBird()
+    m.global.gravityCounter = 0
 end sub
