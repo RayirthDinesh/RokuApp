@@ -97,11 +97,10 @@ sub playGameButton()
 end sub
 
 function onKeyEvent(key, press) as boolean
-    ? "onKeyEvent: " key, press
+    ' ? "onKeyEvent: " key, press
     if key = "OK" then
         m.global.birdMoveUp = true
     end if
-
     return false
 end function
 
@@ -120,7 +119,6 @@ end sub
 sub autoMoveBird()
     moveGround()
     move()
-    movePillars()
 end sub
 
 sub moveGround()
@@ -144,7 +142,7 @@ sub move()
         m.birdSprite.MoveOffset(0, 30)
     end if
     updateBird()
-
+    movePillars()
     if checkCollision() then
         m.global.playAgainPoster.visible = true
         m.playAgainButton.visible = true
@@ -221,13 +219,14 @@ sub randomizePillarSize()
 end sub
 
 sub checkCollision() as Boolean
-    if (m.birdSprite.getX() + 100 > m.pillarBottomSprite.getX() and m.birdSprite.getX() < m.pillarBottomSprite.getX() + 60 and m.birdSprite.getY() + 50 > m.pillarBottomSprite.getY()) then
+
+    if m.birdSprite.getX() + 100 > m.pillarBottomSprite.getX() and m.birdSprite.getX() < m.pillarBottomSprite.getX() + 60 and m.birdSprite.getY() + 50 > m.pillarBottomSprite.getY() then
         return true
-    else if m.birdSprite.getX() + 100 > m.pillarTopSprite.getX() and m.birdSprite.getX() < m.pillarTopSprite.getX() + 160 and m.birdSprite.getY() < m.pillarTopSprite.getY() + m.global.pillarTop.Width + 25 then
+    else if m.birdSprite.getX() + 100 > m.pillarTopSprite.getX() and m.birdSprite.getX() < m.pillarTopSprite.getX() + 60 and m.birdSprite.getY() < m.pillarTopSprite.getY() + m.global.pillarTop.Height - 90 then
         return true
     else if m.birdSprite.getX() + 100 > m.pillarBottomSpriteSecond.getX() and m.birdSprite.getX() < m.pillarBottomSpriteSecond.getX() + 60 and m.birdSprite.getY() + 50 > m.pillarBottomSpriteSecond.getY() then
         return true
-    else if m.birdSprite.getX() + 100 > m.pillarTopSpriteSecond.getX() and m.birdSprite.getX() < m.pillarTopSpriteSecond.getX() + 160 and m.birdSprite.getY() < m.pillarTopSpriteSecond.getY() + m.global.pillarTopSecond.Width + 25 then
+    else if m.birdSprite.getX() + 100 > m.pillarTopSpriteSecond.getX() and m.birdSprite.getX() < m.pillarTopSpriteSecond.getX() + 60 and m.birdSprite.getY() < m.pillarTopSpriteSecond.getY() + m.global.pillarTopSecond.Height - 90 then
         return true
     else if m.birdSprite.getY() > 880 then
         return true
@@ -236,7 +235,6 @@ sub checkCollision() as Boolean
 end sub
 
 sub resetGame()
-'    m.global.timer.duration = 0.1
     m.global.playAgainPoster.visible = false
     m.global.startButton.visible = true
     m.global.playGameButton.visible = true
@@ -245,7 +243,7 @@ sub resetGame()
     m.global.birdMoveUp = false
     m.global.scoreKeeper = 0
     m.global.counterLabel.text = "Score: " + m.global.scoreKeeper.ToStr()
-    
+
     m.groundSprite.MoveTo(585, 980)
     updateGround()
 
