@@ -143,7 +143,6 @@ sub init()
 
     m.top.observeField("visible", "onVisibleChange")
     'arrayButtons[1][1].visible = true
-    
 end sub
 
 function onVisibleChange()
@@ -254,15 +253,13 @@ function resetGame()
     m.global.rowIndex = 1
     m.global.colIndex = 1
 
-    m.global.cardPoster11.visible = true
-    m.global.cardPoster11.setFocus(true)
-
     m.global.playAgain.visible = false
     m.global.playAgainPoster.visible = false
     tempArr = []
     m.global.setFields({currentBoard : tempArr})
     dealCards()
     displayCards()
+
     'm.global.arrayButtons[1][1].visible = true
 end function
 
@@ -338,15 +335,16 @@ end function
 
 function onKeyEvent(key, press) as Boolean
     ? "onKeyEvent: " key, press
-    
     if press then
-        m.global.arrayButtons[m.global.rowIndex][m.global.colIndex].visible = false
+
+        'm.global.arrayButtons[m.global.rowIndex][m.global.colIndex].visible = false
         if key = "right" and m.global.colIndex = 2 and m.global.rowIndex = 1 then
             m.global.resetGameButton.setFocus(true)
         else if key = "right" then
             if checkinList(m.global.rightButtons, m.global.arrayButtons[m.global.rowIndex][m.global.colIndex])
                 m.global.colIndex = m.global.colIndex + 1
                 m.global.arrayButtons[m.global.rowIndex][m.global.colIndex].visible = true
+                ?"print" m.global.rowIndex, m.global.colIndex
             end if
         else if key = "up" then
             if checkinList(m.global.upButtons, m.global.arrayButtons[m.global.rowIndex][m.global.colIndex])
@@ -357,6 +355,9 @@ function onKeyEvent(key, press) as Boolean
             if checkinList(m.global.downButtons, m.global.arrayButtons[m.global.rowIndex][m.global.colIndex])
                 m.global.rowIndex = m.global.rowIndex + 1
                 m.global.arrayButtons[m.global.rowIndex][m.global.colIndex].visible = true
+                if m.global.arrayButtons[m.global.rowIndex][m.global.colIndex].visible = true
+                    ?"rayirth"
+                end if
             end if
         else if key = "left" then
             if checkinList(m.global.leftButtons, m.global.arrayButtons[m.global.rowIndex][m.global.colIndex])

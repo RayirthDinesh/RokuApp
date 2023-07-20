@@ -122,14 +122,6 @@
       duration="0.01"
     />
 
-    <Poster
-      id = "playAgainPoster"
-      uri = "https://sthsroku.net/team666/tictactoe/playAgain.png"
-      visible = "false"
-      width = "400"
-      height = "200"
-      translation = "[760, 460]"
-    />
 
     <Button
     id = "playAgainButton"
@@ -149,5 +141,14 @@
     translation = "[1920, 1080]"
     />
 
+    <Poster
+      id = "playAgainPoster"
+      uri = "https://sthsroku.net/team666/tictactoe/playAgain.png"
+      visible = "false"
+      width = "400"
+      height = "200"
+      translation = "[760, 460]"
+    />
+    
   </children>
 </component>

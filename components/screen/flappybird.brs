@@ -16,9 +16,11 @@ sub init()
 
     m.playAgainButton = m.top.findNode("playAgainButton")
     m.playAgainButton.observeField("buttonSelected", "playAgainButton")
+
     m.playGameButton = m.top.findNode("playGameButton")
-    m.playGameButton.observeField("buttonSelected", "playGameButton")
-    m.global.addFields({playGameButton: m.playGameButton})
+    m.playGameButton.setFocus(true)
+    m.playGameButton.observeField("buttonSelected", "playGameButtonSelected")
+    'm.global.addFields({playGameButton: playButton})
 
     birdMoveUp = false
     m.global.addFields({birdMoveUp: birdMoveUp})
@@ -27,7 +29,6 @@ sub init()
     m.global.addFields({groundOne: groundOne})
     startButton = m.top.findNode("startButton")
     m.global.addFields({startButton: startButton})
-    m.playGameButton.setFocus(true)
 
     compositor = CreateObject("roCompositor")
     birdImage = CreateObject("roBitmap", "pkg:/images/bird.png")
@@ -88,21 +89,32 @@ sub init()
     m.global.timer.ObserveField("fire", "autoMoveBird")
     gravityCounter = 0
     m.global.addFields({gravityCounter: gravityCounter})
+    
+    m.top.observeField("visible","onVisible")
+end sub
+
+sub onVisible()
+    if m.top.visible = true then
+        resetGame()
+        if m.global.playAgainPoster.visible = false then
+            ?"line 100"
+        end if
+    end if
 end sub
 
 sub playAgainButton()
     resetGame()
 end sub
 
-sub playGameButton()
+function playGameButtonSelected()
     startGame()
-end sub
+end function
 
 function onKeyEvent(key, press) as boolean
-    ' ? "onKeyEvent: " key, press
-    if key = "OK" and press then
+    ? "[flappybird]" key, press
+    if key = "OK" then
         m.global.birdMoveUp = true
-    end if
+    end if    
     return false
 end function
 
@@ -110,7 +122,7 @@ sub startGame()
     m.global.timer.repeat = true
     m.global.timer.control = "start"
     m.global.startButton.visible = false
-    m.global.playGameButton.visible = false
+    m.playGameButton.visible = false
 
     m.global.bird.setFocus(true)
 
@@ -155,12 +167,16 @@ sub move()
     updateBird()
     movePillars()
     if checkCollision() then
-        m.global.playAgainPoster.visible = true
-        m.playAgainButton.visible = true
-        m.playAgainButton.setFocus(true)
+        ' m.global.playAgainPoster.visible = true
+        ' if m.global.playAgainPoster.visible = true then
+        '     ?"line 173"
+        ' end if
+        ' m.playAgainButton.visible = true
+        ' m.playAgainButton.setFocus(true)
         m.global.title.visible = true
         m.global.timer.control = "stop"
         m.global.timer.repeat = false
+        resetGame()
     end if
 end sub
 
@@ -247,8 +263,8 @@ end sub
 sub resetGame()
     m.global.playAgainPoster.visible = false
     m.global.startButton.visible = true
-    m.global.playGameButton.visible = true
-    m.global.playGameButton.setFocus(true)
+    m.playGameButton.visible = true
+    m.playGameButton.setFocus(true)
 
     m.global.birdMoveUp = false
     m.global.scoreKeeper = 0

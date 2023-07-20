@@ -48,7 +48,7 @@
 
     <Poster
       id = "cardPoster11"
-      uri = "pkg:/images/CardHighlight.png"
+      uri = "pkg:/images/CardHighLight.png"
       translation="[852.5, 419]"
       width="215"
       height="322"
