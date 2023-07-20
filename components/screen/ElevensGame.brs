@@ -33,6 +33,7 @@ sub init()
     m.global.addFields({card21 : card21})
     m.global.addFields({card22 : card22})
 
+    'cardPoster grid are used for the border displaying the focused card on that grid
     cardPoster00 = m.top.findNode("cardPoster00")
     cardPoster01 = m.top.findNode("cardPoster01")
     cardPoster02 = m.top.findNode("cardPoster02")
@@ -85,6 +86,7 @@ sub init()
     m.global.addFields({playAgainPoster : playAgainPoster})
 
 'card00, card01, card02, card10, card11, card12, card20, card21, card22
+'arrayButtons holds card poster that are used for the border displaying the focused card
     arrayButtons = [[cardPoster00,cardPoster01,cardPoster02],
                     [cardPoster10,cardPoster11,cardPoster12],
                     [cardPoster20,cardPoster21,cardPoster22]]
@@ -94,7 +96,7 @@ sub init()
                             [cardSelectedPoster10,cardSelectedPoster11,cardSelectedPoster12],
                             [cardSelectedPoster20,cardSelectedPoster21,cardSelectedPoster22]]
     m.global.addFields({arraySelectedButtons : arraySelectedButtons})
-
+'
     rightButtons = [cardPoster00,cardPoster10,cardPoster20,cardPoster01,cardPoster11,cardPoster21]
     leftButtons = [cardPoster02,cardPoster12,cardPoster22,cardPoster01,cardPoster11,cardPoster21]
     upButtons = [cardPoster20,cardPoster21,cardPoster22,cardPoster10,cardPoster11,cardPoster12]
@@ -112,6 +114,7 @@ sub init()
     m.global.addFields({gridCards: gridCards})
     m.global.addFields({gridCards2DArray: gridCards2DArray})
 
+    'array that initilaizes 52 cards to the deck
     deckCards = [
         "f_01_https://sthsroku.net/team666/elevens/Cards//ace_of_clubs.png", "f_01_https://sthsroku.net/team666/elevens/Cards//ace_of_diamonds.png", "f_01_https://sthsroku.net/team666/elevens/Cards//ace_of_hearts.png", "f_01_https://sthsroku.net/team666/elevens/Cards//ace_of_spades.png",
         "f_02_https://sthsroku.net/team666/elevens/Cards//2_of_clubs.png", "f_02_https://sthsroku.net/team666/elevens/Cards//2_of_diamonds.png", "f_02_https://sthsroku.net/team666/elevens/Cards//2_of_hearts.png", "f_02_https://sthsroku.net/team666/elevens/Cards//2_of_spades.png",
@@ -138,9 +141,8 @@ sub init()
     dealCards()
     displayCards()
 
-    cardPoster11.setFocus(true)
     m.top.observeField("visible", "onVisibleChange")
-    arrayButtons[1][1].visible = false
+    'arrayButtons[1][1].visible = true
     
 end sub
 
@@ -261,6 +263,7 @@ function resetGame()
     m.global.setFields({currentBoard : tempArr})
     dealCards()
     displayCards()
+    'm.global.arrayButtons[1][1].visible = true
 end function
 
 function isEmpty() as Boolean
@@ -344,34 +347,22 @@ function onKeyEvent(key, press) as Boolean
             if checkinList(m.global.rightButtons, m.global.arrayButtons[m.global.rowIndex][m.global.colIndex])
                 m.global.colIndex = m.global.colIndex + 1
                 m.global.arrayButtons[m.global.rowIndex][m.global.colIndex].visible = true
-                if m.global.arrayButtons[m.global.rowIndex][m.global.colIndex].visible = true then
-                    print "visible true"
-                end if
             end if
         else if key = "up" then
             if checkinList(m.global.upButtons, m.global.arrayButtons[m.global.rowIndex][m.global.colIndex])
                 m.global.rowIndex = m.global.rowIndex - 1
                 m.global.arrayButtons[m.global.rowIndex][m.global.colIndex].visible = true
-                if m.global.arrayButtons[m.global.rowIndex][m.global.colIndex].visible = true then
-                    print "visible true"
-                end if
             end if
         else if key = "down" then
             if checkinList(m.global.downButtons, m.global.arrayButtons[m.global.rowIndex][m.global.colIndex])
                 m.global.rowIndex = m.global.rowIndex + 1
                 m.global.arrayButtons[m.global.rowIndex][m.global.colIndex].visible = true
-                if m.global.arrayButtons[m.global.rowIndex][m.global.colIndex].visible = true then
-                    print "visible true"
-                end if
             end if
         else if key = "left" then
             if checkinList(m.global.leftButtons, m.global.arrayButtons[m.global.rowIndex][m.global.colIndex])
                 if not m.global.resetGameButton.hasFocus() then
                     m.global.colIndex = m.global.colIndex - 1
                     m.global.arrayButtons[m.global.rowIndex][m.global.colIndex].visible = true
-                    if m.global.arrayButtons[m.global.rowIndex][m.global.colIndex].visible = true then
-                        print "visible true"
-                    end if
                 else
                     m.global.arrayButtons[m.global.rowIndex][m.global.colIndex].visible = true
                     m.global.arrayButtons[m.global.rowIndex][m.global.colIndex].setFocus(true)
