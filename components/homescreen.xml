@@ -9,8 +9,8 @@
             translation="[0,0]"
             />
 
-        <tictactoe_scene
-            id="tictactoe_scene"
+        <tictactoe
+            id="tictactoe"
             visible="false"
             translation="[0,0]"
             />

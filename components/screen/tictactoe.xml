@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<component name="tictactoe_scene" extends="Group">
+<component name="tictactoe" extends="Group">
   <script type="text/brightscript" uri="pkg:/components/screen/tictactoe.brs"/>
   <children>
 <!-- shows where in the app something is -->

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<component name="appHomeScene" extends="Group" initialFocus="tictactoe">
+<component name="appHomeScene" extends="Group" initialFocus="tiktok">
 <script type="text/brightscript" uri="pkg:/components/screen/appHomeScene.brs"/>
 
     <interface>
         <field id="tictactoe_button"
             type="node"
-            alias="tictactoe.buttonSelected"
+            alias="tiktok.buttonSelected"
         />
         <field id="elevens_button"
             type="node"
@@ -13,7 +13,7 @@
         />
         <field id ="flappybird_button"
             type = "node"
-            alias="flappybird.buttonSelected"
+            alias="flappy.buttonSelected"
         />
     </interface>
 
@@ -48,14 +48,15 @@
             />    
         
         <Button
-            id="tictactoe"
+            id="tiktok"
             translation = "[458, 465]"
             minWidth="1"
             maxWidth="1"
             height="1"
             iconUri="pkg:/images/Tictactoe.png"
             focusedIconUri="pkg:/images/Tictactoe.png"
-            />
+            showFocusFootprint="true"
+        />
 
         <Button
             id="elevens"
@@ -67,17 +68,18 @@
             focusedIconUri="pkg:/images/ElevensIcon.png"
             focusFootprintBitmapUri="pkg:/images/ElevensIcon.png"
             showFocusFootprint="true"
-            />
+        />
 
         <Button
-            id="flappybird"
+            id="flappy"
             translation = "[755, 875]"
             minWidth="1"
             maxWidth="1"
             height="1"
             iconUri="pkg:/images/FlappyBirdIcon.png"
             focusedIconUri="pkg:/images/FlappyBirdIcon.png"
-            />    
+            showFocusFootprint="true"
+        />    
 
     </children>
 </component>

@@ -10,7 +10,6 @@
       height="1080"
     />
 
-
     <Poster
       id="pillarTop"
       uri="https://sthsroku.net/team666/FlappyBird/pillarTop.png"
@@ -41,6 +40,21 @@
       width="160"
       height="450"
       translation="[1990, 650]"
+    />
+
+    <Poster
+      id = "blackPosterOne"
+      uri = "pkg:/images/black.png"
+      width ="585"
+      height = "1080"
+    />
+
+    <Poster
+      id = "blackPosterSecond"
+      uri = "pkg:/images/black.png"
+      width = "585"
+      height = "1080"
+      translation = "[1335, 0]"
     />
 
     <Poster
@@ -81,33 +95,32 @@
 
     <Poster
       id="groundOne"
-      uri="https://sthsroku.net/team666/FlappyBird/ground1.png"
+      uri="pkg:/images/ground1.png"
       width="1980"
       height="100"
       translation="[0, 980]"
       visible="true"
     />
+        <Poster
+      id = "blackPosterOne"
+      uri = "pkg:/images/black.png"
+      width ="585"
+      height = "1080"
+    />
 
-  <Poster
-    id = "blackPosterOne"
-    uri = "https://sthsroku.net/team666/FlappyBird/black.png"
-    width ="585"
-    height = "1080"
-  />
-
-  <Poster
-    id = "blackPosterSecond"
-    uri = "https://sthsroku.net/team666/FlappyBird/black.png"
-    width = "585"
-    height = "1080"
-    translation = "[1335, 0]"
-  />
+    <Poster
+      id = "blackPosterSecond"
+      uri = "pkg:/images/black.png"
+      width = "585"
+      height = "1080"
+      translation = "[1335, 0]"
+    />
 
     <Timer
       id="flappyTimer"
       repeat="true"
-      duration="0.1"
-    /> 
+      duration="0.01"
+    />
 
     <Poster
       id = "playAgainPoster"
@@ -117,7 +130,7 @@
       height = "200"
       translation = "[760, 460]"
     />
-    
+
     <Button
     id = "playAgainButton"
     text = "Play Again? Press OK"
